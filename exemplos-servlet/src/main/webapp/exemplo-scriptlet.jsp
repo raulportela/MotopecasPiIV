@@ -7,7 +7,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Exemplo JSP</title>
     </head>
     <body>
         <%
@@ -20,13 +20,14 @@
         %>
         <h1>Cake Web - JSP + Scriptlet</h1>
         <ul>
-            <% for (Produto p : lista) {%>
+            <% for (Produto p : lista) { %>
             <li><div>
                     <h3><%= p.getNome()%></h3>
                     <p><%= p.getDescricao()%></p>
                     <p><%= p.getPrecoVenda().toString()%></p>
-                    <% }%>
-                </div></li>
+                    
+            </div></li>
+            <% }%>
         </ul>
     </body>
 </html>
