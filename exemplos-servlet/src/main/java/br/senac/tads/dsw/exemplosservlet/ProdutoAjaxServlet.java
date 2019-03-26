@@ -44,9 +44,6 @@ public class ProdutoAjaxServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             out.print(mapper.writeValueAsString(lista));
         }
-        
-        
-        
     }
 
     @Override
