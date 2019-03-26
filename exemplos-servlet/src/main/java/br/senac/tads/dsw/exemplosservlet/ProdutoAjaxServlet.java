@@ -37,7 +37,9 @@ public class ProdutoAjaxServlet extends HttpServlet {
         // Preparar resposta
         response.setContentType("application/json");
         response.setCharacterEncoding("utf-8");
-        //response.addHeader("Access-Control-Allow-Origin", "*");
+        
+        // CORS
+        response.addHeader("Access-Control-Allow-Origin", "*");
         
         // Jackson 2
         ObjectMapper mapper = new ObjectMapper();
