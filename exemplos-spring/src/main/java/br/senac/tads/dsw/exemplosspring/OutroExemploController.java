@@ -9,9 +9,11 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+import java.util.Map;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -59,6 +61,38 @@ public class OutroExemploController {
             @PathVariable("caminho") String username) {
         ModelAndView mv = new ModelAndView("view-ex4");
         mv.addObject("username", username);
+        return mv;
+    }
+
+    /**
+     * Obter um cabeçalho HTTP específico
+     * @param username
+     * @param userAgent
+     * @return 
+     */ 
+    @GetMapping("/ex5/{caminho}")
+    public ModelAndView ex5(
+            @PathVariable("caminho") String username,
+            @RequestHeader("User-Agent") String userAgent) {
+        ModelAndView mv = new ModelAndView("view-ex5");
+        mv.addObject("username", username);
+        mv.addObject("userAgent", userAgent);
+        return mv;
+    }
+
+    /**
+     * Obter todos cabeçalhos HTTP
+     * @param username
+     * @param headers
+     * @return 
+     */ 
+    @GetMapping("/ex6/{caminho}")
+    public ModelAndView ex6(
+            @PathVariable("caminho") String username,
+            @RequestHeader Map<String, String> headers) {
+        ModelAndView mv = new ModelAndView("view-ex6");
+        mv.addObject("username", username);
+        mv.addObject("headers", headers);
         return mv;
     }
 
