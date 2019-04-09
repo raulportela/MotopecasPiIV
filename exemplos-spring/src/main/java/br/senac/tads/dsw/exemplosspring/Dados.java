@@ -8,6 +8,7 @@ package br.senac.tads.dsw.exemplosspring;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import javax.validation.constraints.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
@@ -18,25 +19,36 @@ public class Dados implements Serializable {
 
     private Long id;
 
+    @NotBlank(message = "Nome deve ser preenchido seu animal")
+    //@Size(min = 1, max = 100, message = "Nome deve ter de 1 a 100 caracteres")
     private String nome;
 
     private String descricao;
 
+    @Email
     private String email;
 
     private String senha;
 
+    @Min(1)
+    @Max(99)
     private int numeroSorte;
 
     private int sexo;
 
+    @NotNull
     private String[] interesses;
 
+    @Min(0)
+    @Digits(integer = 1, fraction = 2)
     private BigDecimal altura;
 
+    @Min(0)
+    @Digits(integer = 3, fraction = 1)
     private BigDecimal peso;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @PastOrPresent
     private LocalDate dtNascimento;
 
     public Long getId() {

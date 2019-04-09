@@ -5,7 +5,11 @@
  */
 package br.senac.tads.dsw.exemplosspring;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,8 +34,14 @@ public class FormularioController {
 
     @PostMapping
     public ModelAndView salvarFormulario(
-            @ModelAttribute("dados") Dados dadosPreenchidos,
+            @ModelAttribute("dados") @Valid Dados dadosPreenchidos,
+            BindingResult bindingResult,
             RedirectAttributes ra) {
+        
+        if (bindingResult.hasErrors()) {
+            return new ModelAndView("/formulario-validacao");
+        }
+        
         ModelAndView mv = new ModelAndView("redirect:/formulario/resultado");
         ra.addFlashAttribute("dados", dadosPreenchidos);
         return mv;
@@ -41,6 +51,12 @@ public class FormularioController {
     public ModelAndView mostrarResultado() {
          ModelAndView mv = new ModelAndView("resultado-formulario");
          return mv;
+    }
+
+    
+    @ModelAttribute("maxDtNascimento")
+    public String getMaxDtNascimento() {
+        return LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 
 }
