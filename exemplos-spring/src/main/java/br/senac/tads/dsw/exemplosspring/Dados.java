@@ -8,6 +8,7 @@ package br.senac.tads.dsw.exemplosspring;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -35,6 +36,7 @@ public class Dados implements Serializable {
 
     private BigDecimal peso;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dtNascimento;
 
     public Long getId() {
