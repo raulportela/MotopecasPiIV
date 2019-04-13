@@ -1,18 +1,13 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <link rel="stylesheet" href="../utilitarios/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="../utilitarios/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="../utilitarios/css/flaticon.css"/>
-    <link rel="stylesheet" href="../utilitarios/css/slicknav.min.css"/>
-    <link rel="stylesheet" href="../utilitarios/css/jquery-ui.min.css"/>
-    <link rel="stylesheet" href="../utilitarios/css/owl.carousel.min.css"/>
-    <link rel="stylesheet" href="../utilitarios/css/animate.css"/>
-    <link rel="stylesheet" href="../utilitarios/css/style.css"/>
+<div th:fragment="footer">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/flaticon.css}"/>
+    <link rel="stylesheet" th:href="@{/css/slicknav.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/owl.carousel.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/animate.css}"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+
     <footer class="footer-section">
         <div class="container">
             <div class="footer-logo text-center">
@@ -111,4 +106,12 @@ and open the template in the editor.
             </div>
         </div>
     </footer>
-</html>
+    <script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/jquery.slicknav.min.js}"></script>
+    <script th:src="@{/js/owl.carousel.min.js}"></script>
+    <script th:src="@{/js/jquery.nicescroll.min.js}"></script>
+    <script th:src="@{/js/jquery.zoom.min.js}"></script>
+    <script th:src="@{/js/jquery-ui.min.js}"></script>
+    <script th:src="@{/js/main.js}"></script>
+</div>

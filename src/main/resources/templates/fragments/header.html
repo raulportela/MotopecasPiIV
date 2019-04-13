@@ -1,18 +1,14 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <link rel="stylesheet" href="../utilitarios/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="../utilitarios/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="../utilitarios/css/flaticon.css"/>
-    <link rel="stylesheet" href="../utilitarios/css/slicknav.min.css"/>
-    <link rel="stylesheet" href="../utilitarios/css/jquery-ui.min.css"/>
-    <link rel="stylesheet" href="../utilitarios/css/owl.carousel.min.css"/>
-    <link rel="stylesheet" href="../utilitarios/css/animate.css"/>
-    <link rel="stylesheet" href="../utilitarios/css/style.css"/>
+<div th:fragment="header">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/flaticon.css}"/>
+    <link rel="stylesheet" th:href="@{/css/slicknav.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/owl.carousel.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/animate.css}"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+
 
     <header class="header-section">
         <div class="header-top">
@@ -81,4 +77,4 @@ and open the template in the editor.
             </div>
         </nav>
     </header>
-</html>
+</div>
