@@ -19,7 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class login{
 
     @GetMapping("/login")
-    public ModelAndView carrinho() {
+    public ModelAndView login() {
         ModelAndView mv = new ModelAndView("/acesso/login");
         return mv;
     }

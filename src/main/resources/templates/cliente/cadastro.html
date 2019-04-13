@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zxx">
+    <head>
+        <title>Divisima | eCommerce Template</title>
+        <meta charset="UTF-8">
+        <meta name="description" content=" Divisima | eCommerce Template">
+        <meta name="keywords" content="divisima, eCommerce, creative, html">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Favicon -->
+        <link href="img/favicon.ico" rel="shortcut icon"/>
+
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,300i,400,400i,700,700i" rel="stylesheet">
+
+
+        <!-- Stylesheets -->
+        <link rel="stylesheet" th:href="@{css/bootstrap.min.css}"/>
+        <link rel="stylesheet" th:href="@{css/font-awesome.min.css}"/>
+        <link rel="stylesheet" th:href="@{css/flaticon.css}"/>
+        <link rel="stylesheet" th:href="@{css/slicknav.min.css}"/>
+        <link rel="stylesheet" th:href="@{css/jquery-ui.min.css}"/>
+        <link rel="stylesheet" th:href="@{css/owl.carousel.min.css}"/>
+        <link rel="stylesheet" th:href="@{css/animate.css}"/>
+        <link rel="stylesheet" th:href="@{css/style.css}"/>
+
+
+        <!--[if lt IE 9]>
+                  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    </head>
+    <body>
+        <!-- Page Preloder -->
+        <div id="preloder">
+            <div class="loader"></div>
+        </div>
+
+        <header th:include="fragments/header :: header"></header>    
+
+        <!-- checkout section  -->
+        <section class="checkout-section spad">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <form class="checkout-form">
+                            <div class="cf-title">Criar uma nova conta</div>
+                            <div class="row">
+                                <div class="col">
+                                    <p>Dados para acesso</p>
+                                </div>
+                                <div class="col">
+                                    <div class="cf-radio-btns address-rb">
+                                        <p>*Campos obrigatórios</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row address-inputs justify-content-center">
+                                <div class="col-md-8">
+                                    <label>E-mail*:</label> <input type="text" >
+                                    <label>Senha*:</label>  <input type="text" >
+                                    <label>Confirmar senha*:</label> <input type="text" >
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <p>Dados pessoais</p>
+                                </div>
+                                <div class="col">
+                                    <div class="cf-radio-btns address-rb">
+                                        <p>*Campos obrigatórios</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row address-inputs justify-content-center">
+                                <div class="col-md-8 ">
+                                    <label>Nome*:</label> <input type="text" >
+                                    <label>Sobrenome*:</label> <input type="text" >
+                                    <label>Telefone*:</label> <input type="text" >
+                                    <label>CPF*:</label> <input type="text" >
+                                    <label for="inputEstado">Sexo:</label>
+                                    <select id="inputEstado" class="form-control">
+                                        <option selected>Escolher...</option>
+                                        <option>Masculino</option>
+                                        <option>Feminino</option>
+                                    </select>
+                                    <label>Data de nascimento*:</label> <input type="text" >
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                                    <p>Deseja receber e-mail com novidades?</p>
+                                </div>
+                                <div class="col">
+                                    <div class="cf-radio-btns address-rb">
+                                        <div class="row">
+                                            <div class="col">
+                                                <button class="site-btn submit-order-btn">Voltar</button>
+                                            </div>
+                                            <div class="col">
+                                                <div class="cf-radio-btns address-rb">
+                                                    <button class="site-btn submit-order-btn">Cadastrar-se</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- checkout section end -->
+
+       <footer th:include="fragments/footer :: footer"></footer>
+
+
+
+        <!--====== Javascripts & Jquery ======-->
+        <script th:src="@{js/jquery-3.2.1.min.js}"></script>
+        <script th:src="@{js/bootstrap.min.js}"></script>
+        <script th:src="@{js/jquery.slicknav.min.js}"></script>
+        <script th:src="@{js/owl.carousel.min.js}"></script>
+        <script th:src="@{js/jquery.nicescroll.min.js}"></script>
+        <script th:src="@{js/jquery.zoom.min.js}"></script>
+        <script th:src="@{js/jquery-ui.min.js}"></script>
+        <script th:src="@{js/main.js}"></script>
+
+    </body>
+</html>

@@ -19,8 +19,14 @@ import org.springframework.web.servlet.ModelAndView;
 public class cliente{
 
     @GetMapping("/contato")
-    public ModelAndView carrinho() {
+    public ModelAndView contato() {
         ModelAndView mv = new ModelAndView("/cliente/contato");
+        return mv;
+    }
+    
+    @GetMapping("/cadastro")
+    public ModelAndView cadastro() {
+        ModelAndView mv = new ModelAndView("/cliente/cadastro");
         return mv;
     }
 }
