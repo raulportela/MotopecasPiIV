@@ -572,6 +572,11 @@ ol {
 	opacity: 0;
 }
 
+.margincols{
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
 .hero-slider .hs-item .offer-card:after {
 	position: absolute;
 	content: "";
