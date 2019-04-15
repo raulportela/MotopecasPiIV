@@ -30,4 +30,10 @@ public class Venda {
         ModelAndView mv = new ModelAndView("/venda/confirmacao");
         return mv;
     }
+    
+    @GetMapping("/pagamento")
+    public ModelAndView pagamento() {
+        ModelAndView mv = new ModelAndView("/venda/pagamento");
+        return mv;
+    }
 }
