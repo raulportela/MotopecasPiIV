@@ -24,9 +24,9 @@ public class Produto {
         return mv;
     }
     
-    @GetMapping("/listar")
+    @GetMapping("/especificacao")
     public ModelAndView confirmacao() {
-        ModelAndView mv = new ModelAndView("/produto/produto");
+        ModelAndView mv = new ModelAndView("/produto/especificacao");
         return mv;
     }
 }

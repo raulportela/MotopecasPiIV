@@ -16,7 +16,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="cart-table">
+                        <div class="cart-table margincols">
                             <h3>Carrinho</h3>
                             <div class="cart-table-warp">
                                 <table>
@@ -94,141 +94,129 @@
                     <div class="col-lg-12">
                         <form class="promo-code-form">
                             <div class="container">
-                                <div class="row">
-                                    <div class="col-sm">
+                                <div class="row ">
+                                    <div class="col-sm-7">
                                         <label>Digite o cep para calcular o frete:</label>
                                     </div>
-                                    <div class="col-sm ">
-                                        <input type="text">
+                                    <div class="col-sm-2 ">
+                                        <input type="text" >
                                     </div>
-                                    <div class="col-sm ">
-                                        <button class="site-btn submit-order-btn  address-rb">Calcular frete</button>
+                                    <div class="col-sm-3 ">
+                                        <a th:href="@{/#}" class="site-btn">Calcular Frete</a>
                                     </div>
-
                                 </div>
                             </div >
                             <div class = "desconto-code-form ">
                                 <div class="container ">
                                     <div class="row">
-                                        <div class="col-lg-12 ">
-                                            <div class="container">
-                                                <div class="row">
-                                                    <div class="col-sm-12 address-rb">
-                                                        <label > Desconto </label>	
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        <div class="col-sm-7">
+
+                                        </div>
+                                        <div class="col-sm-2 margincols">
+                                            <label > Desconto: </label>	
+                                        </div>
+                                        <div class="col-sm-3 ">
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="container">
-                                            <div class="row ">
-                                                <div class="col-md-4 ml-auto ">
-                                                    <a th:href="@{/#}" class="site-btn">Continuar Comprando</a>
-                                                </div>
-                                                <div class="col-md-4 ml-auto">
-                                                    <a th:href="@{/#}" class="site-btn sb-dark">Concluir Compra</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>										
-                            </div>
+                        </form>
                     </div>
-                    </form>
-
                 </div>
+                <div class="container">
+                    <div class="row ">
+                        <div class="col-sm-5">
+                           
+                        </div>
+                        <div class="col-sm-4 ">
+                            <a th:href="@{/#}" class="site-btn">Continuar Comprando</a>
+                        </div>
+                        <div class="col-sm-3 ">
+                            <a th:href="@{/#}" class="site-btn sb-dark">Concluir Compra</a>
+                        </div>
+                    </div>
+                </div >
             </div>
-        </section>
-        <!-- cart section end -->
+        </div>
+    </section>
+    <!-- cart section end -->
 
-        <!-- Related product section -->
-        <section class="related-product-section">
-            <div class="container">
-                <div class="section-title text-uppercase">
-                    <h2>Aproveite e leve tambem</h2>
+    <!-- Related product section -->
+    <section class="related-product-section">
+        <div class="container">
+            <div class="section-title text-uppercase">
+                <h2>Aproveite e leve tambem</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="product-item">
+                        <div class="pi-pic">
+                            <div class="tag-new">New</div>
+                            <img th:src="@{/img/product/2.jpg}" alt="">
+                            <div class="pi-links">
+                                <a th:href="@{/#}" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
+                                <a th:href="@{/#}" class="wishlist-btn"><i class="flaticon-heart"></i></a>
+                            </div>
+                        </div>
+                        <div class="pi-text">
+                            <h6>$35,00</h6>
+                            <p>Black and White Stripes Dress</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="product-item">
-                            <div class="pi-pic">
-                                <div class="tag-new">New</div>
-                                <img th:src="@{/img/product/2.jpg}" alt="">
-                                <div class="pi-links">
-                                    <a th:href="@{/#}" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-                                    <a th:href="@{/#}" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-                                </div>
-                            </div>
-                            <div class="pi-text">
-                                <h6>$35,00</h6>
-                                <p>Black and White Stripes Dress</p>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="product-item">
+                        <div class="pi-pic">
+                            <img th:src="@{/./img/product/5.jpg}" alt="">
+                            <div class="pi-links">
+                                <a th:href="@{/#}" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
+                                <a th:href="@{/#}" class="wishlist-btn"><i class="flaticon-heart"></i></a>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="product-item">
-                            <div class="pi-pic">
-                                <img th:src="@{/./img/product/5.jpg}" alt="">
-                                <div class="pi-links">
-                                    <a th:href="@{/#}" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-                                    <a th:href="@{/#}" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-                                </div>
-                            </div>
-                            <div class="pi-text">
-                                <h6>$35,00</h6>
-                                <p>Flamboyant Pink Top </p>
-                            </div>
+                        <div class="pi-text">
+                            <h6>$35,00</h6>
+                            <p>Flamboyant Pink Top </p>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="product-item">
-                            <div class="pi-pic">
-                                <img th:src="@{/./img/product/9.jpg}" alt="">
-                                <div class="pi-links">
-                                    <a th:href="@{/#}" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-                                    <a th:href="@{/#}" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-                                </div>
-                            </div>
-                            <div class="pi-text">
-                                <h6>$35,00</h6>
-                                <p>Flamboyant Pink Top </p>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="product-item">
+                        <div class="pi-pic">
+                            <img th:src="@{/./img/product/9.jpg}" alt="">
+                            <div class="pi-links">
+                                <a th:href="@{/#}" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
+                                <a th:href="@{/#}" class="wishlist-btn"><i class="flaticon-heart"></i></a>
                             </div>
                         </div>
+                        <div class="pi-text">
+                            <h6>$35,00</h6>
+                            <p>Flamboyant Pink Top </p>
+                        </div>
                     </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="product-item">
-                            <div class="pi-pic">
-                                <img th:src="@{/img/product/1.jpg}" alt="">
-                                <div class="pi-links">
-                                    <a th:href="@{/#}" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-                                    <a th:href="@{/#}" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-                                </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="product-item">
+                        <div class="pi-pic">
+                            <img th:src="@{/img/product/1.jpg}" alt="">
+                            <div class="pi-links">
+                                <a th:href="@{/#}" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
+                                <a th:href="@{/#}" class="wishlist-btn"><i class="flaticon-heart"></i></a>
                             </div>
-                            <div class="pi-text">
-                                <h6>$35,00</h6>
-                                <p>Flamboyant Pink Top </p>
-                            </div>
+                        </div>
+                        <div class="pi-text">
+                            <h6>$35,00</h6>
+                            <p>Flamboyant Pink Top </p>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-        <!-- Related product section end -->
+        </div>
 
-        <footer th:include="fragments/footer :: footer"></footer>
+    </section>
+    <!-- Related product section end -->
 
-        <!--====== Javascripts & Jquery ======-->
-        <script th:src="@{/js/jquery-3.2.1.min.js}"></script>
-        <script th:src="@{/js/bootstrap.min.js}"></script>
-        <script th:src="@{/js/jquery.slicknav.min.js}"></script>
-        <script th:src="@{/js/owl.carousel.min.js}"></script>
-        <script th:src="@{/js/jquery.nicescroll.min.js}"></script>
-        <script th:src="@{/js/jquery.zoom.min.js}"></script>
-        <script th:src="@{/js/jquery-ui.min.js}"></script>
-        <script th:src="@{/js/main.js}"></script>
-    </body>
+    <footer th:include="fragments/footer :: footer"></footer>
+
+</body>
 </html>

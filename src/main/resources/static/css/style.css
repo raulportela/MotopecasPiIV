@@ -573,6 +573,7 @@ ol {
 }
 
 .margincols{
+   
     margin-left: 20px;
     margin-right: 20px;
     margin-bottom: 20px;
@@ -1742,7 +1743,8 @@ ol {
 
 .cart-table {
 	padding: 40px 34px 0;
-	background: #f0f0f0;
+	background: #ffffff;
+        box-shadow: 0 0 3px #ffb025;
 	border-radius: 27px;
 	overflow: hidden;
 }
