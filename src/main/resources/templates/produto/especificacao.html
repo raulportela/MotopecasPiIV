@@ -15,10 +15,10 @@
         <!-- Page info -->
         <div class="page-top-info">
             <div class="container">
-                <h4>Category PAge</h4>
+                <h4>Itens</h4>
                 <div class="site-pagination">
-                    <a th:href="@{/}">Home</a> /
-                    <a th:href="@{/}">Shop</a>
+                    <a th:href="@{/#}">Home</a> /
+                    <a th:href="@{/#}">Shop</a>
                 </div>
             </div>
         </div>
@@ -46,9 +46,9 @@
                         </div>
                     </div>
                     <div class="col-lg-6 product-details">
-                        <h2 class="p-title">White peplum top</h2>
-                        <h3 class="p-price">$39.90</h3>
-                        <h4 class="p-stock">Available: <span>In Stock</span></h4>
+                        <h2 class="p-title">CB1000r</h2>
+                        <h3 class="p-price">R$80.000,00</h3>
+                        <!-- <h4 class="p-stock">Available: <span>In Stock</span></h4> -->
                         <div class="p-rating">
                             <i class="fa fa-star-o"></i>
                             <i class="fa fa-star-o"></i>
@@ -56,69 +56,31 @@
                             <i class="fa fa-star-o"></i>
                             <i class="fa fa-star-o fa-fade"></i>
                         </div>
-                        <div class="p-review">
+                        <!-- <div class="p-review">
                             <a th:href="@{/}">3 reviews</a>|<a th:href="@{/#}">Add your review</a>
-                        </div>
-                        <div class="fw-size-choose">
-                            <p>Size</p>
-                            <div class="sc-item">
-                                <input type="radio" name="sc" id="xs-size">
-                                <label for="xs-size">32</label>
-                            </div>
-                            <div class="sc-item">
-                                <input type="radio" name="sc" id="s-size">
-                                <label for="s-size">34</label>
-                            </div>
-                            <div class="sc-item">
-                                <input type="radio" name="sc" id="m-size" checked="">
-                                <label for="m-size">36</label>
-                            </div>
-                            <div class="sc-item">
-                                <input type="radio" name="sc" id="l-size">
-                                <label for="l-size">38</label>
-                            </div>
-                            <div class="sc-item disable">
-                                <input type="radio" name="sc" id="xl-size" disabled>
-                                <label for="xl-size">40</label>
-                            </div>
-                            <div class="sc-item">
-                                <input type="radio" name="sc" id="xxl-size">
-                                <label for="xxl-size">42</label>
-                            </div>
-                        </div>
+                        </div> -->
                         <div class="quantity">
-                            <p>Quantity</p>
+                            <p>Quantidade</p>
                             <div class="pro-qty"><input type="text" value="1"></div>
                         </div>
                         <a th:href="@{/#}" class="site-btn">SHOP NOW</a>
                         <div id="accordion" class="accordion-area">
                             <div class="panel">
                                 <div class="panel-header" id="headingOne">
-                                    <button class="panel-link active" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">information</button>
+                                    <button class="panel-link active" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">Ficha técnica</button>
                                 </div>
                                 <div id="collapse1" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                                     <div class="panel-body">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pharetra tempor so dales. Phasellus sagittis auctor gravida. Integer bibendum sodales arcu id te mpus. Ut consectetur lacus leo, non scelerisque nulla euismod nec.</p>
-                                        <p>Approx length 66cm/26" (Based on a UK size 8 sample)</p>
-                                        <p>Mixed fibres</p>
-                                        <p>The Model wears a UK size 8/ EU size 36/ US size 4 and her height is 5'8"</p>
+                                        <p>A CB 1000R está sempre pronta para te levar aonde você quiser. O seu motor de 4 cilindros proporciona maior torque e mais potência na hora de pilotar, o que garante melhor performance.</p>
+                                        <p>O painel multicolor da CB 1000R permite visualizar as condições de pilotagem da motocicleta a partir dos modos de cores do painel, facilitando a checagem de informações pelo piloto.</p>
+                                        <p>Mais segurança em qualquer aventura: o acelerador eletrônico Throttle by Wire da CB 1000R oferece maior precisão na entrega de torque e potência, proporcionando o melhor controle da motocicleta.</p>
+                                        <p>Além dos 3 diferentes níveis de controle de torque, você ainda tem a opção de desligar o sistema. Potência e tecnologia para você escolher como pilotar e sentir toda a liberdade que a CB 1000R proporciona.</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="panel">
-                                <div class="panel-header" id="headingTwo">
-                                    <button class="panel-link" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse2">care details </button>
-                                </div>
-                                <div id="collapse2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                                    <div class="panel-body">
-                                        <img th:src="@{/img/cards.png}" alt="">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pharetra tempor so dales. Phasellus sagittis auctor gravida. Integer bibendum sodales arcu id te mpus. Ut consectetur lacus leo, non scelerisque nulla euismod nec.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel">
+                            <!-- <div class="panel">
                                 <div class="panel-header" id="headingThree">
-                                    <button class="panel-link" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapse3">shipping & Returns</button>
+                                    <button class="panel-link" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapse3">Expedilçao e Devolução</button>
                                 </div>
                                 <div id="collapse3" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                                     <div class="panel-body">
@@ -127,14 +89,12 @@
                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pharetra tempor so dales. Phasellus sagittis auctor gravida. Integer bibendum sodales arcu id te mpus. Ut consectetur lacus leo, non scelerisque nulla euismod nec.</p>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="social-sharing">
-                            <a th:href="@{/#}"><i class="fa fa-google-plus"></i></a>
-                            <a th:href="@{/#}"><i class="fa fa-pinterest"></i></a>
                             <a th:href="@{/#}"><i class="fa fa-facebook"></i></a>
                             <a th:href="@{/#}"><i class="fa fa-twitter"></i></a>
-                            <a th:href="@{/#}"><i class="fa fa-youtube"></i></a>
+                            <a th:href="@{/#}"><i class="fa fa-instagram"></i></a>
                         </div>
                     </div>
                 </div>
@@ -146,7 +106,7 @@
         <section class="related-product-section">
             <div class="container">
                 <div class="section-title">
-                    <h2>RELATED PRODUCTS</h2>
+                    <h2>Produtos relacionados</h2>
                 </div>
                 <div class="product-slider owl-carousel">
                     <div class="product-item">
@@ -206,7 +166,7 @@
                         <div class="pi-pic">
                             <img th:src="@{/img/product/6.jpg}" alt="">
                             <div class="pi-links">
-                                <a th:href="@{/#}" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
+                                <a th:href="@{/#}" class="add-card"><i class="flaticon-bag"></i><span>Adicionar ao carrinho</span></a>
                                 <a th:href="@{/#}" class="wishlist-btn"><i class="flaticon-heart"></i></a>
                             </div>
                         </div>
