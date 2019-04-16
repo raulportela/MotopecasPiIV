@@ -17,8 +17,8 @@
             <div class="container">
                 <h4>Category PAge</h4>
                 <div class="site-pagination">
-                    <a href="">Home</a> /
-                    <a href="">Shop</a>
+                    <a th:href="@{/}">Home</a> /
+                    <a th:href="@{/}">Shop</a>
                 </div>
             </div>
         </div>
@@ -29,19 +29,19 @@
         <section class="product-section">
             <div class="container">
                 <div class="back-link">
-                    <a href="./category.html"> &lt;&lt; Back to Category</a>
+                    <a th:href="@{/category.html}"> &lt;&lt; Back to Category</a>
                 </div>
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="product-pic-zoom">
-                            <img class="product-big-img" src="img/single-product/1.jpg" alt="">
+                            <img class="product-big-img" th:src="@{/img/single-product/1.jpg}" alt="">
                         </div>
                         <div class="product-thumbs" tabindex="1" style="overflow: hidden; outline: none;">
                             <div class="product-thumbs-track">
-                                <div class="pt active" data-imgbigurl="img/single-product/1.jpg"><img src="img/single-product/thumb-1.jpg" alt=""></div>
-                                <div class="pt" data-imgbigurl="img/single-product/2.jpg"><img src="img/single-product/thumb-2.jpg" alt=""></div>
-                                <div class="pt" data-imgbigurl="img/single-product/3.jpg"><img src="img/single-product/thumb-3.jpg" alt=""></div>
-                                <div class="pt" data-imgbigurl="img/single-product/4.jpg"><img src="img/single-product/thumb-4.jpg" alt=""></div>
+                                <div class="pt active" th:data-imgbigurl="@{/img/single-product/1.jpg}"><img th:src="@{/img/single-product/thumb-1.jpg}" alt=""></div>
+                                <div class="pt" th:data-imgbigurl="@{/img/single-product/2.jpg}"><img th:src="@{/img/single-product/thumb-2.jpg}" alt=""></div>
+                                <div class="pt" th:data-imgbigurl="@{/img/single-product/3.jpg}"><img th:src="@{/img/single-product/thumb-3.jpg}" alt=""></div>
+                                <div class="pt" th:data-imgbigurl="@{/img/single-product/4.jpg}"><img th:src="@{/img/single-product/thumb-4.jpg}" alt=""></div>
                             </div>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                             <i class="fa fa-star-o fa-fade"></i>
                         </div>
                         <div class="p-review">
-                            <a href="">3 reviews</a>|<a href="">Add your review</a>
+                            <a th:href="@{/}">3 reviews</a>|<a th:href="@{/#}">Add your review</a>
                         </div>
                         <div class="fw-size-choose">
                             <p>Size</p>
@@ -90,7 +90,7 @@
                             <p>Quantity</p>
                             <div class="pro-qty"><input type="text" value="1"></div>
                         </div>
-                        <a href="#" class="site-btn">SHOP NOW</a>
+                        <a th:href="@{/#}" class="site-btn">SHOP NOW</a>
                         <div id="accordion" class="accordion-area">
                             <div class="panel">
                                 <div class="panel-header" id="headingOne">
@@ -111,7 +111,7 @@
                                 </div>
                                 <div id="collapse2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                                     <div class="panel-body">
-                                        <img src="./img/cards.png" alt="">
+                                        <img th:src="@{/img/cards.png}" alt="">
                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pharetra tempor so dales. Phasellus sagittis auctor gravida. Integer bibendum sodales arcu id te mpus. Ut consectetur lacus leo, non scelerisque nulla euismod nec.</p>
                                     </div>
                                 </div>
@@ -130,11 +130,11 @@
                             </div>
                         </div>
                         <div class="social-sharing">
-                            <a href=""><i class="fa fa-google-plus"></i></a>
-                            <a href=""><i class="fa fa-pinterest"></i></a>
-                            <a href=""><i class="fa fa-facebook"></i></a>
-                            <a href=""><i class="fa fa-twitter"></i></a>
-                            <a href=""><i class="fa fa-youtube"></i></a>
+                            <a th:href="@{/#}"><i class="fa fa-google-plus"></i></a>
+                            <a th:href="@{/#}"><i class="fa fa-pinterest"></i></a>
+                            <a th:href="@{/#}"><i class="fa fa-facebook"></i></a>
+                            <a th:href="@{/#}"><i class="fa fa-twitter"></i></a>
+                            <a th:href="@{/#}"><i class="fa fa-youtube"></i></a>
                         </div>
                     </div>
                 </div>
@@ -151,10 +151,10 @@
                 <div class="product-slider owl-carousel">
                     <div class="product-item">
                         <div class="pi-pic">
-                            <img src="./img/product/1.jpg" alt="">
+                            <img th:src="@{/img/product/1.jpg}" alt="">
                             <div class="pi-links">
-                                <a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-                                <a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
+                                <a th:href="@{/#}" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
+                                <a th:href="@{/#}" class="wishlist-btn"><i class="flaticon-heart"></i></a>
                             </div>
                         </div>
                         <div class="pi-text">
@@ -165,10 +165,10 @@
                     <div class="product-item">
                         <div class="pi-pic">
                             <div class="tag-new">New</div>
-                            <img src="./img/product/2.jpg" alt="">
+                            <img th:src="@{/img/product/2.jpg}" alt="">
                             <div class="pi-links">
-                                <a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-                                <a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
+                                <a th:href="@{/#}" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
+                                <a th:href="@{/#}" class="wishlist-btn"><i class="flaticon-heart"></i></a>
                             </div>
                         </div>
                         <div class="pi-text">
@@ -178,10 +178,10 @@
                     </div>
                     <div class="product-item">
                         <div class="pi-pic">
-                            <img src="./img/product/3.jpg" alt="">
+                            <img th:src="@{/img/product/3.jpg}" alt="">
                             <div class="pi-links">
-                                <a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-                                <a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
+                                <a th:href="@{/#}" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
+                                <a th:href="@{/#}" class="wishlist-btn"><i class="flaticon-heart"></i></a>
                             </div>
                         </div>
                         <div class="pi-text">
@@ -191,10 +191,10 @@
                     </div>
                     <div class="product-item">
                         <div class="pi-pic">
-                            <img src="./img/product/4.jpg" alt="">
+                            <img th:src="@{/img/product/4.jpg}" alt="">
                             <div class="pi-links">
-                                <a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-                                <a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
+                                <a th:href="@{/#}" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
+                                <a th:href="@{/#}" class="wishlist-btn"><i class="flaticon-heart"></i></a>
                             </div>
                         </div>
                         <div class="pi-text">
@@ -204,10 +204,10 @@
                     </div>
                     <div class="product-item">
                         <div class="pi-pic">
-                            <img src="./img/product/6.jpg" alt="">
+                            <img th:src="@{/img/product/6.jpg}" alt="">
                             <div class="pi-links">
-                                <a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-                                <a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
+                                <a th:href="@{/#}" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
+                                <a th:href="@{/#}" class="wishlist-btn"><i class="flaticon-heart"></i></a>
                             </div>
                         </div>
                         <div class="pi-text">
