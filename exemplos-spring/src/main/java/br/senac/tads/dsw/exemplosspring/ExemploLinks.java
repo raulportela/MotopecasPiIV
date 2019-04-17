@@ -7,17 +7,20 @@ package br.senac.tads.dsw.exemplosspring;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
  * @author fernando.tsuda
  */
-//@Controller
-public class IndexController {
+@Controller
+@RequestMapping("/links")
+public class ExemploLinks {
 
-    //@GetMapping
-    public String index() {
-        return "index";
+    @GetMapping
+    public ModelAndView abrirView() {
+        return new ModelAndView("links");
     }
-    
+
 }

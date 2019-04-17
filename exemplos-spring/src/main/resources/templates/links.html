@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- EXEMPLOS PARA CARREGAR CSS E JS -->
+        <link rel="stylesheet" th:href="@{/css/estilos.css}" />
+        <script th:src="@{/js/funcoes.js}"></script>
+    </head>
+    <body>
+        <h1>Exemplos de como montar links com Thymeleaf</h1>
+        <div>
+            <p>Acesso exemplo 2 ModelAndView - usar atributo <code>th:href="@{/outro/ex2}"</code></p>
+            <a th:href="@{/outro/ex2}">Exemplo /outro/ex2</a>
+        </div>
+        <div>
+            <p>Acesso exemplo 3 ModelAndView com o nome - usar atributo <code>th:href="@{/outro/ex3(nome='Fulano da Silva')}"</code></p>
+            <a th:href="@{/outro/ex3(nome='Fulano da Silva')}">Exemplo /outro/ex3</a>
+        </div>
+        <div>
+            <p>Acesso exemplo 3 ModelAndView com nome, número e dtnasc - usar atributo <code>th:href="@{/outro/ex3(nome='Fulano da Silva',numero=123,dtnasc='10/05/1990')}"</code></p>
+            <a th:href="@{/outro/ex3(nome='Fulano da Silva',numero=123,dtnasc='10/05/1990')}">Exemplo /outro/ex3</a>
+        </div>
+        <div>
+            <p>Acesso exemplo 4 ModelAndView - usar atributo <code>th:href="@{/outro/ex4/{username}(username='fulano')}"</code></p>
+            <a th:href="@{/outro/ex4/{username}(username='fulano')}">Exemplo /outro/ex4/fulano</a>
+        </div>
+        <div>
+            <p>Acesso Link externo - usar atributo <code>th:href="@{http://www.sp.senac.br}"</code></p>
+            <a th:href="@{http://www.sp.senac.br}">Link externo</a>
+        </div>
+        <p>Mais informações em <a href="https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#link-urls">https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#link-urls</a></p>
+        
+        <div>
+            <p>Exemplo imagem</p>
+            <img th:src="@{/img/senac_logo.png}" style="width: 200px" />
+        </div>
+    </body>
+</html>
