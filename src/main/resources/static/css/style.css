@@ -2224,6 +2224,10 @@ ol {
 	.social-links a {
 		margin-right: 20px;
 	}
+        .social-links-orientation{
+            top: 50%;
+            left: 50%;
+        }
 }
 
 /* Tablet :768px. */
