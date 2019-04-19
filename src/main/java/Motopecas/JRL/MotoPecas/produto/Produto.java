@@ -29,4 +29,10 @@ public class Produto {
         ModelAndView mv = new ModelAndView("/produto/especificacao");
         return mv;
     }
+    
+    @GetMapping("/pagemoto")
+    public ModelAndView paginamoto() {
+        ModelAndView mv = new ModelAndView("/produto/pageModeloMoto");
+        return mv;
+    }
 }
