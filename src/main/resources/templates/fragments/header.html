@@ -8,7 +8,7 @@
     <link rel="stylesheet" th:href="@{/css/owl.carousel.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/animate.css}"/>
     <link rel="stylesheet" th:href="@{/css/style.css}"/>
-
+    
 
     <header class="header-section">
         <div class="header-top">
@@ -16,7 +16,7 @@
                 <div class="row">
                     <div class="col-lg-2 text-center text-lg-left">
                         <!-- logo -->
-                        <a href="./index.html" class="site-logo">
+                        <a th:href="@{/mv/home}" class="site-logo">
                             <img th:src="@{/img/logoJrl.png}" alt="">
                         </a>
                     </div>
@@ -37,7 +37,7 @@
                                     <i class="flaticon-bag"></i>
                                     <span>0</span>
                                 </div>
-                                <a href="#">Carrinho</a>
+                                <a th:href="@{/#}">Carrinho</a>
                             </div>
                         </div>
                     </div>
@@ -51,31 +51,31 @@
                     <div class="col-12">
                         <center>
                             <ul class="main-menu ">
-                                <li><a href="#">Marcas</a></li>
-                                <li><a href="#">Acessorios</a></li>
-                                <li><a href="#">Capacetes</a></li>
-                                <li><a href="#">Pneus
+                                <li><a th:href="@{/#}">Marcas</a></li>
+                                <li><a th:href="@{/#}">Acessorios</a></li>
+                                <li><a th:href="@{/#}">Capacetes</a></li>
+                                <li><a th:href="@{/#}">Pneus
                                         <span class="new">New</span>
                                     </a></li>
-                                <li><a href="#">Pneus</a>
+                                <li><a th:href="@{/#}">Pneus</a>
                                     <ul class="sub-menu">
-                                        <li><a href="#">Sneakers</a></li>
-                                        <li><a href="#">Sandals</a></li>
-                                        <li><a href="#">Formal Shoes</a></li>
-                                        <li><a href="#">Boots</a></li>
-                                        <li><a href="#">Flip Flops</a></li>
+                                        <li><a th:href="@{/#}">Sneakers</a></li>
+                                        <li><a th:href="@{/#}">Sandals</a></li>
+                                        <li><a th:href="@{/#}">Formal Shoes</a></li>
+                                        <li><a th:href="@{/#}">Boots</a></li>
+                                        <li><a th:href="@{/#}">Flip Flops</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="#">Blog</a>
+                                <li><a th:href="@{/#}">Blog</a>
                                     <ul class="sub-menu">
-                                        <li><a href="./product.html">Product Page</a></li>
-                                        <li><a href="./category.html">Category Page</a></li>
-                                        <li><a href="./cart.html">Cart Page</a></li>
-                                        <li><a href="./checkout.html">Checkout Page</a></li>
-                                        <li><a href="./contact.html">Contact Page</a></li>
+                                        <li><a th:href="@{/product.html}">Product Page</a></li>
+                                        <li><a th:href="@{/category.html}">Category Page</a></li>
+                                        <li><a th:href="@{/cart.html}">Cart Page</a></li>
+                                        <li><a th:href="@{/checkout.html}">Checkout Page</a></li>
+                                        <li><a th:href="@{/contact.html}">Contact Page</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="#">Blog</a></li>
+                                <li><a th:href="@{/#}">Blog</a></li>
                             </ul>
                         </center>
                     </div>
