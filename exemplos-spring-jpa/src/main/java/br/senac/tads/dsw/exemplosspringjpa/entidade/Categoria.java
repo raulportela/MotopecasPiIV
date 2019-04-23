@@ -9,9 +9,11 @@ import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 /**
  *
@@ -27,6 +29,8 @@ public class Categoria implements Serializable {
     @Column(length = 100, nullable = false, unique = true)
     private String nome;
 
+    // "categorias" é o atributo na classe Produto onde o @ManyToMany foi configurado
+    @ManyToMany(mappedBy = "categorias", fetch = FetchType.LAZY)
     private Set<Produto> produtos;
 
     public Categoria() {

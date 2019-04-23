@@ -11,9 +11,15 @@ import java.time.LocalDateTime;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 /**
  *
@@ -47,12 +53,22 @@ public class Produto implements Serializable {
     @Column(nullable = false, insertable = true, updatable = false)
     private LocalDateTime dtCadastro;
 
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "PRODUTO_CATEGORIA",
+            joinColumns = @JoinColumn(name = "ID_PRODUTO"),
+            inverseJoinColumns = @JoinColumn(name = "ID_CATEGORIA")
+    )
     private Set<Categoria> categorias;
 
+    // "produto" é o atributo na classe ImagemProduto onde o @ManyToOne foi configurado
+    @OneToMany(mappedBy = "produto", fetch = FetchType.LAZY)
     private Set<ImagemProduto> imagens;
 
+    @Transient
     private Set<Integer> idsCategorias;
 
+    @Transient
     private String observacoes;
 
     public Produto() {

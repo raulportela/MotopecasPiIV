@@ -8,9 +8,12 @@ package br.senac.tads.dsw.exemplosspringjpa.entidade;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -29,6 +32,8 @@ public class ImagemProduto implements Serializable {
     @Column(length = 1000)
     private String legenda;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_produto")
     private Produto produto;
 
     public ImagemProduto() {
