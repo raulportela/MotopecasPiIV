@@ -6,17 +6,27 @@
 package br.senac.tads.dsw.exemplosspringjpa.entidade;
 
 import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  *
  * @author fernando.tsuda
  */
+@Entity
 public class ImagemProduto implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(length = 100, nullable = false)
     private String nomeArquivo;
 
+    @Column(length = 1000)
     private String legenda;
 
     private Produto produto;

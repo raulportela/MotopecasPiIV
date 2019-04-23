@@ -7,15 +7,24 @@ package br.senac.tads.dsw.exemplosspringjpa.entidade;
 
 import java.io.Serializable;
 import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  *
  * @author fernando.tsuda
  */
+@Entity
 public class Categoria implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(length = 100, nullable = false, unique = true)
     private String nome;
 
     private Set<Produto> produtos;
