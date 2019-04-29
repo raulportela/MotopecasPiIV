@@ -47,14 +47,14 @@ public class ProdutoController {
 
     @PostMapping("/salvar")
     public ModelAndView salvar(Produto produto, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
-        return new ModelAndView("redirect:/produto/lista");
+        return new ModelAndView("redirect:/produto");
     }
 
     @PostMapping("/{id}/remover")
     public ModelAndView remover(Long id) {
-        return new ModelAndView("redirect:/produto/lista");
+        return new ModelAndView("redirect:/produto");
     }
-    
+
     @ModelAttribute("categorias")
     public List<Categoria> getCategorias() {
         return categoriaRepository.findAll();
