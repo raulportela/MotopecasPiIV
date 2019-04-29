@@ -17,13 +17,21 @@ public class ProdutoRepository {
     public List<Produto> findAll() {
         return null;
     }
-    
+
+    public List<Produto> findByCategoria(Integer idCat) {
+        return null;
+    }
+
     public Produto findById(Long id) {
         return null;
     }
-    
+
     public void save(Produto p) {
-        
+
+    }
+
+    public void delete(Long id) {
+
     }
     
 }
