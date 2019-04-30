@@ -43,9 +43,17 @@ public class ProdutoController {
     @GetMapping
     public ModelAndView listar(
             @RequestParam(name = "offset", defaultValue = "0") int offset,
-            @RequestParam(name = "qtd", defaultValue = "100") int qtd) {
-        return new ModelAndView("produto/lista").addObject("produtos",
-                produtoRepository.findAll(offset, qtd));
+            @RequestParam(name = "qtd", defaultValue = "100") int qtd,
+            @RequestParam(name = "idsCat", required = false) List<Integer> idsCat) {
+        List<Produto> produtos;
+        if (idsCat != null && !idsCat.isEmpty()) {
+            // Busca filtrando pelos IDs das categorias informados
+            produtos = produtoRepository.findByCategoria(idsCat);
+        } else {
+            // Busca normal
+            produtos = produtoRepository.findAll(offset, qtd);
+        }
+        return new ModelAndView("produto/lista").addObject("produtos", produtos);
     }
 
     @GetMapping("/novo")
@@ -90,7 +98,8 @@ public class ProdutoController {
     }
 
     @PostMapping("/{id}/remover")
-    public ModelAndView remover(@PathVariable(name="id")Long id, RedirectAttributes redirectAttributes) {
+    public ModelAndView remover(
+            @PathVariable(name = "id") Long id, RedirectAttributes redirectAttributes) {
         produtoRepository.delete(id);
         redirectAttributes.addFlashAttribute("mensagemSucesso",
                 "Produto ID " + id + " removido com sucesso");

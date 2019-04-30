@@ -31,8 +31,14 @@ public class ProdutoRepository {
         return jpqlQuery.getResultList();
     }
 
-    public List<Produto> findByCategoria(Integer idCat) {
-        return null;
+    public List<Produto> findByCategoria(List<Integer> idsCat) {
+        Query jpqlQuery
+                = entityManager.createQuery(
+                        "SELECT p FROM Produto p "
+                        + "INNER JOIN p.categorias c "
+                        + "WHERE c.id IN :idsCat")
+                .setParameter("idsCat", idsCat);
+        return jpqlQuery.getResultList();
     }
 
     public Produto findById(Long id) {
