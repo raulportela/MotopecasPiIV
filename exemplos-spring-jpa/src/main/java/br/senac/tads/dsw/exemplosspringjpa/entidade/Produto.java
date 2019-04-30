@@ -32,6 +32,7 @@ import javax.persistence.Transient;
     @NamedQuery(name = "Produto.findAll", query = "SELECT p FROM Produto p"),
     @NamedQuery(name = "Produto.findByCategoria", query = "SELECT p FROM Produto p INNER JOIN p.categorias c WHERE c.id IN :idsCat"),
     @NamedQuery(name = "Produto.findById", query = "SELECT p FROM Produto p WHERE p.id = :idProd")
+    //@NamedQuery(name = "Produto.findById", query = "SELECT p FROM Produto p LEFT JOIN FETCH p.categorias WHERE p.id = :idProd") // USAR O FETCH QUANDO OPEN IN VIEW = FALSE
 })
 public class Produto implements Serializable {
 
