@@ -25,7 +25,7 @@ public class ProdutoRepository {
 
     public List<Produto> findAll(Integer offset, Integer quantidade) {
         Query jpqlQuery
-                = entityManager.createQuery("SELECT p FROM Produto p")
+                = entityManager.createNamedQuery("Produto.findAll")
                         .setFirstResult(offset)
                         .setMaxResults(quantidade);
         return jpqlQuery.getResultList();
@@ -33,17 +33,14 @@ public class ProdutoRepository {
 
     public List<Produto> findByCategoria(List<Integer> idsCat) {
         Query jpqlQuery
-                = entityManager.createQuery(
-                        "SELECT p FROM Produto p "
-                        + "INNER JOIN p.categorias c "
-                        + "WHERE c.id IN :idsCat")
+                = entityManager.createNamedQuery("Produto.findByCategoria")
                 .setParameter("idsCat", idsCat);
         return jpqlQuery.getResultList();
     }
 
     public Produto findById(Long id) {
         Query jpqlQuery
-                = entityManager.createQuery("SELECT p FROM Produto p WHERE p.id = :idProd")
+                = entityManager.createNamedQuery("Produto.findById")
                         .setParameter("idProd", id);
         Produto p = (Produto) jpqlQuery.getSingleResult();
         return p;
