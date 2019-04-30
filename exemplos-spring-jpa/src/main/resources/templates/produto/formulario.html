@@ -15,7 +15,7 @@
                 <section class="col-md-12">
                     <h1>Formulário</h1>
                     <form th:action="@{/produto/salvar}" method="post" th:object="${produto}" novalidate>
-                        <input type="hidden" field="*{id}" />
+                        <input type="hidden" th:if="*{id != null}" th:field="*{id}" />
 
                         <div class="form-group row">
                             <label for="txtNome" class="col-sm-2 col-form-label">Nome</label>
@@ -99,10 +99,10 @@
                         </fieldset>
                         <div class="row">
                             <div class="col-md-3 offset-md-3">
-                                <button type="submit" class="btn btn-block btn-success">Enviar</button>
+                                <a th:href="@{/produto}" role="button" class="btn btn-block btn-outline-dark">Cancelar</a>
                             </div>
                             <div class="col-md-3">
-                                <a href="#" role="button" class="btn btn-block btn-outline-dark">Cancelar</a>
+                                <button type="submit" class="btn btn-block btn-success">Enviar</button>
                             </div>
                         </div>
                     </form>
