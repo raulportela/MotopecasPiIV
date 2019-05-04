@@ -11,6 +11,7 @@ package Motopecas.JRL.MotoPecas.entidade.cliente;
  */
 public class CartaoDeCredito {
     
+    private Integer id;
     private String bandeira;
     private String nomeTitular;
     private Integer numeroCartao;
@@ -73,6 +74,14 @@ public class CartaoDeCredito {
 
     public void setParcelas(int parcelas) {
         this.parcelas = parcelas;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
     
     

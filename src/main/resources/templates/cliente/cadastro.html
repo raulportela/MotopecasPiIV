@@ -16,7 +16,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <form class="checkout-form" th:action="@{/mv/cliente}" method="post" object =&{cliente} novalidate>
+                        <form class="checkout-form" th:action="@{/mv/cliente}" method="post" th:object="${cliente}" novalidate>
                             <div class="cf-title">Criar uma nova conta</div>
                             <div class="row">
                                 <div class="col">
@@ -30,7 +30,7 @@
                             </div>
                             <div class="row address-inputs justify-content-center">
                                 <div class="col-md-8">
-                                    <label>E-mail*:</label> <input type="text" >
+                                    <label>E-mail*:</label> <input type="text" name="email" th:classappend="${#fields.hasErrors('email')}? is-invalid" id="txtEmail" placeholder="Nome" th:field="*{nome}" >
                                     <label>Senha*:</label>  <input type="text" >
                                     <label>Confirmar senha*:</label> <input type="text" >
                                 </div>

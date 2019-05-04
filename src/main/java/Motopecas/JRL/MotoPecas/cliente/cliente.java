@@ -5,6 +5,7 @@
  */
 package Motopecas.JRL.MotoPecas.cliente;
 
+import Motopecas.JRL.MotoPecas.entidade.cliente.Cliente;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +27,8 @@ public class cliente{
     
     @GetMapping("/cadastro")
     public ModelAndView cadastro() {
-        ModelAndView mv = new ModelAndView("/cliente/cadastro");
-        return mv;
+        return new ModelAndView("/cliente/cadastro")
+                .addObject("cliente", new Cliente());
+        
     }
 }

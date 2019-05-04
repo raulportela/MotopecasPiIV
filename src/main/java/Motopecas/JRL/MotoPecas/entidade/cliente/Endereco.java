@@ -11,7 +11,8 @@ package Motopecas.JRL.MotoPecas.entidade.cliente;
  * @author Jeferson Nolasco
  */
 public class Endereco {
-
+    
+    private Integer id;
     private String rua;//60 
     private int numero;//independente
     private String bairro;//30
@@ -56,6 +57,14 @@ public class Endereco {
 
     public String getComplemento() {
         return complemento;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
 }

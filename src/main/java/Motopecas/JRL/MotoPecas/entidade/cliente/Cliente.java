@@ -5,32 +5,76 @@
  */
 package Motopecas.JRL.MotoPecas.entidade.cliente;
 
+import java.io.Serializable;
 import java.time.LocalDate;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author Jeferson Nolasco
  */
-public class Cliente {
+@Entity
+@NamedQueries({
+    @NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c"),
     
-    private int codCliente;
+})
+public class Cliente implements Serializable{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long codCliente;
+    
+    @Column (length = 100, nullable = false)
     private String email;
+    
+    @Column (length = 50, nullable = false)
     private String senha;
+    
+    @Column (length = 50, nullable = false)
     private String nome;
+    
+    @Column (length = 100, nullable = false)
     private String sobrenome;
+    
+    @Column (length = 11, nullable = false)
     private Integer telefone;
+    
+    @Column (length = 100, nullable = false)
     private String cpf;
+    
+    @Column (length = 10, nullable = false)
     private String sexo;
+    
+    @Column(nullable = false, insertable = true, updatable = false)
     private LocalDate dataNascimento;
+    
+    @Column (length = 100, nullable = false)
     private boolean disponivel;
+    
+    
     private Endereco endereco;
+    
+    
     private CartaoDeCredito cartaoDeCredito;
 
-    public int getCodCliente() {
+    
+    
+    
+    
+    
+    
+    public Long getCodCliente() {
         return codCliente;
     }
 
-    public void setCodCliente(int codCliente) {
+    public void setCodCliente(Long codCliente) {
         this.codCliente = codCliente;
     }
 
