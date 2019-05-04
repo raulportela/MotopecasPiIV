@@ -14,7 +14,7 @@ public class CartaoDeCredito {
     private String bandeira;
     private String nomeTitular;
     private Integer numeroCartao;
-    private int mesValdiade;
+    private int mesValidade;
     private int ano;
     private int codSeguraca;
     private int parcelas;
@@ -44,11 +44,11 @@ public class CartaoDeCredito {
     }
 
     public int getMesValdiade() {
-        return mesValdiade;
+        return mesValidade;
     }
 
-    public void setMesValdiade(int mesValdiade) {
-        this.mesValdiade = mesValdiade;
+    public void setMesValdiade(int mesValidade) {
+        this.mesValidade = mesValidade;
     }
 
     public int getAno() {
