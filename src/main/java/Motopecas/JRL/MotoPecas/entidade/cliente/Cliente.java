@@ -7,6 +7,7 @@ package Motopecas.JRL.MotoPecas.entidade.cliente;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -22,60 +23,65 @@ import javax.persistence.OneToMany;
  * @author Jeferson Nolasco
  */
 @Entity
-@NamedQueries({
-    @NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c"),
-    
-})
-public class Cliente implements Serializable{
+
+public class Cliente implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long codCliente;
-    
-    @Column (length = 100, nullable = false)
-    private String email;
-    
-    @Column (length = 50, nullable = false)
-    private String senha;
-    
-    @Column (length = 50, nullable = false)
-    private String nome;
-    
-    @Column (length = 100, nullable = false)
-    private String sobrenome;
-    
-    @Column (length = 11, nullable = false)
-    private Integer telefone;
-    
-    @Column (length = 100, nullable = false)
-    private String cpf;
-    
-    @Column (length = 10, nullable = false)
-    private String sexo;
-    
-    @Column(nullable = false, insertable = true, updatable = false)
-    private LocalDate dataNascimento;
-    
-    @Column (length = 100, nullable = false)
-    private boolean disponivel;
-    
-    
-    private Endereco endereco;
-    
-    
-    private CartaoDeCredito cartaoDeCredito;
+    private Long id;
 
-    
-    
-    
-    
-    
-    
-    public Long getCodCliente() {
-        return codCliente;
+    @Column(length = 100, nullable = false)
+    private String email;
+
+    @Column(length = 50, nullable = false)
+    private String senha;
+
+    @Column(length = 50, nullable = false)
+    private String nome;
+
+    @Column(length = 100, nullable = false)
+    private String sobrenome;
+
+    @Column(length = 11, nullable = false)
+    private Integer telefone;
+
+    @Column(length = 100, nullable = false)
+    private String cpf;
+
+    @Column(length = 10, nullable = false)
+    private String sexo;
+
+    @Column(nullable = false, insertable = true, updatable = false)
+    private LocalDateTime dataNascimento;
+
+    @Column(length = 100, nullable = false)
+    private boolean disponivel;
+
+    //private Endereco endereco;
+    // private CartaoDeCredito cartaoDeCredito;
+    public Cliente() {
+
     }
 
-    public void setCodCliente(Long codCliente) {
-        this.codCliente = codCliente;
+    public Cliente(Long id, String email, String senha, String nome, String sobrenome, Integer telefone, String cpf, String sexo, LocalDateTime dataNascimento, boolean disponivel) {
+        this.id = id;
+        this.email = email;
+        this.senha = senha;
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.telefone = telefone;
+        this.cpf = cpf;
+        this.sexo = sexo;
+        this.dataNascimento = dataNascimento;
+        this.disponivel = disponivel;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getEmail() {
@@ -134,11 +140,11 @@ public class Cliente implements Serializable{
         this.sexo = sexo;
     }
 
-    public LocalDate getDataNascimento() {
+    public LocalDateTime getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(LocalDate dataNascimento) {
+    public void setDataNascimento(LocalDateTime dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
@@ -150,21 +156,23 @@ public class Cliente implements Serializable{
         this.disponivel = disponivel;
     }
 
-    public Endereco getEndereco() {
-        return endereco;
+//    public Endereco getEndereco() {
+//        return endereco;
+//    }
+//
+//    public void setEndereco(Endereco endereco) {
+//        this.endereco = endereco;
+//    }
+//
+//    public CartaoDeCredito getCartaoDeCredito() {
+//        return cartaoDeCredito;
+//    }
+//
+//    public void setCartaoDeCredito(CartaoDeCredito cartaoDeCredito) {
+//        this.cartaoDeCredito = cartaoDeCredito;
+//    }
+    @Override
+    public String toString() {
+        return "Cliente{" + "id=" + id + ", email=" + email + ", senha=" + senha + ", nome=" + nome + ", sobrenome=" + sobrenome + ", telefone=" + telefone + ", cpf=" + cpf + ", sexo=" + sexo + ", dataNascimento=" + dataNascimento + ", disponivel=" + disponivel + '}';
     }
-
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
-    }
-
-    public CartaoDeCredito getCartaoDeCredito() {
-        return cartaoDeCredito;
-    }
-
-    public void setCartaoDeCredito(CartaoDeCredito cartaoDeCredito) {
-        this.cartaoDeCredito = cartaoDeCredito;
-    }
-
-
 }
