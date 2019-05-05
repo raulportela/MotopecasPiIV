@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Motopecas.JRL.MotoPecas.repository;
+package Motopecas.JRL.MotoPecas.repository.cliente;
 
 import Motopecas.JRL.MotoPecas.entidade.cliente.Cliente;
 import javax.persistence.EntityManager;

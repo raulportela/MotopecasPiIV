@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Motopecas.JRL.MotoPecas.cliente;
+package Motopecas.JRL.MotoPecas.controller.cliente;
 
 import Motopecas.JRL.MotoPecas.entidade.cliente.Cliente;
-import Motopecas.JRL.MotoPecas.produto.Produto;
-import Motopecas.JRL.MotoPecas.repository.ClienteRepository;
+import Motopecas.JRL.MotoPecas.controller.produto.Produto;
+import Motopecas.JRL.MotoPecas.repository.cliente.ClienteRepository;
 import java.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

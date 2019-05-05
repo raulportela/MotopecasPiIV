@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Motopecas.JRL.MotoPecas.acesso;
+package Motopecas.JRL.MotoPecas.controller.acesso;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

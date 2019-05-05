@@ -1,4 +1,4 @@
-package Motopecas.JRL.MotoPecas.venda;
+package Motopecas.JRL.MotoPecas.controller.venda;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
