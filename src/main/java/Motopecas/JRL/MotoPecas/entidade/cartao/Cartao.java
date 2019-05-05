@@ -9,7 +9,7 @@ package Motopecas.JRL.MotoPecas.entidade.cartao;
  *
  * @author Luana
  */
-public class CartaoDeCredito {
+public class Cartao {
     
     private Integer id;
     private String bandeira;
