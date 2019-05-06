@@ -6,6 +6,7 @@
 package Motopecas.JRL.MotoPecas.entidade.venda;
 
 import Motopecas.JRL.MotoPecas.controller.produto.Produto;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
@@ -20,7 +21,7 @@ import javax.validation.constraints.NotBlank;
  */
 
 @Entity
-public class Venda {
+public class Venda implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

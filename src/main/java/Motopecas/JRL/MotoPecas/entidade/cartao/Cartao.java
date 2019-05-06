@@ -5,11 +5,13 @@
  */
 package Motopecas.JRL.MotoPecas.entidade.cartao;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Luana
  */
-public class Cartao {
+public class Cartao implements Serializable {
     
     private Integer id;
     private String bandeira;

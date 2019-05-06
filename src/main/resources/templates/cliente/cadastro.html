@@ -32,7 +32,7 @@
                             <div class="row address-inputs justify-content-center">
                                 <div class="col-md-8">
                                     <label>E-mail*:</label> <input type="text" name="email" th:classappend="${#fields.hasErrors('email')}? is-invalid" id="txtEmail" placeholder="Email" th:field="*{email}" >
-                                    <label class="invalid-feedback" th:if="${#fields.hasErrors('senha'}">Senha*:</label>  <input type="text" >
+                                    <label class="invalid-feedback" th:if="${#fields.hasErrors('senha'}" th:errors="*{senha}">Senha*:</label>  <input type="text" >
                                     <label>Confirmar senha*:</label> <input type="text" >
                                 </div>
 
@@ -49,13 +49,21 @@
                             </div>
                             <div class="row address-inputs justify-content-center">
                                 <div class="col-md-8 ">
-                                    <label>Nome*:</label> <input type="text" >
-                                    <label>Sobrenome*:</label> <input type="text" >
-                                    <label>Telefone*:</label> <input type="text" >
-                                    <label>CPF*:</label> <input type="text" >
+                                    <label class="invalid-feedback" th:if="${#fields.hasErrors('nome'}" th:errors="*{nome}">Nome*:</label> 
+                                    <input type="text" name="nome" class="form-control" th:classappend="${#fields.hasErrors('nome')}? is-invalid" id="txtNome" placeholder="Nome" th:field="*{nome}">
+                                    
+                                    <label class="invalid-feedback" th:if="${#fields.hasErrors('sobrenome'}" th:errors="*{sobrenome}">Sobrenome*:</label> 
+                                    <input type="text" name="sobrenome" class="form-control" th:classappend="${#fields.hasErrors('sobrenome')}? is-invalid" id="txtNome" placeholder="Sobrenome" th:field="*{sobrenome}" >
+                                    
+                                    <label class="invalid-feedback" th:if="${#fields.hasErrors('telefone'}" th:errors="*{telefone}">Telefone*:</label> 
+                                    <input type="text" name="telefone" class="form-control" th:classappend="${#fields.hasErrors('telefone')}? is-invalid" id="txtNome" placeholder="Telefone" th:field="*{telefone}">
+                                    
+                                    <label class="invalid-feedback" th:if="${#fields.hasErrors('cpf'}" th:errors="*{cpf}">CPF*:</label> 
+                                    <input type="text" name="cpf" class="form-control" th:classappend="${#fields.hasErrors('cpf')}? is-invalid" id="txtNome" placeholder="Cpf" th:field="*{cpf}">
+                                    
                                     <label for="inputEstado">Sexo:</label>
                                     <select id="inputEstado" class="form-control">
-                                        <option selected>Escolher...</option>
+                                        <option selected >Escolher...</option>
                                         <option>Masculino</option>
                                         <option>Feminino</option>
                                     </select>
