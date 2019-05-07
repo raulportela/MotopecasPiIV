@@ -27,8 +27,8 @@ public class Venda implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @NotBlank
-    private List<Produto> listaProdutos = new ArrayList<>();
+//    //@NotBlank
+//    private List<Produto> listaProdutos = new ArrayList<>();
     private double valorCompra;
 
     public Long getId() {
@@ -39,13 +39,13 @@ public class Venda implements Serializable{
         this.id = id;
     }
 
-    public List<Produto> getListaProdutos() {
-        return listaProdutos;
-    }
-
-    public void setListaProdutos(List<Produto> listaProdutos) {
-        this.listaProdutos = listaProdutos;
-    }
+//    public List<Produto> getListaProdutos() {
+//        return listaProdutos;
+//    }
+//
+//    public void setListaProdutos(List<Produto> listaProdutos) {
+//        this.listaProdutos = listaProdutos;
+//    }
 
     public double getValorCompra() {
         return valorCompra;
