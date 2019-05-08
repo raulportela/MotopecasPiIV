@@ -47,7 +47,7 @@ public class cliente{
             @ModelAttribute("cliente") Cliente cliente, 
             /*BindingResult bindingResult,*/ RedirectAttributes redirectAttributes) {
         cliente.setDataNascimento(LocalDateTime.now());
-        
+        cliente.setSexo("m"); 
         clienteRepository.save(cliente);
         redirectAttributes.addFlashAttribute("mensagemSucesso", 
                 "Cliente " + cliente.getNome() + " salvo com sucesso");

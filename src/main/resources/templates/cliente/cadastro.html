@@ -31,8 +31,10 @@
                             </div>
                             <div class="row address-inputs justify-content-center">
                                 <div class="col-md-8">
-                                    <label>E-mail*:</label> <input type="text" name="email" th:classappend="${#fields.hasErrors('email')}? is-invalid" id="txtEmail" placeholder="Email" th:field="*{email}" >
-                                    <label class="invalid-feedback" th:if="${#fields.hasErrors('senha'}" th:errors="*{senha}">Senha*:</label>  <input type="text" >
+                                    <label>E-mail*:</label> 
+                                    <input type="text" name="email" th:classappend="${#fields.hasErrors('email')}? is-invalid" id="txtEmail" placeholder="Email" th:field="*{email}" >
+                                    <label>Senha*:</label>  
+                                    <input type="text" name="senha" th:classappend="${#fields.hasErrors('senha')}? is-invalid" id="txtSenha" placeholder="Senha" th:field="*{senha}" >
                                     <label>Confirmar senha*:</label> <input type="text" >
                                 </div>
 
@@ -49,18 +51,18 @@
                             </div>
                             <div class="row address-inputs justify-content-center">
                                 <div class="col-md-8 ">
-                                    <label class="invalid-feedback" th:if="${#fields.hasErrors('nome'}" th:errors="*{nome}">Nome*:</label> 
+                                    <label>Nome*:</label> 
                                     <input type="text" name="nome" class="form-control" th:classappend="${#fields.hasErrors('nome')}? is-invalid" id="txtNome" placeholder="Nome" th:field="*{nome}">
-                                    
-                                    <label class="invalid-feedback" th:if="${#fields.hasErrors('sobrenome'}" th:errors="*{sobrenome}">Sobrenome*:</label> 
+
+                                    <label>Sobrenome*:</label> 
                                     <input type="text" name="sobrenome" class="form-control" th:classappend="${#fields.hasErrors('sobrenome')}? is-invalid" id="txtNome" placeholder="Sobrenome" th:field="*{sobrenome}" >
-                                    
-                                    <label class="invalid-feedback" th:if="${#fields.hasErrors('telefone'}" th:errors="*{telefone}">Telefone*:</label> 
+
+                                    <label>Telefone*:</label> 
                                     <input type="text" name="telefone" class="form-control" th:classappend="${#fields.hasErrors('telefone')}? is-invalid" id="txtNome" placeholder="Telefone" th:field="*{telefone}">
-                                    
-                                    <label class="invalid-feedback" th:if="${#fields.hasErrors('cpf'}" th:errors="*{cpf}">CPF*:</label> 
+
+                                    <label>CPF*:</label> 
                                     <input type="text" name="cpf" class="form-control" th:classappend="${#fields.hasErrors('cpf')}? is-invalid" id="txtNome" placeholder="Cpf" th:field="*{cpf}">
-                                    
+
                                     <label for="inputEstado">Sexo:</label>
                                     <select id="inputEstado" class="form-control">
                                         <option selected >Escolher...</option>
@@ -77,31 +79,30 @@
                                 </div>
 
                             </div>
-                        </form>
-
-                        <div class="container"> 
-                            <div class="row"> 
-                                <div class="col-md-6">
-                                </div>
-                                <div class="col-6">
-                                    <div class="col">
-                                        <div class="cf-radio-btns address-rb">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <button class="site-btn submit-order-btn">Voltar</button>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="cf-radio-btns address-rb">
-                                                        <button class="site-btn submit-order-btn">Cadastrar-se</button>
+                            <div class="container"> 
+                                <div class="row"> 
+                                    <div class="col-md-6">
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="col">
+                                            <div class="cf-radio-btns address-rb">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <button class="site-btn submit-order-btn">Voltar</button>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="cf-radio-btns address-rb">
+                                                            <button type="submit" class="site-btn submit-order-btn">Cadastrar-se</button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+
                                     </div>
-                                    
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
