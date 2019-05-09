@@ -6,7 +6,7 @@
 package Motopecas.JRL.MotoPecas.controller.cliente;
 
 import Motopecas.JRL.MotoPecas.entidade.cliente.Cliente;
-import Motopecas.JRL.MotoPecas.controller.produto.Produto;
+import Motopecas.JRL.MotoPecas.controller.produto.ProdutoController;
 import Motopecas.JRL.MotoPecas.repository.cliente.ClienteRepository;
 import java.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;

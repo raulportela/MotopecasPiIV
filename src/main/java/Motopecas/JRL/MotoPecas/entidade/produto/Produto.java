@@ -5,8 +5,11 @@
  */
 package Motopecas.JRL.MotoPecas.entidade.produto;   
 
+import Motopecas.JRL.MotoPecas.entidade.Categoria.Categoria;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -119,6 +122,14 @@ public class Produto implements Serializable{
 
     public void setDataCadastro(LocalDateTime dataCadastro) {
         this.dataCadastro = dataCadastro;
+    }
+
+    public Set<Categoria> getCategorias() {
+        return null;
+    }
+
+    public void setIdsCategorias(Set<Integer> idsCategorias) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     
