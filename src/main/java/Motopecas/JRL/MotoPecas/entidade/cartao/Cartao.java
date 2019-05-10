@@ -5,15 +5,34 @@
  */
 package Motopecas.JRL.MotoPecas.entidade.cartao;
 
+import Motopecas.JRL.MotoPecas.entidade.cliente.Cliente;
 import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
  * @author Luana
  */
+@Entity
 public class Cartao implements Serializable {
     
+    @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
+    
+    @ManyToOne
+   @JoinColumn(name="cliente", nullable= false)
+    private Cliente cliente ;
+    
+    @Column(length = 100, unique = true)
+    private String nome;
+    
     private String bandeira;
     private String nomeTitular;
     private Integer numeroCartao;

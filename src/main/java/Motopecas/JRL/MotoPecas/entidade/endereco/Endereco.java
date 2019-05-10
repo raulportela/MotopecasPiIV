@@ -5,12 +5,20 @@
  */
 package Motopecas.JRL.MotoPecas.entidade.endereco;
 
+import Motopecas.JRL.MotoPecas.entidade.cliente.Cliente;
 import java.io.Serializable;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 
 /**
@@ -26,6 +34,10 @@ public class Endereco implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+   @ManyToOne
+   @JoinColumn(name="cliente", nullable= false)
+    private Cliente cliente ;
+    
     @Column(length = 130, nullable = false)
     private String rua;
     
@@ -40,6 +52,18 @@ public class Endereco implements Serializable {
     
     @Column(length = 200, nullable = false)
     private String complemento;
+    
+    public Endereco(){
+        
+    }
+    
+    public Endereco (Long id, String rua, int numero, String bairro, int cep, String complemento){
+        this.id = id;
+        this.rua = rua;
+        this.bairro = bairro;
+        this.cep = cep;
+        this.complemento = complemento;
+    }
 
     public void setRua(String rua) {
         this.rua = rua;
@@ -87,6 +111,11 @@ public class Endereco implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Endereco{" + "id=" + id + ", cliente=" + cliente + ", rua=" + rua + ", numero=" + numero + ", bairro=" + bairro + ", cep=" + cep + ", complemento=" + complemento + '}';
     }
 
 }

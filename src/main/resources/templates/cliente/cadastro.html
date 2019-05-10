@@ -63,12 +63,21 @@
                                     <label>CPF*:</label> 
                                     <input type="text" name="cpf" class="form-control" th:classappend="${#fields.hasErrors('cpf')}? is-invalid" id="txtNome" placeholder="Cpf" th:field="*{cpf}">
 
-                                    <label for="inputEstado">Sexo:</label>
-                                    <select id="inputEstado" class="form-control">
-                                        <option selected >Escolher...</option>
-                                        <option>Masculino</option>
-                                        <option>Feminino</option>
-                                    </select>
+                                    <label for="inputSexo">Sexo:</label>
+                                    <div class="col-sm-10">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="sexo" id="optSexoM" value="true" th:field="*{sexo}">
+                                            <label class="form-check-label" for="optSexoM">
+                                                Masculino
+                                            </label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="sexo" id="optSexoF" value="false" th:field="*{sexo}">
+                                            <label class="form-check-label" for="optSexoF">
+                                                Feminino
+                                            </label>
+                                        </div>
+                                    </div>
                                     <label>Data de nascimento*:</label> <input type="text" >
                                 </div>
                             </div>

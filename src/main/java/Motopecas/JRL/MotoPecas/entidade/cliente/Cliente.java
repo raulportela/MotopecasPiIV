@@ -5,18 +5,27 @@
  */
 package Motopecas.JRL.MotoPecas.entidade.cliente;
 
+import Motopecas.JRL.MotoPecas.entidade.cartao.Cartao;
+import Motopecas.JRL.MotoPecas.entidade.endereco.Endereco;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import org.hibernate.annotations.Cascade;
 
 /**
  *
@@ -48,22 +57,38 @@ public class Cliente implements Serializable {
     @Column(length = 100, nullable = false)
     private String cpf;
 
-    @Column(length = 10, nullable = false)
-    private String sexo;
+   @Column(nullable = false)
+    private boolean disponivel;
 
     @Column(nullable = false, insertable = true, updatable = false)
     private LocalDateTime dataNascimento;
 
     @Column(length = 100, nullable = false)
-    private boolean disponivel;
-
-    //private Endereco endereco;
-    // private CartaoDeCredito cartaoDeCredito;
+    private boolean sexo;
+    
+                        
+  @OneToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "CLIENTE_ENDERECO",
+            joinColumns = @JoinColumn(name = "ID_CLIENTE"),
+            inverseJoinColumns = @JoinColumn(name = "ID_ENDERECO")
+    )
+   private List<Endereco> endereco  = new ArrayList<>();
+   
+   @OneToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "CLIENTE_CARTAO",
+            joinColumns = @JoinColumn(name = "ID_CLIENTE"),
+            inverseJoinColumns = @JoinColumn(name = "ID_CARTAO")
+    )
+    private Set<Cartao> cartoes;
+   
+  
     public Cliente() {
 
     }
 
-    public Cliente(Long id, String email, String senha, String nome, String sobrenome, Integer telefone, String cpf, String sexo, LocalDateTime dataNascimento, boolean disponivel) {
+    public Cliente(Long id, String email, String senha, String nome, String sobrenome, Integer telefone, String cpf, boolean sexo, LocalDateTime dataNascimento, boolean disponivel) {
         this.id = id;
         this.email = email;
         this.senha = senha;
@@ -132,11 +157,11 @@ public class Cliente implements Serializable {
         this.cpf = cpf;
     }
 
-    public String getSexo() {
+    public boolean getSexo() {
         return sexo;
     }
 
-    public void setSexo(String sexo) {
+    public void setSexo(boolean sexo) {
         this.sexo = sexo;
     }
 
@@ -174,5 +199,13 @@ public class Cliente implements Serializable {
     @Override
     public String toString() {
         return "Cliente{" + "id=" + id + ", email=" + email + ", senha=" + senha + ", nome=" + nome + ", sobrenome=" + sobrenome + ", telefone=" + telefone + ", cpf=" + cpf + ", sexo=" + sexo + ", dataNascimento=" + dataNascimento + ", disponivel=" + disponivel + '}';
+    }
+
+    public List<Endereco> getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(List<Endereco> endereco) {
+        this.endereco = endereco;
     }
 }
