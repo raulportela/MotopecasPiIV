@@ -1,4 +1,4 @@
-,/*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -14,8 +14,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
  *
  * @author Raul Portela
  */
+
+
 public interface ProdutoRepository extends JpaRepository<Produto, Long> {
     
+    /*
     Produto findProdutoAll();
     
     Produto findProdutoById(Long id);
@@ -29,5 +32,5 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long> {
     public void save(ProdutoController produto);
 
     public void delete(Long id);
-    
+    */
 }

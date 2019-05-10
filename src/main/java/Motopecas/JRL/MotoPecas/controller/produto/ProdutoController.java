@@ -52,7 +52,7 @@ public class ProdutoController {
     }
     
     //Metodos adicionados do projeto do professor 
-    
+    /*
     @Autowired
     private ProdutoRepository produtoRepository;
     
@@ -74,13 +74,13 @@ public class ProdutoController {
         }
         return new ModelAndView("produto/lista").addObject("produtos", resultados);
     }
-
+    @Transactional
     @GetMapping("/novo")
     public ModelAndView adicionarNovo() {
         return new ModelAndView("produto/formulario")
                 .addObject("produto", new ProdutoController());
     }
-
+    @Transactional
     @GetMapping("/{id}/editar")
     public ModelAndView editar(@PathVariable("id") Long id) {
         Produto prod = produtoRepository.findProdutoById(id);
@@ -95,11 +95,11 @@ public class ProdutoController {
         return new ModelAndView("produto/formulario")
                 .addObject("produto", prod);
     }
-
+    @Transactional
     @PostMapping("/salvar")
     public ModelAndView salvar(
             @ModelAttribute("produto") ProdutoController produto, 
-            /*BindingResult bindingResult,*/ RedirectAttributes redirectAttributes) {
+            /*BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         if (produto.getIdsCategorias() != null && 
                 !produto.getIdsCategorias().isEmpty()) {
             Set<Categoria> categoriasSelecionadas = new HashSet<>();
@@ -115,7 +115,7 @@ public class ProdutoController {
                 "Produto " + produto.getNome() + " salvo com sucesso");
         return new ModelAndView("redirect:/produto");
     }
-
+    @Transactional
     @PostMapping("/{id}/remover")
     public ModelAndView remover(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
         produtoRepository.delete(id);
@@ -140,5 +140,5 @@ public class ProdutoController {
     private String getNome() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+*/
 }
