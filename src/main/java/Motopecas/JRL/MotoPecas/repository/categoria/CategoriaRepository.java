@@ -5,7 +5,7 @@
  */
 package Motopecas.JRL.MotoPecas.repository.categoria;
 
-import Motopecas.JRL.MotoPecas.entidade.Categoria.Categoria;
+import Motopecas.JRL.MotoPecas.entidade.categoria.Categoria;
 import java.util.List;
 
 /**

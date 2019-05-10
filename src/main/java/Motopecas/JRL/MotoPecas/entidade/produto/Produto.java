@@ -5,7 +5,7 @@
  */
 package Motopecas.JRL.MotoPecas.entidade.produto;   
 
-import Motopecas.JRL.MotoPecas.entidade.Categoria.Categoria;
+import Motopecas.JRL.MotoPecas.entidade.categoria.Categoria;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -39,6 +39,9 @@ public class Produto implements Serializable{
     @Column(length = 200, nullable = false)
     private String descricao;
     
+    @Column(length = 5, nullable = true)
+    private double valor;
+
     @Column(length = 15, nullable = false)
     private String cor;
     
@@ -54,7 +57,6 @@ public class Produto implements Serializable{
     //aqui vai puxar de outra coisa do banco 
     private int[] categoria;
     
-    
     private LocalDateTime dataCadastro;
 
     public Long getId() {
@@ -63,6 +65,14 @@ public class Produto implements Serializable{
 
     public void setId(Long id) {
         this.id = id;
+    }
+    
+    public double getValor() {
+        return valor;
+    }
+
+    public void setValor(double valor) {
+        this.valor = valor;
     }
 
     public String getNome() {

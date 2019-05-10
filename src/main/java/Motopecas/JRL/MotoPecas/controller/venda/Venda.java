@@ -1,5 +1,10 @@
 package Motopecas.JRL.MotoPecas.controller.venda;
 
+import Motopecas.JRL.MotoPecas.entidade.cliente.Cliente;
+import Motopecas.JRL.MotoPecas.entidade.venda.ItemVenda;
+import Motopecas.JRL.MotoPecas.repository.venda.VendaRepository;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,10 +24,17 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/mv/venda")
 public class Venda {
 
+    
+    @Autowired
+    VendaRepository vendaRepository;
+    
     @GetMapping("/carrinho")
     public ModelAndView carrinho() {
-        ModelAndView mv = new ModelAndView("/venda/carrinho");
-        return mv;
+        Cliente cliente = null; //Resgatar o cliente da sessão
+        List<ItemVenda> itensCarrinho;
+        itensCarrinho = vendaRepository.findCarrinhoByCliente(cliente.getId());
+        return new ModelAndView("/venda/carrinho").addObject(itensCarrinho);
+        
     }
     
     @GetMapping("/confirmacao")

@@ -27,7 +27,7 @@ public class Cartao implements Serializable {
     private Integer id;
     
     @ManyToOne
-   @JoinColumn(name="cliente", nullable= false)
+    @JoinColumn(name="cliente", nullable= false)
     private Cliente cliente ;
     
     @Column(length = 100, unique = true)
