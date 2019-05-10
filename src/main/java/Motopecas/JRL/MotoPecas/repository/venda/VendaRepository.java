@@ -5,7 +5,7 @@
  */
 package Motopecas.JRL.MotoPecas.repository.venda;
 
-import Motopecas.JRL.MotoPecas.controller.cliente.cliente;
+import Motopecas.JRL.MotoPecas.controller.cliente.ClienteController;
 import Motopecas.JRL.MotoPecas.entidade.cliente.Cliente;
 import Motopecas.JRL.MotoPecas.entidade.venda.ItemVenda;
 import Motopecas.JRL.MotoPecas.entidade.venda.Venda;

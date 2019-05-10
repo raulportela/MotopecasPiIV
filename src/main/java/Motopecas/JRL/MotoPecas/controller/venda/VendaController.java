@@ -22,7 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 @RequestMapping("/mv/venda")
-public class Venda {
+public class VendaController {
 
     
     @Autowired

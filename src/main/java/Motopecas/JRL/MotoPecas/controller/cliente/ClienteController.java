@@ -24,7 +24,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  */
 @Controller
 @RequestMapping("/mv/cliente")
-public class cliente{
+public class ClienteController{
     
     @Autowired
     private ClienteRepository clienteRepository;
