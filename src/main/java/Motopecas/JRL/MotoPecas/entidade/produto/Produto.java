@@ -8,13 +8,14 @@ package Motopecas.JRL.MotoPecas.entidade.produto;
 import Motopecas.JRL.MotoPecas.entidade.Categoria.Categoria;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 /**
  *
@@ -22,6 +23,10 @@ import javax.persistence.Id;
  */
 
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "Produto.findAll", query = "SELECT p FROM Produto p"),
+    @NamedQuery(name = "Produto.findById", query = "SELECT p FROM Produto p WHERE p.id = :idProduto")
+})
 public class Produto implements Serializable{
     
     @Id

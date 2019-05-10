@@ -5,32 +5,33 @@
  */
 package Motopecas.JRL.MotoPecas.repository.produto;
 
-import Motopecas.JRL.MotoPecas.controller.produto.ProdutoController;
 import Motopecas.JRL.MotoPecas.entidade.produto.Produto;
 import java.util.List;
-import org.springframework.data.jpa.repository.JpaRepository;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Raul Portela
  */
 
-
-public interface ProdutoRepository extends JpaRepository<Produto, Long> {
+@Repository
+public class ProdutoRepository{
     
-    /*
-    Produto findProdutoAll();
+    @PersistenceContext
+    private EntityManager entityManager;
     
-    Produto findProdutoById(Long id);
+    public List<Produto> findAll(Integer offset, Integer qtd){
+        Query jpqlQuery = entityManager.createNamedQuery("Produto.findAll")
+                .setFirstResult(offset).setMaxResults(qtd);
+        return jpqlQuery.getResultList();
+    }
     
-    Produto findByCategoria(List<Integer> idCategoria);
-    
-    Produto findByMarca(String marca);
-
-    public List<Produto> findAll(int offset, int qtd);
-
-    public void save(ProdutoController produto);
-
-    public void delete(Long id);
-    */
+    public Produto findById(Long id){
+        Query jpqlQyery = entityManager.createNamedQuery("Produto.findById").setParameter("idProduto",id);
+        Produto produto = (Produto) jpqlQyery.getSingleResult();
+        return produto;
+    }
 }
