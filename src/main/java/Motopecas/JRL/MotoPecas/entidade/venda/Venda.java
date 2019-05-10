@@ -5,7 +5,7 @@
  */
 package Motopecas.JRL.MotoPecas.entidade.venda;
 
-import Motopecas.JRL.MotoPecas.controller.produto.Produto;
+import Motopecas.JRL.MotoPecas.controller.produto.ProdutoController;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
