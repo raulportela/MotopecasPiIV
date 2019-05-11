@@ -44,9 +44,7 @@ public class Venda implements Serializable {
     @Column(precision = 7, nullable = false)
     private Long idCliente;
     
-    @OneToOne
-    @JoinColumn(name = "cliente", nullable = false)
-    private Cliente cliente;
+    
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinTable(
