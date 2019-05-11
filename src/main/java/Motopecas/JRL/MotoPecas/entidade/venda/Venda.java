@@ -43,8 +43,8 @@ public class Venda implements Serializable {
 
     @Column(precision = 7, nullable = false)
     private Long idCliente;
-    
-    
+
+    private int parcelas;
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinTable(
@@ -92,6 +92,14 @@ public class Venda implements Serializable {
 
     public void setIdCliente(Long idCliente) {
         this.idCliente = idCliente;
+    }
+
+    public int getParcelas() {
+        return parcelas;
+    }
+
+    public void setParcelas(int parcelas) {
+        this.parcelas = parcelas;
     }
 
 }

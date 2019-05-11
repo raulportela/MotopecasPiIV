@@ -62,24 +62,6 @@ public class Cliente implements Serializable {
     @Column(length = 100, nullable = false)
     private boolean sexo;
     
-                        
-  @OneToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "CLIENTE_ENDERECO",
-            joinColumns = @JoinColumn(name = "ID_CLIENTE"),
-            inverseJoinColumns = @JoinColumn(name = "ID_ENDERECO")
-    )
-   private List<Endereco> endereco  = new ArrayList<>();
-   
-   @OneToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "CLIENTE_CARTAO",
-            joinColumns = @JoinColumn(name = "ID_CLIENTE"),
-            inverseJoinColumns = @JoinColumn(name = "ID_CARTAO")
-    )
-    private Set<Cartao> cartoes;
-   
-  
     public Cliente() {
 
     }
@@ -197,11 +179,4 @@ public class Cliente implements Serializable {
         return "Cliente{" + "id=" + id + ", email=" + email + ", senha=" + senha + ", nome=" + nome + ", sobrenome=" + sobrenome + ", telefone=" + telefone + ", cpf=" + cpf + ", sexo=" + sexo + ", dataNascimento=" + dataNascimento + ", disponivel=" + disponivel + '}';
     }
 
-    public List<Endereco> getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(List<Endereco> endereco) {
-        this.endereco = endereco;
-    }
 }
