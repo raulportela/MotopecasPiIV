@@ -5,16 +5,24 @@
  */
 package Motopecas.JRL.MotoPecas.entidade.venda;
 
+import Motopecas.JRL.MotoPecas.entidade.cliente.Cliente;
 import Motopecas.JRL.MotoPecas.entidade.endereco.Endereco;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -27,8 +35,23 @@ public class Venda implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    private List<Endereco> endereco = new ArrayList<>();
+    @Column(precision = 6, scale = 2, nullable = false)
+    private BigDecimal valorTotal;
+
+    @Column(precision = 7, nullable = false)
+    private Integer notaFiscal;
+
+    @Column(precision = 7, nullable = false)
+    private Long idCliente;
+    
+    
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "VENDA_ITEMVENDA",
+            joinColumns = @JoinColumn(name = "ID_VENDA"),
+            inverseJoinColumns = @JoinColumn(name = "ID_ITEMVENDA")
+    )
     private List<ItemVenda> itensVenda = new ArrayList<>();
 
     public List<ItemVenda> getItensVenda() {
@@ -39,16 +62,6 @@ public class Venda implements Serializable {
         this.itensVenda = itensVenda;
     }
 
-    public double getValorTotal() {
-        return valorTotal;
-    }
-
-    public void setValorTotal(double valorTotal) {
-        this.valorTotal = valorTotal;
-    }
-
-    private double valorTotal;
-
     public Long getId() {
         return id;
     }
@@ -57,12 +70,28 @@ public class Venda implements Serializable {
         this.id = id;
     }
 
-    public double getValorCompra() {
+    public Integer getNotaFiscal() {
+        return notaFiscal;
+    }
+
+    public void setNotaFiscal(Integer notaFiscal) {
+        this.notaFiscal = notaFiscal;
+    }
+
+    public BigDecimal getValorTotal() {
         return valorTotal;
     }
 
-    public void setValorCompra(double valorCompra) {
-        this.valorTotal = valorCompra;
+    public void setValorTotal(BigDecimal valorTotal) {
+        this.valorTotal = valorTotal;
+    }
+
+    public Long getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(Long idCliente) {
+        this.idCliente = idCliente;
     }
 
 }

@@ -7,24 +7,46 @@ package Motopecas.JRL.MotoPecas.entidade.venda;
 
 import Motopecas.JRL.MotoPecas.entidade.cliente.Cliente;
 import Motopecas.JRL.MotoPecas.entidade.produto.Produto;
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 /**
  *
  * @author Raul Portela
  */
-public class ItemVenda {
+@Entity
+public class ItemVenda implements Serializable {
 
-    Produto produto;
-    Cliente cliente;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    public Cliente getCliente() {
-        return cliente;
+    @OneToOne
+    @JoinColumn(name = "produto", nullable = false)
+    private Produto produto;
+
+    @Column(nullable = false)
+    private int quantidade;
+    
+    
+    private Long idCliente;
+    
+    private Long idVenda;
+
+    public Long getId() {
+        return id;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setId(Long id) {
+        this.id = id;
     }
-    int quantidade;
 
     public Produto getProduto() {
         return produto;
@@ -40,6 +62,22 @@ public class ItemVenda {
 
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
+    }
+
+    public Long getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(Long idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public Long getIdVenda() {
+        return idVenda;
+    }
+
+    public void setIdVenda(Long idVenda) {
+        this.idVenda = idVenda;
     }
 
 }

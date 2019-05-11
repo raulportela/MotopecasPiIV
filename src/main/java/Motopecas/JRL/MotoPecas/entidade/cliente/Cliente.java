@@ -57,6 +57,8 @@ public class Cliente implements Serializable {
     @Column(nullable = false, insertable = true, updatable = false)
     private LocalDateTime dataNascimento;
 
+    // '1'== Masculino
+    // '0'== Feminino
     @Column(length = 100, nullable = false)
     private boolean sexo;
     
