@@ -5,15 +5,12 @@
  */
 package Motopecas.JRL.MotoPecas.entidade.cartao;
 
-import Motopecas.JRL.MotoPecas.entidade.cliente.Cliente;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 /**
  *
@@ -21,25 +18,22 @@ import javax.persistence.ManyToOne;
  */
 @Entity
 public class Cartao implements Serializable {
-    
+
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private Integer id;
-    
-    @ManyToOne
-    @JoinColumn(name="cliente", nullable= false)
-    private Cliente cliente ;
-    
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @Column(length = 100, unique = true)
     private String nome;
-    
     private String bandeira;
     private String nomeTitular;
     private Integer numeroCartao;
     private int mesValidade;
     private int ano;
     private int codSeguraca;
-    private int parcelas;
+    
+
+    private Long IdCliente;
 
     public String getBandeira() {
         return bandeira;
@@ -89,24 +83,28 @@ public class Cartao implements Serializable {
         this.codSeguraca = codSeguraca;
     }
 
-    public int getParcelas() {
-        return parcelas;
+    public Long getIdCliente() {
+        return IdCliente;
     }
 
-    public void setParcelas(int parcelas) {
-        this.parcelas = parcelas;
+    public void setIdCliente(Long IdCliente) {
+        this.IdCliente = IdCliente;
     }
 
-    public Integer getId() {
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
-    
-    
-    
-    
-    
+
 }

@@ -34,9 +34,6 @@ public class Endereco implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-   @ManyToOne
-   @JoinColumn(name="cliente", nullable= false)
-    private Cliente cliente ;
     
     @Column(length = 130, nullable = false)
     private String rua;
@@ -52,6 +49,8 @@ public class Endereco implements Serializable {
     
     @Column(length = 200, nullable = false)
     private String complemento;
+    
+    private Long idCliente ;
     
     public Endereco(){
         
@@ -113,9 +112,17 @@ public class Endereco implements Serializable {
         this.id = id;
     }
 
-    @Override
-    public String toString() {
-        return "Endereco{" + "id=" + id + ", cliente=" + cliente + ", rua=" + rua + ", numero=" + numero + ", bairro=" + bairro + ", cep=" + cep + ", complemento=" + complemento + '}';
+    public Long getIdCliente() {
+        return idCliente;
     }
 
+    public void setIdCliente(Long idCliente) {
+        this.idCliente = idCliente;
+    }
+
+   
+ @Override
+    public String toString() {
+        return "Endereco{" + "id=" + id + ", cliente="  + ", rua=" + rua + ", numero=" + numero + ", bairro=" + bairro + ", cep=" + cep + ", complemento=" + complemento + '}';
+    }
 }
