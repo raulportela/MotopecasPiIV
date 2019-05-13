@@ -151,28 +151,30 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-9  order-1 order-lg-2 mb-5 mb-lg-0">
+                    <div th:if="${produtos != null}" class="col-lg-9  order-1 order-lg-2 mb-5 mb-lg-0">
                         <div class="row">
-                            <!-- Aqui vai ser feito um for para rodar a lista de produtos -->
-                            <div th:if="${produtos != null}">
-                                <div th:each="prod, stat: ${produtos}">
-                                    <div class="col-lg-4 col-sm-6">
-                                        <div class="product-item">
-                                            <div class="pi-pic">
-                                                <img th:src="@{/img/product/8.jpeg}" alt="">
-                                                <div class="pi-links">
-                                                    <a th:href="@{/#}" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-                                                    <a th:href="@{/#}" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="pi-text">
-                                                <h6 th:text="${prod.valor}"></h6>
-                                                <p th:text="${prod.nome}"></p>
-                                            </div>
+                            <div class="col-lg-4 col-sm-6" th:each="prod, stat: ${produtos}">
+                                <div class="product-item">
+                                    <div class="pi-pic">
+                                        <img th:src="@{/img/product/fotoProduto.jpg}" alt="">
+                                        <div class="pi-links">
+
+
+                                            <!-- esquema de adicionar o produto ao carrinho -->
+                                            <a th:href="@{/mv/produto/{id}/additemcart(id=${prod.id})}" class="add-card"><i class="flaticon-bag"></i><span>Adicionar ao carrinho</span></a>
+
+                                            <!--pensar na possibilidade de criar uma lista de favoritos -->
+                                            <a th:href="@{/mv/produto/{id}/additemfavoritelist(id=${prod.id})}" class="wishlist-btn"><i class="flaticon-heart"></i></a>
+
+
+
                                         </div>
                                     </div>
+                                    <div class="pi-text">
+                                        <h6 th:text="${prod.valor}"></h6>
+                                        <p th:text="${prod.nome}"></p>
+                                    </div>
                                 </div>
-                                
                             </div>
                             <!-- Por enquanto deixaremos esses em baixo para funcionar manualmente, mas quando funcionar do banco a gente vai tirar -->
                             <div class="col-lg-4 col-sm-6">

@@ -11,9 +11,13 @@ import java.time.LocalDateTime;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
@@ -54,8 +58,11 @@ public class Produto implements Serializable{
     @Column(length = 2, nullable = false)
     private float tamanho;
     
-    //aqui vai puxar de outra coisa do banco 
-    private int[] categoria;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "produto_categoria",
+        joinColumns = @JoinColumn(name = "id_produto"),
+        inverseJoinColumns = @JoinColumn(name = "id_categoria"))
+    private Set<Categoria> categorias ;
     
     private LocalDateTime dataCadastro;
 
@@ -123,12 +130,8 @@ public class Produto implements Serializable{
         this.tamanho = tamanho;
     }
 
-    public int[] getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(int[] categoria) {
-        this.categoria = categoria;
+    public void setCategorias(Set<Categoria> categorias) {
+        this.categorias = categorias;
     }
 
     public LocalDateTime getDataCadastro() {

@@ -37,6 +37,21 @@ public class ProdutoController {
         return new ModelAndView("/produto/especificacao").addObject("produtoEspecificacao", produto);
     }
     
+    @GetMapping("/{id}/additemcart")
+    public ModelAndView additemcart(@PathVariable("id") Long id) {
+        //A varialvel id está com o numero do id que ta vindo do front.. 
+        Produto produto = produtoRepository.findById(id);
+        
+        //Essa variavel produto, já está com as informações do produto.. 
+        //Implementei o metodo na classe CARRINHO REPOSITORY, de salvar;
+        //Daqui pra baixo, é só usar ela denovo e depois voltar pra tela de listagem que é o quejá está sendo feito na proxima linha
+        //Agora tem que fazer o que precisa pra passar do carrinho, que é a escolha de Endereço e opção de pagamento;
+        //Depois da escolha de pagamento, ir para a tela de confirmação;
+        //Utiliza a tela do front de produto que ta com o nome de "Categoria" como exemplo, lá ela usa os atributos com o Thymeleaf
+        ModelAndView mv = new ModelAndView("/produto/categoria");
+        return mv;
+    }
+    
     @GetMapping("/pagemoto")
     public ModelAndView paginamoto() {
         ModelAndView mv = new ModelAndView("/produto/pageModeloMoto");

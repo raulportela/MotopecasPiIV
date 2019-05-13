@@ -5,23 +5,13 @@
  */
 package Motopecas.JRL.MotoPecas.entidade.cliente;
 
-import Motopecas.JRL.MotoPecas.entidade.cartao.Cartao;
-import Motopecas.JRL.MotoPecas.entidade.endereco.Endereco;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
 
 /**
  *
@@ -161,21 +151,6 @@ public class Cliente implements Serializable {
         this.disponivel = disponivel;
     }
 
-//    public Endereco getEndereco() {
-//        return endereco;
-//    }
-//
-//    public void setEndereco(Endereco endereco) {
-//        this.endereco = endereco;
-//    }
-//
-//    public CartaoDeCredito getCartaoDeCredito() {
-//        return cartaoDeCredito;
-//    }
-//
-//    public void setCartaoDeCredito(CartaoDeCredito cartaoDeCredito) {
-//        this.cartaoDeCredito = cartaoDeCredito;
-//    }
     @Override
     public String toString() {
         return "Cliente{" + "id=" + id + ", email=" + email + ", senha=" + senha + ", nome=" + nome + ", sobrenome=" + sobrenome + ", telefone=" + telefone + ", cpf=" + cpf + ", sexo=" + sexo + ", dataNascimento=" + dataNascimento + ", disponivel=" + disponivel + '}';
