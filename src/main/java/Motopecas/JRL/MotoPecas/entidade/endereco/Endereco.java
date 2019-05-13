@@ -9,6 +9,7 @@ import Motopecas.JRL.MotoPecas.entidade.cliente.Cliente;
 import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
@@ -20,43 +21,41 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-
 /**
  *
  * @author Jeferson Nolasco
  */
-
 @Entity
 public class Endereco implements Serializable {
-    
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
-    
+
     @Column(length = 130, nullable = false)
     private String rua;
-    
+
     @Column(length = 5, nullable = false)
     private int numero;
-    
+
     @Column(length = 80, nullable = false)
     private String bairro;
-    
+
     @Column(length = 7, nullable = false)
-    private int cep; 
-    
+    private int cep;
+
     @Column(length = 200, nullable = false)
     private String complemento;
-    
-    private Long idCliente ;
-    
-    public Endereco(){
-        
+
+    @Embedded
+    @ManyToOne
+    private Cliente cliente;
+
+    public Endereco() {
+
     }
-    
-    public Endereco (Long id, String rua, int numero, String bairro, int cep, String complemento){
+
+    public Endereco(Long id, String rua, int numero, String bairro, int cep, String complemento) {
         this.id = id;
         this.rua = rua;
         this.bairro = bairro;
@@ -112,17 +111,16 @@ public class Endereco implements Serializable {
         this.id = id;
     }
 
-    public Long getIdCliente() {
-        return idCliente;
-    }
-
-    public void setIdCliente(Long idCliente) {
-        this.idCliente = idCliente;
-    }
-
-   
- @Override
+    @Override
     public String toString() {
-        return "Endereco{" + "id=" + id + ", cliente="  + ", rua=" + rua + ", numero=" + numero + ", bairro=" + bairro + ", cep=" + cep + ", complemento=" + complemento + '}';
+        return "Endereco{" + "id=" + id + ", cliente=" + ", rua=" + rua + ", numero=" + numero + ", bairro=" + bairro + ", cep=" + cep + ", complemento=" + complemento + '}';
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 }

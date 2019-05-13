@@ -5,12 +5,15 @@
  */
 package Motopecas.JRL.MotoPecas.entidade.cartao;
 
+import Motopecas.JRL.MotoPecas.entidade.cliente.Cliente;
 import java.io.Serializable;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -31,9 +34,10 @@ public class Cartao implements Serializable {
     private int mesValidade;
     private int ano;
     private int codSeguraca;
-    
 
-    private Long IdCliente;
+    @Embedded
+    @ManyToOne
+    private Cliente cliente;
 
     public String getBandeira() {
         return bandeira;
@@ -81,14 +85,6 @@ public class Cartao implements Serializable {
 
     public void setCodSeguraca(int codSeguraca) {
         this.codSeguraca = codSeguraca;
-    }
-
-    public Long getIdCliente() {
-        return IdCliente;
-    }
-
-    public void setIdCliente(Long IdCliente) {
-        this.IdCliente = IdCliente;
     }
 
     public String getNome() {
