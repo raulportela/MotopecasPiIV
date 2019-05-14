@@ -22,22 +22,23 @@
                             <div class="col-12 col-sm-6 col-md-8">
                                 <div class="cart-table margincols">
                                     <h3>Pagamento <i class="fa fa-dollar"></i></h3>
-                                    <div class="cart-table-warp">
+                                    <div th:if="${listaCarrinho!= null}" class="cart-table-warp">
                                         <table>
                                             <thead>
                                                 <tr>
-                                                    <th class="product-th">Itens do Pedido</th>
-                                                    <th class="quy-th">Qtde</th>
+                                                    <th class="product-th">Produto</th>
+                                                    <th class="quy-th">Quantidade</th>
                                                     <th class="total-th">Preço</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
+                                                <tr th:each="cart, stat: ${listaCarrinho}" >
                                                     <td class="product-col">
-                                                        <img th:src="@{/img/cart/1.jpg}" alt="">
+                                                        <img th:src="@{/img/product/fotoProduto.jpg}" alt="">
                                                         <div class="pc-title">
-                                                            <h4>CB XRE 300cc</h4>
-                                                            <p>R$18.000,00</p>
+                                                            <h4 th:text="${cart.produto.nome}">Animal Print Dress</h4>
+                                                            <!-- <p th:text=" 'R$ ' + ${car.produto.valor}"></p> -->
+                                                            <p>Remover</p>
                                                         </div>
                                                     </td>
                                                     <td class="quy-col">
@@ -47,42 +48,9 @@
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <td class="total-col"><h4>R$18.000,00</h4></td>
+                                                    <td th:text=" 'R$ ' + ${cart.produto.valor}" class="total-col"><h4>$45.90</h4></td>
                                                 </tr>
-                                                <tr>
-                                                    <td class="product-col">
-                                                        <img th:src="@{/img/cart/2.jpg}" alt="">
-                                                        <div class="pc-title">
-                                                            <h4>Fazer 250cc</h4>
-                                                            <p>R$15.000,00</p>
-                                                        </div>
-                                                    </td>
-                                                    <td class="quy-col">
-                                                        <div class="quantity">
-                                                            <div class="pro-qty">
-                                                                <input type="text" value="1">
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td class="total-col"><h4>R$15.000,00</h4></td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="product-col">
-                                                        <img th:src="@{/img/cart/3.jpg}" alt="">
-                                                        <div class="pc-title">
-                                                            <h4>Harley Davidson</h4>
-                                                            <p>R$25.000,00</p>
-                                                        </div>
-                                                    </td>
-                                                    <td class="quy-col">
-                                                        <div class="quantity">
-                                                            <div class="pro-qty">
-                                                                <input type="text" value="1">
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td class="total-col"><h4>R$25.000,00</h4></td>
-                                                </tr>
+
                                             </tbody>
                                         </table>
                                     </div>
@@ -100,7 +68,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
@@ -122,7 +90,7 @@
                         </div >
                         <div class="row no-gutters">
                             <div class="col-8">
-                                
+
                             </div>
                             <div class="col-4">
                                 <button class="site-btn submit-order-btn">Concluir Compra</button>
@@ -132,7 +100,7 @@
                 </div>
             </div>
         </section>
-        
+
         <footer th:include="fragments/footer :: footer"></footer>
     </body>
 </html>

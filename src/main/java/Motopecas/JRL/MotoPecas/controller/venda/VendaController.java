@@ -52,6 +52,9 @@ public class VendaController {
 
     @GetMapping("/confirmacao")
     public ModelAndView confirmacao() {
+        List<Carrinho> listaCarrinho;
+        listaCarrinho = carrinhoRepository.findCarrinhoByIdCliente(1l);
+        
         ModelAndView mv = new ModelAndView("/venda/confirmacao");
         return mv;
     }

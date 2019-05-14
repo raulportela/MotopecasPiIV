@@ -5,7 +5,6 @@
  */
 package Motopecas.JRL.MotoPecas.entidade.carrinho;
 
-import Motopecas.JRL.MotoPecas.entidade.cliente.Cliente;
 import Motopecas.JRL.MotoPecas.entidade.produto.Produto;
 import java.io.Serializable;
 import javax.persistence.Embedded;
@@ -23,7 +22,8 @@ import javax.persistence.OneToOne;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "Carrinho.findByIdCliente", query = "SELECT c FROM Carrinho c WHERE c.cliente = :idCliente")
+    @NamedQuery(name = "Carrinho.findByIdCliente", query = "SELECT c FROM Carrinho c")
+    
 })
 public class Carrinho implements Serializable {
 
@@ -37,9 +37,9 @@ public class Carrinho implements Serializable {
 
     private int quantidade;
 
-    @Embedded
-    @OneToOne
-    private Cliente cliente;
+    //@Embedded
+    //@OneToOne
+    //private Cliente cliente;
 
     public Produto getProduto() {
         return Produto;
@@ -63,14 +63,6 @@ public class Carrinho implements Serializable {
 
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
     }
 
 }
