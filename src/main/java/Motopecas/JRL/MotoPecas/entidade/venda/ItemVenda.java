@@ -5,19 +5,14 @@
  */
 package Motopecas.JRL.MotoPecas.entidade.venda;
 
-import Motopecas.JRL.MotoPecas.entidade.cliente.Cliente;
-import Motopecas.JRL.MotoPecas.entidade.produto.Produto;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 
 /**
  *
@@ -37,8 +32,6 @@ public class ItemVenda implements Serializable {
     private int quantidade;
 
     private Long idProduto;
-
-    
 
     public Long getId() {
         return id;

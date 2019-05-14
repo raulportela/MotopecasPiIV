@@ -1,6 +1,3 @@
-
-
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,8 +6,10 @@
 package Motopecas.JRL.MotoPecas.repository.carrinho;
 
 import Motopecas.JRL.MotoPecas.entidade.carrinho.Carrinho;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
@@ -20,14 +19,22 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class CarrinhoRepository {
-    
+
     @PersistenceContext
     private EntityManager entityManager;
-    
+
     @Transactional
-    public void save(Carrinho carrinho){
-        if(carrinho != null){
+    public void save(Carrinho carrinho) {
+        if (carrinho.getId() != null) {
             entityManager.persist(carrinho);
+        } else {
+            entityManager.merge(carrinho);
         }
+    }
+
+    @Transactional
+    public List<Carrinho> findCarrinhoByIdCliente(int idCliente) {
+        Query jpqlQuery = entityManager.createNamedQuery("Carrinho.findByIdCliente").setParameter("idCliente", idCliente);
+        return jpqlQuery.getResultList();
     }
 }

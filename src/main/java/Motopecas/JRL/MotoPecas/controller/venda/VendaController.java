@@ -1,8 +1,8 @@
 package Motopecas.JRL.MotoPecas.controller.venda;
 
-import Motopecas.JRL.MotoPecas.entidade.cliente.Cliente;
+import Motopecas.JRL.MotoPecas.entidade.carrinho.Carrinho;
 import Motopecas.JRL.MotoPecas.entidade.produto.Produto;
-import Motopecas.JRL.MotoPecas.entidade.venda.ItemVenda;
+import Motopecas.JRL.MotoPecas.repository.carrinho.CarrinhoRepository;
 import Motopecas.JRL.MotoPecas.repository.itemVenda.ItemVendaRepository;
 import Motopecas.JRL.MotoPecas.repository.produto.ProdutoRepository;
 import Motopecas.JRL.MotoPecas.repository.venda.VendaRepository;
@@ -33,6 +33,9 @@ public class VendaController {
     ItemVendaRepository itemVendaRepository;
 
     @Autowired
+    CarrinhoRepository carrinhoRepository;
+
+    @Autowired
     VendaRepository vendaRepository;
 
     @Autowired
@@ -42,15 +45,9 @@ public class VendaController {
     public ModelAndView carrinho(
             @RequestParam(name = "offset", defaultValue = "0") int offset,
             @RequestParam(name = "qtd", defaultValue = "100") int qtd) {
-        List<ItemVenda> itensCarrinho;
-        itensCarrinho = itemVendaRepository.findAll(offset, qtd);
-        
-        List<Produto> listaProdutos = new ArrayList<>();
-                for(int i=1; i<itensCarrinho.size(); i++){
-                    listaProdutos.add(produtoRepository.findById(itensCarrinho.get(i).getIdProduto()));
-                }
-       
-        return new ModelAndView("/venda/carrinho").addObject("produtoSelecinados", listaProdutos);
+        List<Carrinho> listaCarrinho;
+        listaCarrinho = carrinhoRepository.findCarrinhoByIdCliente(1);
+        return new ModelAndView("/venda/carrinho").addObject("listaCarrinho", listaCarrinho);
 
     }
 

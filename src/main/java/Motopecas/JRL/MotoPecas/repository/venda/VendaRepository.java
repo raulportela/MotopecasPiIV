@@ -34,12 +34,6 @@ public class VendaRepository {
     }
     
     @Transactional
-    public void atualizarCarrinho(List<ItemVenda> itensVenda){
-        if (!itensVenda.isEmpty()) {
-            entityManager.merge(itensVenda);
-        }
-    }
-    @Transactional
     public List<ItemVenda> findCarrinhoByCliente(Long idCliente){
         Query jpqlQyery = entityManager.createNamedQuery("ItemVenda.findByCliente").setParameter("idCliente",idCliente);
         return jpqlQyery.getResultList();

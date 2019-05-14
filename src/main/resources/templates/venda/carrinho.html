@@ -13,12 +13,12 @@
 
         <!-- cart section end -->
         <section class="cart-section spad">
-            <div class="container" >
+            <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="cart-table margincols">
                             <h3>Carrinho</h3>
-                            <div class="cart-table-warp" th:each="prodSelec, stat: ${produtoSelecinados}">
+                            <div class="cart-table-warp">
                                 <table>
                                     <thead>
                                         <tr>
@@ -32,8 +32,8 @@
                                             <td class="product-col">
                                                 <img th:src="@{/img/cart/1.jpg}" alt="">
                                                 <div class="pc-title">
-                                                    <h4 th:text="${prodSelec.nome}"></h4>
-                                                    <p th:text="${prodSelec.valor}"></p>
+                                                    <h4>Animal Print Dress</h4>
+                                                    <p>$45.90</p>
                                                     <p>Remover</p>
                                                 </div>
                                             </td>
@@ -44,8 +44,45 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td class="total-col"><h4 th:text="${prodSelec.valor}"></h4></td>
-F                                    </tbody>
+                                            <td class="total-col"><h4>$45.90</h4></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="product-col">
+                                                <img th:src="@{/img/cart/2.jpg}" alt="">
+                                                <div class="pc-title">
+                                                    <h4>Ruffle Pink Top</h4>
+                                                    <p>$45.90</p>
+                                                    <p>Remover</p>
+                                                </div>
+                                            </td>
+                                            <td class="quy-col">
+                                                <div class="quantity">
+                                                    <div class="pro-qty">
+                                                        <input type="text" value="1">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="total-col"><h4>$45.90</h4></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="product-col">
+                                                <img th:src="@{/img/cart/3.jpg}" alt="">
+                                                <div class="pc-title">
+                                                    <h4>Skinny Jeans</h4>
+                                                    <p>$45.90</p>
+                                                     <p>Remover</p>
+                                                </div>
+                                            </td>
+                                            <td class="quy-col">
+                                                <div class="quantity">
+                                                    <div class="pro-qty">
+                                                        <input type="text" value="1">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="total-col"><h4>$45.90</h4></td>
+                                        </tr>
+                                    </tbody>
                                 </table>
                             </div>
                             <div class="total-cost">
