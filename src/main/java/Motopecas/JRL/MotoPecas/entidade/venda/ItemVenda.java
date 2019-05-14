@@ -15,6 +15,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 
 /**
@@ -22,23 +24,21 @@ import javax.persistence.OneToOne;
  * @author Raul Portela
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "ItemVenda.findAll", query = "SELECT iv FROM ItemVenda iv")
+})
 public class ItemVenda implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "produto", nullable = false)
-    private Produto produto;
-
     @Column(nullable = false)
     private int quantidade;
+
+    private Long idProduto;
+
     
-    
-    private Long idCliente;
-    
-    private Long idVenda;
 
     public Long getId() {
         return id;
@@ -46,14 +46,6 @@ public class ItemVenda implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Produto getProduto() {
-        return produto;
-    }
-
-    public void setProduto(Produto produto) {
-        this.produto = produto;
     }
 
     public int getQuantidade() {
@@ -64,20 +56,12 @@ public class ItemVenda implements Serializable {
         this.quantidade = quantidade;
     }
 
-    public Long getIdCliente() {
-        return idCliente;
+    public Long getIdProduto() {
+        return idProduto;
     }
 
-    public void setIdCliente(Long idCliente) {
-        this.idCliente = idCliente;
-    }
-
-    public Long getIdVenda() {
-        return idVenda;
-    }
-
-    public void setIdVenda(Long idVenda) {
-        this.idVenda = idVenda;
+    public void setIdProduto(Long idProduto) {
+        this.idProduto = idProduto;
     }
 
 }

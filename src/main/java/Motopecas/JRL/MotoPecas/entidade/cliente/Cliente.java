@@ -5,6 +5,7 @@
  */
 package Motopecas.JRL.MotoPecas.entidade.cliente;
 
+import Motopecas.JRL.MotoPecas.entidade.carrinho.Carrinho;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import javax.persistence.Column;
@@ -12,6 +13,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import org.hibernate.annotations.CascadeType;
 
 /**
  *
@@ -53,7 +58,7 @@ public class Cliente implements Serializable {
     @Column(length = 100, nullable = false)
     private boolean sexo;
     
-   
+    
     public Cliente() {
 
     }

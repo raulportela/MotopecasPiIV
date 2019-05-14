@@ -3,14 +3,17 @@ package Motopecas.JRL.MotoPecas.controller.venda;
 import Motopecas.JRL.MotoPecas.entidade.cliente.Cliente;
 import Motopecas.JRL.MotoPecas.entidade.produto.Produto;
 import Motopecas.JRL.MotoPecas.entidade.venda.ItemVenda;
+import Motopecas.JRL.MotoPecas.repository.itemVenda.ItemVendaRepository;
 import Motopecas.JRL.MotoPecas.repository.produto.ProdutoRepository;
 import Motopecas.JRL.MotoPecas.repository.venda.VendaRepository;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 /*
@@ -18,7 +21,6 @@ import org.springframework.web.servlet.ModelAndView;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Raul Portela
@@ -27,35 +29,44 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/mv/venda")
 public class VendaController {
 
-    
+    @Autowired
+    ItemVendaRepository itemVendaRepository;
+
     @Autowired
     VendaRepository vendaRepository;
-    
+
     @Autowired
     ProdutoRepository produtoRepository;
-    
+
     @GetMapping("/carrinho")
-    public ModelAndView carrinho() {
-        Cliente cliente = null; //Resgatar o cliente da sessão
+    public ModelAndView carrinho(
+            @RequestParam(name = "offset", defaultValue = "0") int offset,
+            @RequestParam(name = "qtd", defaultValue = "100") int qtd) {
         List<ItemVenda> itensCarrinho;
-        itensCarrinho = vendaRepository.findCarrinhoByCliente(cliente.getId());
-        return new ModelAndView("/venda/carrinho").addObject(itensCarrinho);
+        itensCarrinho = itemVendaRepository.findAll(offset, qtd);
         
+        List<Produto> listaProdutos = new ArrayList<>();
+                for(int i=1; i<itensCarrinho.size(); i++){
+                    listaProdutos.add(produtoRepository.findById(itensCarrinho.get(i).getIdProduto()));
+                }
+       
+        return new ModelAndView("/venda/carrinho").addObject("produtoSelecinados", listaProdutos);
+
     }
-    
+
     @GetMapping("/confirmacao")
     public ModelAndView confirmacao() {
         ModelAndView mv = new ModelAndView("/venda/confirmacao");
         return mv;
     }
-    
+
     @GetMapping("/{id}/additemcart")
     public ModelAndView additemcart(@PathVariable("id") Long id) {
         Produto produto = produtoRepository.findById(id);
         ModelAndView mv = new ModelAndView("/venda/confirmacao");
         return mv;
     }
-    
+
     @GetMapping("/pagamento")
     public ModelAndView pagamento() {
         ModelAndView mv = new ModelAndView("/venda/pagamento");

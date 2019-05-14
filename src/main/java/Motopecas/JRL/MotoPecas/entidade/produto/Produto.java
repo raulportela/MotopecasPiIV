@@ -5,6 +5,7 @@
  */
 package Motopecas.JRL.MotoPecas.entidade.produto;   
 
+import Motopecas.JRL.MotoPecas.entidade.carrinho.Carrinho;
 import Motopecas.JRL.MotoPecas.entidade.categoria.Categoria;
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -18,6 +19,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
