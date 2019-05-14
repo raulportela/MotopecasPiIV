@@ -13,6 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 
 /**
@@ -20,10 +22,9 @@ import javax.persistence.OneToOne;
  * @author Raul Portela
  */
 @Entity
-/*@NamedQueries({
-    @NamedQuery(name = "Carrinho.findByIdCliente", query = "SELECT c FROM Carrrinho c WHERE c.id_cliente = :idCliente")
-})*/
-
+@NamedQueries({
+    @NamedQuery(name = "Carrinho.findByIdCliente", query = "SELECT c FROM Carrinho c WHERE c.cliente = :idCliente")
+})
 public class Carrinho implements Serializable {
 
     @Id

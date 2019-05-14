@@ -33,7 +33,7 @@ public class CarrinhoRepository {
     }
 
     @Transactional
-    public List<Carrinho> findCarrinhoByIdCliente(int idCliente) {
+    public List<Carrinho> findCarrinhoByIdCliente(Long idCliente) {
         Query jpqlQuery = entityManager.createNamedQuery("Carrinho.findByIdCliente").setParameter("idCliente", idCliente);
         return jpqlQuery.getResultList();
     }

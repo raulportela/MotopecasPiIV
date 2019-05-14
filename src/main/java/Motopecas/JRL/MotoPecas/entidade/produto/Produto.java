@@ -5,7 +5,6 @@
  */
 package Motopecas.JRL.MotoPecas.entidade.produto;   
 
-import Motopecas.JRL.MotoPecas.entidade.carrinho.Carrinho;
 import Motopecas.JRL.MotoPecas.entidade.categoria.Categoria;
 import java.io.Serializable;
 import java.time.LocalDateTime;

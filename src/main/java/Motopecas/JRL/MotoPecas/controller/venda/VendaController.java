@@ -6,7 +6,6 @@ import Motopecas.JRL.MotoPecas.repository.carrinho.CarrinhoRepository;
 import Motopecas.JRL.MotoPecas.repository.itemVenda.ItemVendaRepository;
 import Motopecas.JRL.MotoPecas.repository.produto.ProdutoRepository;
 import Motopecas.JRL.MotoPecas.repository.venda.VendaRepository;
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -46,7 +45,7 @@ public class VendaController {
             @RequestParam(name = "offset", defaultValue = "0") int offset,
             @RequestParam(name = "qtd", defaultValue = "100") int qtd) {
         List<Carrinho> listaCarrinho;
-        listaCarrinho = carrinhoRepository.findCarrinhoByIdCliente(1);
+        listaCarrinho = carrinhoRepository.findCarrinhoByIdCliente(1l);
         return new ModelAndView("/venda/carrinho").addObject("listaCarrinho", listaCarrinho);
 
     }

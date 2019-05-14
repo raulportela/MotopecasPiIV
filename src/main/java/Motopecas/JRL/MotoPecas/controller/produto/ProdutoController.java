@@ -45,19 +45,25 @@ public class ProdutoController {
 
     @GetMapping("/{id}/additemcart")
     public ModelAndView additemcart(@PathVariable("id") Long id,
-            @RequestParam(name = "listaCarrinho", required = false) List<Carrinho> listaCarrinho) {
+            @RequestParam(name = "listaCarrinho", required = false) List<Carrinho> listaCarrinho,
+            @RequestParam(name = "totalValorCarrinho", required = false) String totalValorCarrinho) {
+        double vlrTotal;
         Produto produto;
         Carrinho carrinho = new Carrinho();
         if (listaCarrinho != null && listaCarrinho.isEmpty()) {
             produto = produtoRepository.findById(id);
             carrinho.setProduto(produto);
             carrinhoRepository.save(carrinho);
+            vlrTotal = produto.getValor();
+            
         } else {
             produto = produtoRepository.findById(id);
+            vlrTotal = Double.parseDouble(totalValorCarrinho);
+            vlrTotal += produto.getValor();
             carrinho.setProduto(produto);
             carrinhoRepository.save(carrinho);
         }
-        ModelAndView mv = new ModelAndView("/venda/carrinho");
+        ModelAndView mv = new ModelAndView("/venda/carrinho").addObject("totalValorCarrinho", vlrTotal);
         return mv;
     }
 
