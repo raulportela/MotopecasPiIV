@@ -8,6 +8,7 @@ package Motopecas.JRL.MotoPecas.repository.cliente;
 import Motopecas.JRL.MotoPecas.entidade.cliente.Cliente;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
@@ -30,6 +31,13 @@ public class ClienteRepository {
             //Editar Cliente
             entityManager.merge(c);
         }
+    }
+    
+    @Transactional
+    public Cliente findById(Long id) {
+        Query jpqlQyery = entityManager.createNamedQuery("Cliente.findById").setParameter("idCliente",id);
+        Cliente cliente= (Cliente) jpqlQyery.getSingleResult();
+        return cliente;
     }
     
 }
