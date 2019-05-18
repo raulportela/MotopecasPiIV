@@ -15,6 +15,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import org.hibernate.annotations.CascadeType;
 
@@ -23,6 +25,11 @@ import org.hibernate.annotations.CascadeType;
  * @author Jeferson Nolasco
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "Cliente.findById", query = "SELECT c FROM Cliente c WHERE c.id = :idCliente")
+    
+})
+
 public class Cliente implements Serializable {
 
     @Id

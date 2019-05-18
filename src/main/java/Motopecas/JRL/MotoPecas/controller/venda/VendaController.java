@@ -1,8 +1,10 @@
 package Motopecas.JRL.MotoPecas.controller.venda;
 
 import Motopecas.JRL.MotoPecas.entidade.carrinho.Carrinho;
+import Motopecas.JRL.MotoPecas.entidade.cliente.Cliente;
 import Motopecas.JRL.MotoPecas.entidade.produto.Produto;
 import Motopecas.JRL.MotoPecas.repository.carrinho.CarrinhoRepository;
+import Motopecas.JRL.MotoPecas.repository.cliente.ClienteRepository;
 import Motopecas.JRL.MotoPecas.repository.itemVenda.ItemVendaRepository;
 import Motopecas.JRL.MotoPecas.repository.produto.ProdutoRepository;
 import Motopecas.JRL.MotoPecas.repository.venda.VendaRepository;
@@ -29,6 +31,9 @@ import org.springframework.web.servlet.ModelAndView;
 public class VendaController {
 
     @Autowired
+    ClienteRepository clienteRepository;
+    
+    @Autowired
     ItemVendaRepository itemVendaRepository;
 
     @Autowired
@@ -45,7 +50,7 @@ public class VendaController {
             @RequestParam(name = "offset", defaultValue = "0") int offset,
             @RequestParam(name = "qtd", defaultValue = "100") int qtd) {
         List<Carrinho> listaCarrinho;
-        listaCarrinho = carrinhoRepository.findCarrinhoByIdCliente(1l);
+            listaCarrinho = carrinhoRepository.findCarrinhoByIdCliente(1l);
         return new ModelAndView("/venda/carrinho").addObject("listaCarrinho", listaCarrinho);
 
     }
@@ -67,8 +72,14 @@ public class VendaController {
     }
 
     @GetMapping("/pagamento")
-    public ModelAndView pagamento() {
-        ModelAndView mv = new ModelAndView("/venda/pagamento");
-        return mv;
+    public ModelAndView pagamento( @RequestParam(name = "offset", defaultValue = "0") int offset,
+            @RequestParam(name = "qtd", defaultValue = "100") int qtd){
+        long id = 1;
+        Cliente c = clienteRepository.findById(id);
+        
+        List<Carrinho> listaCarrinho;
+            listaCarrinho = carrinhoRepository.findCarrinhoByIdCliente(1l);
+        return new ModelAndView("/venda/pagamento").addObject("listaCarrinho", listaCarrinho).addObject("clienteSessao", c);
+     
     }
 }

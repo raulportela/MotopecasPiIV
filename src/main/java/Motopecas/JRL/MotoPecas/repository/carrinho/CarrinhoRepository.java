@@ -6,6 +6,7 @@
 package Motopecas.JRL.MotoPecas.repository.carrinho;
 
 import Motopecas.JRL.MotoPecas.entidade.carrinho.Carrinho;
+import Motopecas.JRL.MotoPecas.entidade.cliente.Cliente;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
