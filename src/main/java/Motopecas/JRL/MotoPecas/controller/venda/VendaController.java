@@ -1,7 +1,9 @@
 package Motopecas.JRL.MotoPecas.controller.venda;
 
 import Motopecas.JRL.MotoPecas.entidade.carrinho.Carrinho;
+import Motopecas.JRL.MotoPecas.entidade.cartao.Cartao;
 import Motopecas.JRL.MotoPecas.entidade.cliente.Cliente;
+import Motopecas.JRL.MotoPecas.entidade.endereco.Endereco;
 import Motopecas.JRL.MotoPecas.entidade.produto.Produto;
 import Motopecas.JRL.MotoPecas.repository.carrinho.CarrinhoRepository;
 import Motopecas.JRL.MotoPecas.repository.cliente.ClienteRepository;
@@ -76,10 +78,12 @@ public class VendaController {
             @RequestParam(name = "qtd", defaultValue = "100") int qtd){
         long id = 1;
         Cliente c = clienteRepository.findById(id);
+        Cartao cartao = new Cartao();
+        Endereco endereco = new Endereco();
         
         List<Carrinho> listaCarrinho;
             listaCarrinho = carrinhoRepository.findCarrinhoByIdCliente(1l);
-        return new ModelAndView("/venda/pagamento").addObject("listaCarrinho", listaCarrinho).addObject("clienteSessao", c);
+        return new ModelAndView("/venda/pagamento").addObject("listaCarrinho", listaCarrinho).addObject("clienteSessao", c).addObject("cartao",cartao).addObject("endereco", endereco);
      
     }
 }

@@ -3,7 +3,7 @@
 
     <!-- head importado -->
     <head th:include="fragments/head :: head"></head>
-    
+
     <body>
         <!-- Page Preloder -->
         <div id="preloder">
@@ -20,7 +20,32 @@
                         <div class="row no-gutters">
                             <div class="col-12 col-sm-6 col-md-8">
                                 <div class="cart-table margincols">
-                                    <h3>Pagamento <i class="fa fa-dollar"></i></h3>
+                                    <h3>Endereço <i class="fa fa-truck"></i></h3> 
+                                    <div class="container  margincols">
+                                        <form class="checkout-form">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button class="site-btn"> Alterar Endereço</button>
+                                        </form>	
+                                    </div>
+                                </div>	
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="row no-gutters">
+                            <div class="col-12 col-sm-6 col-md-8">
+                                <div class="cart-table margincols">
+                                    <h3>Pagamento <i class="fa fa-money"></i></h3>
                                     <div th:if="${listaCarrinho!= null}" class="cart-table-warp">
                                         <table>
                                             <thead>
@@ -36,7 +61,7 @@
                                                         <img th:src="@{/img/product/fotoProduto.jpg}" alt="">
                                                         <div class="pc-title">
                                                             <h4 th:text="${cart.produto.nome}">Animal Print Dress</h4>
-                                                           
+
                                                         </div>
                                                     </td>
                                                     <td class="quy-col">
@@ -57,21 +82,7 @@
 
                                 </div>
                             </div>
-                            <div class="col-6 col-md-4">
-                                <div class="cart-table ">
-                                    <h3>Endereço de entrega</h3>
-                                    <div class="col">
-                                        <div class="cf-radio-btns address-rb">
-                                            <button class="site-btn submit-order-btn">Alterar Endereço</button>
-                                        </div>
-                                    </div>
-
-                                    <h3>Frete</h3>	
-                                </div>
-                            </div>
-
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -83,7 +94,7 @@
                                 <div class="cart-table margincols">
                                     <h3>Pague com cartão de crédito <i class="fa fa-credit-card"></i> <button class="site-btn"> Dividi em 2 cartões</button></h3> 
                                     <div class="container  margincols">
-                                        <form class="checkout-form">
+                                        <form class="checkout-form" >
                                             <div class="row address-inputs ">
                                                 <div class="col-12">
                                                     <div class="container">
@@ -108,6 +119,7 @@
                     </div>
                 </div>
             </div>
+
             <br>
             <div class="container">
                 <div class="row">
@@ -115,7 +127,7 @@
                         <div class="row no-gutters">
                             <div class="col-12 col-sm-6 col-md-8">
                                 <div class="cart-table margincols">
-                                    <h3>Pague com boleto bancário <i class="fa fa-money"></i></h3> 
+                                    <h3>Pague com boleto bancário <i class="fa fa-barcode"></i></h3> 
                                     <div class="container  margincols">
                                         <form class="checkout-form">
 
