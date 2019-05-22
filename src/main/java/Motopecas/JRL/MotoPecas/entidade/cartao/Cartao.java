@@ -34,6 +34,7 @@ public class Cartao implements Serializable {
     private int mesValidade;
     private int ano;
     private int codSeguraca;
+    private int parcela;
 
     @Embedded
     @ManyToOne
@@ -101,6 +102,14 @@ public class Cartao implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public int getParcela() {
+        return parcela;
+    }
+
+    public void setParcela(int parcela) {
+        this.parcela = parcela;
     }
 
 }

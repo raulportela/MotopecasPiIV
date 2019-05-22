@@ -26,7 +26,12 @@
                                             <div class="container">
                                                 <div class="row">
                                                     <div class="col-md-12">
-                                                         <input th:value=${endereco.rua} type="text">
+                                                        <label th:text=${endereco.rua}+',' ></label> 
+                                                        <label th:text=${endereco.numero}+','></label> 
+                                                        <label th:text=${endereco.bairro}+','></label> 
+                                                        <label th:text=${endereco.complemento}+','></label> 
+                                                        <label th:text=${endereco.cep}></label> 
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -94,17 +99,37 @@
                                 <div class="cart-table margincols">
                                     <h3>Pague com cartão de crédito <i class="fa fa-credit-card"></i> <button class="site-btn"> Dividi em 2 cartões</button></h3> 
                                     <div class="container  margincols">
-                                        <form class="checkout-form" >
+                                        <form class="checkout-form" action="/cartao/salvar" method="post" th:object="${cartao}">
+                                            <input type="hidden" if="*{id != null}" field="*{id}" />
                                             <div class="row address-inputs ">
                                                 <div class="col-12">
                                                     <div class="container">
                                                         <div class="row">
                                                             <div class="col-md-12">
-                                                                <label>Numero do cartão:</label> <input type="text">
-                                                                <label>Nome do Titular (Como esta gravado no cartão):</label>  <input type="text">
-                                                                <label>Data de validade:</label> <input type="text">
-                                                                <label>Código de segurança:</label> <input type="text">
-                                                                <label>Opçoes de parcela:</label><input type="text">
+                                                                
+                                                                <label>Numero do cartão:</label> 
+                                                                <input type="text" name="numero" id="txtNumero" classappend="${#fields.hasErrors('numero')}? is-invalid"  placeholder="8888.8888.8888.8888" field="*{numero}">
+                                                                <label>Nome do Titular (Como esta gravado no cartão):</label> 
+                                                                <input type="text" name="nome" id="txtNomeTitular" classappend="${#fields.hasErrors('nome')}? is-invalid" placeholder="Como esta impresso no cartão" field="*{nome}">
+                                                                <label>Data de validade:</label> 
+                                                                <input type="text" name="validade" id="txtValidade" classappend="${#fields.hasErrors('mesValidade')}? is-invalid" placeholder="MM/ANO" field="*{mesValidade}">
+                                                                <label>Código de segurança:</label> 
+                                                                <input type="text" name="codSeguraca" id="txtCodSeguranca" classappend="${#fields.hasErrors('codseguranca')}? is-invalid" placeholder="Código no verso do cartão" field="*{codSeguranca}">
+                                                                <label>Opçoes de parcela:</label>
+                                                                <select  field="*{parcela}">
+                                                                    <option value='1' th:text="1"></option>
+                                                                    <option value='2' th:text="2"></option>
+                                                                    <option value='3' th:text="3"></option>
+                                                                    <option value='4' th:text="4"></option>
+                                                                    <option value='5' th:text="5"></option>
+                                                                    <option value='6' th:text="6"></option>
+                                                                    <option value='7' th:text="7"></option>
+                                                                    <option value='8' th:text="8"></option>
+                                                                    <option value='9' th:text="9"></option>
+                                                                    <option value='10' th:text="10"></option>
+                                                                    <option value='11' th:text="11"></option>
+                                                                    <option value='12' th:text="12"></option>
+                                                                </select>
                                                             </div>
                                                         </div>
                                                     </div>
