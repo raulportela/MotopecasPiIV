@@ -7,6 +7,7 @@ import Motopecas.JRL.MotoPecas.entidade.endereco.Endereco;
 import Motopecas.JRL.MotoPecas.entidade.produto.Produto;
 import Motopecas.JRL.MotoPecas.repository.carrinho.CarrinhoRepository;
 import Motopecas.JRL.MotoPecas.repository.cliente.ClienteRepository;
+import Motopecas.JRL.MotoPecas.repository.endereco.EnderecoRepository;
 import Motopecas.JRL.MotoPecas.repository.itemVenda.ItemVendaRepository;
 import Motopecas.JRL.MotoPecas.repository.produto.ProdutoRepository;
 import Motopecas.JRL.MotoPecas.repository.venda.VendaRepository;
@@ -34,6 +35,9 @@ public class VendaController {
 
     @Autowired
     ClienteRepository clienteRepository;
+    
+    @Autowired
+    EnderecoRepository enderecoRepository;
     
     @Autowired
     ItemVendaRepository itemVendaRepository;
@@ -79,7 +83,7 @@ public class VendaController {
         long id = 1;
         Cliente c = clienteRepository.findById(id);
         Cartao cartao = new Cartao();
-        Endereco endereco = new Endereco();
+        Endereco endereco =  enderecoRepository.findByIdCliente(id);
         
         List<Carrinho> listaCarrinho;
             listaCarrinho = carrinhoRepository.findCarrinhoByIdCliente(1l);

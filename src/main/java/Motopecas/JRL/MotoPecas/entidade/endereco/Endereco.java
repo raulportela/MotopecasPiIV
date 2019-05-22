@@ -14,12 +14,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 /**
  *
  * @author Jeferson Nolasco
  */
+
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "Endereco.findByIdCliente", query = "SELECT e FROM Endereco e WHERE cliente_id = :idCliente")
+})
 public class Endereco implements Serializable {
 
     @Id
