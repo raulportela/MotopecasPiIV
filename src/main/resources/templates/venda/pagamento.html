@@ -99,43 +99,50 @@
                                 <div class="cart-table margincols">
                                     <h3>Pague com cartão de crédito <i class="fa fa-credit-card"></i> <button class="site-btn"> Dividi em 2 cartões</button></h3> 
                                     <div class="container  margincols">
-                                        <form class="checkout-form" action="/cartao/salvar" method="post" th:object="${cartao}">
-                                            <input type="hidden" if="*{id != null}" field="*{id}" />
+                                        <form class="checkout-form" th:action="@{/mv/cartao/salvar}" method="post" th:object="${cartao}" novalidate>
+                                            <!-- <input type="hidden"  th:value="${c}" field="*{cliente}" /> -->
                                             <div class="row address-inputs ">
                                                 <div class="col-12">
                                                     <div class="container">
                                                         <div class="row">
                                                             <div class="col-md-12">
-                                                                
+                                                              
+                                                                <label>Bandeira:</label>
+                                                                <br>
+                                                                <input type="radio" name="bandeira" id="optBandeira" value="visa" th:field="*{bandeira}" >
+                                                                <label>Visa</label>
+                                                                <input type="radio" name="bandeira" id="optBandeira" value="mastercard" th:field="*{bandeira}" >
+                                                                <label>MasterCard</label>
+                                                                <br>
                                                                 <label>Numero do cartão:</label> 
-                                                                <input type="text" name="numero" id="txtNumero" classappend="${#fields.hasErrors('numero')}? is-invalid"  placeholder="8888.8888.8888.8888" field="*{numero}">
-                                                                <label>Nome do Titular (Como esta gravado no cartão):</label> 
-                                                                <input type="text" name="nome" id="txtNomeTitular" classappend="${#fields.hasErrors('nome')}? is-invalid" placeholder="Como esta impresso no cartão" field="*{nome}">
+                                                                <input type="text" name="numeroCartao" id="txtnumeroCartao" th:classappend="${#fields.hasErrors('numeroCartao')}? is-invalid"  placeholder="8888.8888.8888.8888" th:field="*{numeroCartao}">
+                                                                <label>Nome do Titular</label> 
+                                                                <input type="text" name="nomeTitular" id="txtnomeTitular" th:classappend="${#fields.hasErrors('nomeTitular')}? is-invalid" placeholder="Como esta impresso no cartão" th:field="*{nomeTitular}">
                                                                 <label>Data de validade:</label> 
-                                                                <input type="text" name="validade" id="txtValidade" classappend="${#fields.hasErrors('mesValidade')}? is-invalid" placeholder="MM/ANO" field="*{mesValidade}">
+                                                                <input type="text" name="dataValidade" id="txtdataValidade" th:classappend="${#fields.hasErrors('dataValidade')}? is-invalid" placeholder="MM/ANO" th:field="*{dataValidade}">
                                                                 <label>Código de segurança:</label> 
-                                                                <input type="text" name="codSeguraca" id="txtCodSeguranca" classappend="${#fields.hasErrors('codseguranca')}? is-invalid" placeholder="Código no verso do cartão" field="*{codSeguranca}">
+                                                                <input type="text" name="codSeguranca" id="txtcodSeguranca" th:classappend="${#fields.hasErrors('codSeguranca')}? is-invalid" placeholder="Código no verso do cartão" th:field="*{codSeguranca}">
                                                                 <label>Opçoes de parcela:</label>
-                                                                <select  field="*{parcela}">
-                                                                    <option value='1' th:text="1"></option>
-                                                                    <option value='2' th:text="2"></option>
-                                                                    <option value='3' th:text="3"></option>
-                                                                    <option value='4' th:text="4"></option>
-                                                                    <option value='5' th:text="5"></option>
-                                                                    <option value='6' th:text="6"></option>
-                                                                    <option value='7' th:text="7"></option>
-                                                                    <option value='8' th:text="8"></option>
-                                                                    <option value='9' th:text="9"></option>
-                                                                    <option value='10' th:text="10"></option>
-                                                                    <option value='11' th:text="11"></option>
-                                                                    <option value='12' th:text="12"></option>
+                                                                <select  th:field="*{parcela}">
+                                                                    <option th:value='1' th:text="1"></option>
+                                                                    <option th:value='2' th:text="2"></option>
+                                                                    <option th:value='3' th:text="3"></option>
+                                                                    <option th:value='4' th:text="4"></option>
+                                                                    <option th:value='5' th:text="5"></option>
+                                                                    <option th:value='6' th:text="6"></option>
+                                                                    <option th:value='7' th:text="7"></option>
+                                                                    <option th:value='8' th:text="8"></option>
+                                                                    <option th:value='9' th:text="9"></option>
+                                                                    <option th:value='10' th:text="10"></option>
+                                                                    <option th:value='11' th:text="11"></option>
+                                                                    <option th:value='12' th:text="12"></option>
                                                                 </select>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <button class="site-btn"> Concluir Pedido</button>
+                                            <button class="site-btn" type="submit"> Concluir Pedido</button>
                                         </form>	
                                     </div>
                                 </div>	

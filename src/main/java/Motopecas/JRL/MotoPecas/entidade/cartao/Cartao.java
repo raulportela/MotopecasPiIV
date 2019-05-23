@@ -14,12 +14,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 /**
  *
  * @author Luana
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "Cartao.findByIdCliente", query = "SELECT c FROM Cartao c WHERE cliente_id = :idCliente")
+})
 public class Cartao implements Serializable {
 
     @Id
@@ -27,13 +32,12 @@ public class Cartao implements Serializable {
     private Long id;
 
     @Column(length = 100, unique = true)
-    private String nome;
     private String bandeira;
+
     private String nomeTitular;
-    private Integer numeroCartao;
-    private int mesValidade;
-    private int ano;
-    private int codSeguraca;
+    private String numeroCartao;
+    private String dataValidade;
+    private int codSeguranca;
     private int parcela;
 
     @Embedded
@@ -56,44 +60,12 @@ public class Cartao implements Serializable {
         this.nomeTitular = nomeTitular;
     }
 
-    public Integer getNumeroCartao() {
-        return numeroCartao;
+    public int getCodSeguranca() {
+        return codSeguranca;
     }
 
-    public void setNumeroCartao(Integer numeroCartao) {
-        this.numeroCartao = numeroCartao;
-    }
-
-    public int getMesValdiade() {
-        return mesValidade;
-    }
-
-    public void setMesValdiade(int mesValidade) {
-        this.mesValidade = mesValidade;
-    }
-
-    public int getAno() {
-        return ano;
-    }
-
-    public void setAno(int ano) {
-        this.ano = ano;
-    }
-
-    public int getCodSeguraca() {
-        return codSeguraca;
-    }
-
-    public void setCodSeguraca(int codSeguraca) {
-        this.codSeguraca = codSeguraca;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setCodSeguranca(int codSeguranca) {
+        this.codSeguranca = codSeguranca;
     }
 
     public Long getId() {
@@ -112,4 +84,20 @@ public class Cartao implements Serializable {
         this.parcela = parcela;
     }
 
+    public String getDataValidade() {
+        return dataValidade;
+    }
+
+    public void setDataValidade(String dataValidade) {
+        this.dataValidade = dataValidade;
+    }
+
+    public String getNumeroCartao() {
+        return numeroCartao;
+    }
+
+    public void setNumeroCartao(String numeroCartao) {
+        this.numeroCartao = numeroCartao;
+    }
+    
 }
