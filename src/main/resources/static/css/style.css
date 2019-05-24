@@ -574,8 +574,8 @@ ol {
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
     opacity: 0;
-}
 
+}
 .margincols{
 
     margin-left: 20px;
@@ -1226,6 +1226,7 @@ ol {
     padding: 60px 0 70px;
 }
 
+
 .page-top-info h4 {
     color: #414141;
     font-weight: 700;
@@ -1816,7 +1817,6 @@ ol {
     font-size: 16px;
     color: #414141;
     font-weight: 700;
-    margin-bottom: 3px;
 }
 
 .cart-table .product-col .pc-title p {
@@ -1942,6 +1942,18 @@ ol {
     color: #414141;
 }
 
+.cart-table .pc-title input[type=text] {
+    background: transparent;
+    border: none;
+    font-size: 14px;    
+}
+
+td-confirmacao{
+    margin: 10px;
+    box-shadow: 0 0 0 1px #ffb025;
+    border: 2px solid #ffb025;
+}
+
 .checkout-form input[type=text] {
     box-shadow: 0 0 0 1px #ffb025;
     width: 100%;
@@ -2050,7 +2062,8 @@ ol {
 
 .checkout-cart {
     background: #f0f0f0;
-    padding: 40px 24px 30px;
+    margin: 10px;
+    padding: 20px 12px 15px;
     border-radius: 25px;
 }
 

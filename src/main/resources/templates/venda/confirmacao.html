@@ -15,90 +15,70 @@
 
         <!-- cart section end -->
         <section class="cart-section spad">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="row no-gutters">
-                            <div class="col-12 col-sm-6 col-md-8">
-                                <div class="cart-table margincols">
-                                    <h3>Pagamento <i class="fa fa-dollar"></i></h3>
-                                    <div th:if="${listaCarrinho!= null}" class="cart-table-warp">
-                                        <table>
-                                            <thead>
-                                                <tr>
-                                                    <th class="product-th">Produto</th>
-                                                    <th class="quy-th">Quantidade</th>
-                                                    <th class="total-th">Preço</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr th:each="cart, stat: ${listaCarrinho}" >
-                                                    <td class="product-col">
-                                                        <img th:src="@{/img/product/fotoProduto.jpg}" alt="">
-                                                        <div class="pc-title">
-                                                            <h4 th:text="${cart.produto.nome}">Animal Print Dress</h4>
-                                                            <!-- <p th:text=" 'R$ ' + ${car.produto.valor}"></p> -->
-                                                            <p>Remover</p>
-                                                        </div>
-                                                    </td>
-                                                    <td class="quy-col">
-                                                        <div class="quantity">
-                                                            <div class="pro-qty">
-                                                                <input type="text" value="1">
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td th:text=" 'R$ ' + ${cart.produto.valor}" class="total-col"><h4>$45.90</h4></td>
-                                                </tr>
 
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="total-cost">
-                                        <h6>Total <span>R$58.000,00</span></h6>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6 col-md-4">
-                                <div class="cart-table">
-                                    <h3>Endereço de entrega <i class="fa fa-map-marker"></i></h3>
-                                </div>
-                            </div>
+            <div class="container" th:if="${listaCarrinho != null}">
+                <div class="row">
+                    <div class="col-6 col-sm-6 col-md-7">
+                        <div class="cart-table ">
+                            <div class="checkout-cart">
+                                <h3>Endereço de entrega <i class="fa fa-map-marker"></i></h3>
+                                <p> Rua pedra mineira, 8 - 04856700</p>
+                                <p> Jardim das pedras / Sâo Paulo - SP</p>
+                            </div><br>
+                            <div class="checkout-cart">
+                                <h3>Forma de pagamento <i class="fa fa-dollar"></i></h3>
+                                <form class="checkout-form" th:action="@{/mv/venda/salvarcartao}" method="post" th:object="${cartao}" novalidate>
+                                    <label> N° Cartão</label><input type="text" name="numerocartao">
+                                    <label> Cod de segurança</label><input type="text" name="codseguranca">
+                                    <label> Validade</label><input type="text" name="validade">
+                                </form>
+
+                            </div><br>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="row no-gutters">
-                            <div class="col-12 col-sm-6 col-md-8">
-                                <div class="cart-table margincols">
-                                    <h3>Resumo da compra <i class="fa fa-list-alt"></i></h3> 
-                                </div>	
+                    <div class="col-6 col-sm-6 col-md-5">
+                        <div class="cart-table margincols cart-table-warp" >
+                            <h4>Resumo da compra <i class="fa fa-list-alt"></i></h4>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th class="product-th">Produto</th>
+                                        <th class="quy-th">Qtd</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="cart, stat: ${listaCarrinho}" >
+                                        <td class="product-col td-confirmacao">
+                                            <div class="pc-title">
+                                                <h4 th:text="${cart.produto.nome}"></h4>
+                                                <p th:text=" 'R$ ' + ${cart.produto.valor}"></p>
+                                            </div>
+                                        </td>
+                                        <td class="quy-col td-confirmacao">
+                                            <div class="quantity">
+                                                <div class="pro-qty">
+                                                    <input type="text" th:value="${cart.produto.quantidade}">
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="total-cost">
+                                <h6>Total <span>R$58.000,00</span></h6>
                             </div>
-                            <div class="col-6 col-md-4">
-                                <div class="cart-table">
-                                    <div class="col">
-                                        <div class="cf-radio-btns address-rb">
-                                            <h3>Prazo de entrega <i class="fa fa-send-o"></i></h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div >
-                        <div class="row no-gutters">
+                        </div>
+                        <div class="row">
+                            <div class="col-2"></div>
                             <div class="col-8">
-
-                            </div>
-                            <div class="col-4">
                                 <button class="site-btn submit-order-btn">Concluir Compra</button>
                             </div>
-                        </div>
+                            <div class="col-2"></div>
+                        </div> 
                     </div>
                 </div>
             </div>
+
         </section>
 
         <footer th:include="fragments/footer :: footer"></footer>

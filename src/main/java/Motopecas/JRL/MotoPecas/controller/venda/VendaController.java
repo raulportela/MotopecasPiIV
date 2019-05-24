@@ -66,7 +66,7 @@ public class VendaController {
         List<Carrinho> listaCarrinho;
         listaCarrinho = carrinhoRepository.findCarrinhoByIdCliente(1l);
         
-        ModelAndView mv = new ModelAndView("/venda/confirmacao");
+        ModelAndView mv = new ModelAndView("/venda/confirmacao").addObject("listaCarrinho", listaCarrinho);
         return mv;
     }
 
