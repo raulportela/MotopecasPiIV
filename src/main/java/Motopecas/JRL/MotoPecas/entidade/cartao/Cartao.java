@@ -10,12 +10,18 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 /**
  *
@@ -40,8 +46,10 @@ public class Cartao implements Serializable {
     private int codSeguranca;
     private int parcela;
 
-    @Embedded
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "cliente_id", insertable = true, updatable = true)
+    @Fetch(FetchMode.JOIN)
+    @Cascade(CascadeType.ALL)
     private Cliente cliente;
 
     public String getBandeira() {
@@ -98,6 +106,14 @@ public class Cartao implements Serializable {
 
     public void setNumeroCartao(String numeroCartao) {
         this.numeroCartao = numeroCartao;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
     
 }

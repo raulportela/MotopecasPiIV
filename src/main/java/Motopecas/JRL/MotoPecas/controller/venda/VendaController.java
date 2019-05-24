@@ -11,14 +11,19 @@ import Motopecas.JRL.MotoPecas.repository.endereco.EnderecoRepository;
 import Motopecas.JRL.MotoPecas.repository.itemVenda.ItemVendaRepository;
 import Motopecas.JRL.MotoPecas.repository.produto.ProdutoRepository;
 import Motopecas.JRL.MotoPecas.repository.venda.VendaRepository;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -61,10 +66,19 @@ public class VendaController {
 
     }
 
-    @GetMapping("/confirmacao")
-    public ModelAndView confirmacao() {
+    
+    @PostMapping("/confirmacao")
+    public ModelAndView confirmacao(
+    @ModelAttribute("cartao") Cartao cartao,
+            RedirectAttributes redirectAttributes ) {
+        long id = 1;
+        Cliente cliente = clienteRepository.findById(id);
+        List <Cartao> listaCartao = new ArrayList<Cartao>();
+        listaCartao.add(cartao);
+        cliente.setCartao(listaCartao);
         List<Carrinho> listaCarrinho;
         listaCarrinho = carrinhoRepository.findCarrinhoByIdCliente(1l);
+        return new ModelAndView("/venda/pagamento").addObject("listaCarrinho", listaCarrinho).addObject("clienteSessao", cliente);
         
         ModelAndView mv = new ModelAndView("/venda/confirmacao").addObject("listaCarrinho", listaCarrinho);
         return mv;
@@ -83,8 +97,8 @@ public class VendaController {
         long id = 1;
         Cliente c = clienteRepository.findById(id);
         Cartao cartao = new Cartao();
-        Endereco endereco =  enderecoRepository.findByIdCliente(id);
         
+        Endereco endereco =  enderecoRepository.findByIdCliente(id);
         List<Carrinho> listaCarrinho;
             listaCarrinho = carrinhoRepository.findCarrinhoByIdCliente(1l);
         return new ModelAndView("/venda/pagamento").addObject("listaCarrinho", listaCarrinho).addObject("clienteSessao", c).addObject("cartao",cartao).addObject("endereco", endereco);
