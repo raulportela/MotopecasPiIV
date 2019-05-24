@@ -99,7 +99,7 @@
                                 <div class="cart-table margincols">
                                     <h3>Pague com cartão de crédito <i class="fa fa-credit-card"></i> <button class="site-btn"> Dividi em 2 cartões</button></h3> 
                                     <div class="container  margincols">
-                                        <form class="checkout-form" th:action="@{/mv/cartao/salvar}" method="post" th:object="${cartao}" novalidate>
+                                        <form class="checkout-form" th:action="@{/mv/venda/confirmacao}" method="post" th:object="${cartao}" novalidate>
                                             <!-- <input type="hidden"  th:value="${c}" field="*{cliente}" /> -->
                                             <div class="row address-inputs ">
                                                 <div class="col-12">

@@ -6,10 +6,15 @@
 package Motopecas.JRL.MotoPecas.entidade.cliente;
 
 import Motopecas.JRL.MotoPecas.entidade.carrinho.Carrinho;
+import Motopecas.JRL.MotoPecas.entidade.cartao.Cartao;
+import Motopecas.JRL.MotoPecas.entidade.endereco.Endereco;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,7 +22,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
 /**
@@ -64,6 +71,14 @@ public class Cliente implements Serializable {
     // '0'== Feminino
     @Column(length = 100, nullable = false)
     private boolean sexo;
+    
+    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
+    @Cascade(CascadeType.ALL)
+    private List<Endereco> endereco;
+    
+    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
+    @Cascade(CascadeType.ALL)
+    private List<Cartao> cartao;
     
     
     public Cliente() {
@@ -166,6 +181,22 @@ public class Cliente implements Serializable {
     @Override
     public String toString() {
         return "Cliente{" + "id=" + id + ", email=" + email + ", senha=" + senha + ", nome=" + nome + ", sobrenome=" + sobrenome + ", telefone=" + telefone + ", cpf=" + cpf + ", sexo=" + sexo + ", dataNascimento=" + dataNascimento + ", disponivel=" + disponivel + '}';
+    }
+
+    public List<Endereco> getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(List<Endereco> endereco) {
+        this.endereco = endereco;
+    }
+
+    public List<Cartao> getCartao() {
+        return cartao;
+    }
+
+    public void setCartao(List<Cartao> cartao) {
+        this.cartao = cartao;
     }
 
 }
