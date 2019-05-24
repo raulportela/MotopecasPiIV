@@ -80,8 +80,6 @@ public class VendaController {
         listaCarrinho = carrinhoRepository.findCarrinhoByIdCliente(1l);
         return new ModelAndView("/venda/pagamento").addObject("listaCarrinho", listaCarrinho).addObject("clienteSessao", cliente);
         
-        ModelAndView mv = new ModelAndView("/venda/confirmacao").addObject("listaCarrinho", listaCarrinho);
-        return mv;
     }
 
     @GetMapping("/{id}/additemcart")
