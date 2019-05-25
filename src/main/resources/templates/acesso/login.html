@@ -17,12 +17,12 @@
                 <div class="row">
 
                     <div class="col">
-                        <form class="checkout-form">
+                        <form class="checkout-form" th:action="@{/mv/login}" method="post">
                             <div class="cf-title">Ja sou cadastrdo <i class="fa fa-user"></i></div>
                             <div class="col-md-12">
                                 Email: <input type="text" >
                                 Senha: <input type="text" >
-                                <a href="#" class="site-btn" >Login</a>
+                                <button  type="submit" class="site-btn">Login</button>
                             </div>
                         </form>
                     </div>

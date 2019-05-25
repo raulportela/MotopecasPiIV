@@ -15,14 +15,13 @@ import org.springframework.web.servlet.ModelAndView;
  * @author Raul Portela
  */
 @Controller
-@RequestMapping("/mv")
+@RequestMapping("/login")
 public class LoginController{
 
-    @GetMapping("/login")
-    public ModelAndView login() {
-        ModelAndView mv = new ModelAndView("/acesso/login");
-        return mv;
-    }
+   @GetMapping
+   public String loginPersonalizado(){
+       return "/acesso/login";
+   }
     
     
 }
