@@ -18,6 +18,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 /**
@@ -25,6 +27,10 @@ import javax.persistence.OneToMany;
  * @author Raul Portela
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "Venda.findByNotaFiscal", query = "SELECT v FROM Venda v WHERE v.notaFiscal = :notaFical")
+    
+})
 public class Venda implements Serializable {
 
     @Id

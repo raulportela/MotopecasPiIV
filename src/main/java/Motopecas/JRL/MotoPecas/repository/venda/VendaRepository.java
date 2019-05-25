@@ -43,4 +43,10 @@ public class VendaRepository {
         Query jpqlQyery = entityManager.createNamedQuery("ItemVenda.delete").setParameter("idCliente", idCliente);
         entityManager.clear();
     }
+
+    public Venda findByNotaFiscal(String pedido) {
+        Query jpqlQuery = entityManager.createNamedQuery("Venda.findByNotaFiscal").setParameter("notaFiscal",pedido);
+        Venda venda = (Venda) jpqlQuery.getSingleResult();
+        return venda;
+    }
 }

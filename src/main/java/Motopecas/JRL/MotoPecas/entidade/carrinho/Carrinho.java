@@ -5,6 +5,7 @@
  */
 package Motopecas.JRL.MotoPecas.entidade.carrinho;
 
+import Motopecas.JRL.MotoPecas.entidade.cliente.Cliente;
 import Motopecas.JRL.MotoPecas.entidade.produto.Produto;
 import java.io.Serializable;
 import javax.persistence.Embedded;
@@ -35,6 +36,11 @@ public class Carrinho implements Serializable {
     @OneToOne
     Produto Produto;
 
+    @Embedded
+    @OneToOne
+    Cliente Cliente;
+
+    
     private int quantidade;
 
     //@Embedded

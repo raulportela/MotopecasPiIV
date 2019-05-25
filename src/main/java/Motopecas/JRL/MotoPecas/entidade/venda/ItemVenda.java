@@ -5,14 +5,17 @@
  */
 package Motopecas.JRL.MotoPecas.entidade.venda;
 
+import Motopecas.JRL.MotoPecas.entidade.produto.Produto;
 import java.io.Serializable;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -31,7 +34,9 @@ public class ItemVenda implements Serializable {
     @Column(nullable = false)
     private int quantidade;
 
-    private Long idProduto;
+    @Embedded
+    @OneToOne
+    Produto Produto;
 
     public Long getId() {
         return id;
@@ -49,12 +54,12 @@ public class ItemVenda implements Serializable {
         this.quantidade = quantidade;
     }
 
-    public Long getIdProduto() {
-        return idProduto;
+    public Produto getProduto() {
+        return Produto;
     }
 
-    public void setIdProduto(Long idProduto) {
-        this.idProduto = idProduto;
+    public void setProduto(Produto Produto) {
+        this.Produto = Produto;
     }
 
 }

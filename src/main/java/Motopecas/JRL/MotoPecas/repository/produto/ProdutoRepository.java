@@ -33,8 +33,8 @@ public class ProdutoRepository{
     
     @Transactional
     public Produto findById(Long id){
-        Query jpqlQyery = entityManager.createNamedQuery("Produto.findById").setParameter("idProduto",id);
-        Produto produto = (Produto) jpqlQyery.getSingleResult();
+        Query jpqlQuery = entityManager.createNamedQuery("Produto.findById").setParameter("idProduto",id);
+        Produto produto = (Produto) jpqlQuery.getSingleResult();
         return produto;
     }
 }
