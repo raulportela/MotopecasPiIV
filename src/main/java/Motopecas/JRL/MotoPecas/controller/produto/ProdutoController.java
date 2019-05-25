@@ -1,7 +1,6 @@
 package Motopecas.JRL.MotoPecas.controller.produto;
 
 import Motopecas.JRL.MotoPecas.entidade.carrinho.Carrinho;
-import Motopecas.JRL.MotoPecas.entidade.cliente.Cliente;
 import Motopecas.JRL.MotoPecas.entidade.produto.Produto;
 import Motopecas.JRL.MotoPecas.repository.carrinho.CarrinhoRepository;
 import Motopecas.JRL.MotoPecas.repository.produto.ProdutoRepository;

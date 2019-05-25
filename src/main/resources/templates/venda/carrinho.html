@@ -43,7 +43,7 @@
                                             <td class="quy-col">
                                                 <div class="quantity">
                                                     <div class="pro-qty">
-                                                        <input type="text" th:value="${cart.produto.quantidade}">
+                                                        <input type="text" th:value="${cart.quantidade}">
                                                     </div>
                                                 </div>
                                             </td>
@@ -89,7 +89,7 @@
                             <a th:href="@{/mv/produto/listAll}" class="site-btn">Continuar Comprando</a>
                         </div>
                         <div class="col-sm-3 ">
-                            <a th:href="@{/mv/venda/pagamento}" class="site-btn sb-dark">Concluir Compra</a>
+                            <a th:href="@{/mv/venda/confirmacao}" class="site-btn sb-dark">Concluir Compra</a>
                         </div>
                     </div>
                 </div >

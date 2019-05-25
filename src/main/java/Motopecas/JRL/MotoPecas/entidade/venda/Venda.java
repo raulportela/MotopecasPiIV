@@ -7,6 +7,7 @@ package Motopecas.JRL.MotoPecas.entidade.venda;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
@@ -34,12 +35,14 @@ public class Venda implements Serializable {
     private BigDecimal valorTotal;
 
     @Column(precision = 7, nullable = false)
-    private Integer notaFiscal;
+    private String notaFiscal;
 
     @Column(precision = 7, nullable = false)
     private Long idCliente;
 
     private int parcelas;
+    
+    private LocalDate dataCompra;
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinTable(
@@ -61,15 +64,23 @@ public class Venda implements Serializable {
         return id;
     }
 
+    public LocalDate getData() {
+        return dataCompra;
+    }
+
+    public void setData(LocalDate data) {
+        this.dataCompra = data;
+    }
+    
     public void setId(Long id) {
         this.id = id;
     }
 
-    public Integer getNotaFiscal() {
+    public String getNotaFiscal() {
         return notaFiscal;
     }
 
-    public void setNotaFiscal(Integer notaFiscal) {
+    public void setNotaFiscal(String notaFiscal) {
         this.notaFiscal = notaFiscal;
     }
 

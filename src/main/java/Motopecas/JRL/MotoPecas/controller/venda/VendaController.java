@@ -4,22 +4,17 @@ import Motopecas.JRL.MotoPecas.entidade.carrinho.Carrinho;
 import Motopecas.JRL.MotoPecas.entidade.cartao.Cartao;
 import Motopecas.JRL.MotoPecas.entidade.cliente.Cliente;
 import Motopecas.JRL.MotoPecas.entidade.endereco.Endereco;
-import Motopecas.JRL.MotoPecas.entidade.produto.Produto;
 import Motopecas.JRL.MotoPecas.repository.carrinho.CarrinhoRepository;
 import Motopecas.JRL.MotoPecas.repository.cliente.ClienteRepository;
 import Motopecas.JRL.MotoPecas.repository.endereco.EnderecoRepository;
 import Motopecas.JRL.MotoPecas.repository.itemVenda.ItemVendaRepository;
 import Motopecas.JRL.MotoPecas.repository.produto.ProdutoRepository;
 import Motopecas.JRL.MotoPecas.repository.venda.VendaRepository;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -67,25 +62,18 @@ public class VendaController {
     }
 
     
-    @PostMapping("/confirmacao")
+    @GetMapping("/confirmacao")
     public ModelAndView confirmacao(
-    @ModelAttribute("cartao") Cartao cartao,
             RedirectAttributes redirectAttributes ) {
-        long id = 1;
-        Cliente cliente = clienteRepository.findById(id);
-        List <Cartao> listaCartao = new ArrayList<Cartao>();
-        listaCartao.add(cartao);
-        cliente.setCartao(listaCartao);
+//        long id = 1;
+//        Cliente cliente = clienteRepository.findById(id);
+//        List <Cartao> listaCartao = new ArrayList<Cartao>();
+//        listaCartao.add(cartao);
+//        cliente.setCartao(listaCartao);
         List<Carrinho> listaCarrinho;
+        int numeroPedido = gerarNumeroPedido();
         listaCarrinho = carrinhoRepository.findCarrinhoByIdCliente(1l);
-        return new ModelAndView("/venda/pagamento").addObject("listaCarrinho", listaCarrinho).addObject("clienteSessao", cliente);
-        
-    }
-
-    @GetMapping("/{id}/additemcart")
-    public ModelAndView additemcart(@PathVariable("id") Long id) {
-        Produto produto = produtoRepository.findById(id);
-        ModelAndView mv = new ModelAndView("/venda/confirmacao");
+        ModelAndView mv = new ModelAndView("/venda/confirmacao").addObject("listaCarrinho", listaCarrinho).addObject("numeropedido", numeroPedido);
         return mv;
     }
 
@@ -101,5 +89,11 @@ public class VendaController {
             listaCarrinho = carrinhoRepository.findCarrinhoByIdCliente(1l);
         return new ModelAndView("/venda/pagamento").addObject("listaCarrinho", listaCarrinho).addObject("clienteSessao", c).addObject("cartao",cartao).addObject("endereco", endereco);
      
+    }
+    
+    public int gerarNumeroPedido(){
+        Random rand = new Random();
+            int randomNum = rand.nextInt((99999999 - 10000000) + 1) + 10000000;
+            return randomNum;
     }
 }

@@ -158,16 +158,10 @@
                                     <div class="pi-pic">
                                         <img th:src="@{/img/product/fotoProduto.jpg}" alt="">
                                         <div class="pi-links">
-
-
                                             <!-- esquema de adicionar o produto ao carrinho -->
                                             <a th:href="@{/mv/produto/{id}/additemcart(id=${prod.id})}" class="add-card"><i class="flaticon-bag"></i><span>Adicionar ao carrinho</span></a>
-
                                             <!--pensar na possibilidade de criar uma lista de favoritos -->
                                             <a th:href="@{/mv/produto/{id}/additemfavoritelist(id=${prod.id})}" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-
-
-
                                         </div>
                                     </div>
                                     <div class="pi-text">

@@ -18,6 +18,13 @@
 
             <div class="container" th:if="${listaCarrinho != null}">
                 <div class="row">
+                    <div class="col">
+                        <div class="alert alert-dark" role="alert">
+                            <p th:text="'Numero de pedido: ' + ${numeropedido}"></p> 
+                        </div>    
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-6 col-sm-6 col-md-7">
                         <div class="cart-table ">
                             <div class="checkout-cart">
@@ -55,11 +62,7 @@
                                             </div>
                                         </td>
                                         <td class="quy-col td-confirmacao">
-                                            <div class="quantity">
-                                                <div class="pro-qty">
-                                                    <input type="text" th:value="${cart.produto.quantidade}">
-                                                </div>
-                                            </div>
+                                            <p th:text="${cart.quantidade}  "></p>
                                         </td>
                                     </tr>
                                 </tbody>
