@@ -12,15 +12,18 @@ import Motopecas.JRL.MotoPecas.repository.endereco.EnderecoRepository;
 import Motopecas.JRL.MotoPecas.repository.produto.ProdutoRepository;
 import Motopecas.JRL.MotoPecas.repository.venda.VendaRepository;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -35,6 +38,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  */
 @Controller
 @RequestMapping("/mv/venda")
+@SessionAttributes("numeropedido")
 public class VendaController {
 
     @Autowired
@@ -63,7 +67,7 @@ public class VendaController {
     }
 
     @GetMapping("/confirmacao")
-    public ModelAndView confirmacao(
+    public ModelAndView confirmacao(@ModelAttribute("numeropedido") String numeroPedido,
             RedirectAttributes redirectAttributes) {
 //        long id = 1;
 //        Cliente cliente = clienteRepository.findById(id);
@@ -71,9 +75,10 @@ public class VendaController {
 //        listaCartao.add(cartao);
 //        cliente.setCartao(listaCartao);
         List<Carrinho> listaCarrinho;
-        int numeroPedido = gerarNumeroPedido(null);
+        numeroPedido = "" + gerarNumeroPedido(null);
+        getNumeroPedido(numeroPedido);
         listaCarrinho = carrinhoRepository.findCarrinhoByIdCliente(1l);
-        ModelAndView mv = new ModelAndView("/venda/confirmacao").addObject("listaCarrinho", listaCarrinho).addObject("numeropedido", numeroPedido);
+        ModelAndView mv = new ModelAndView("/venda/confirmacao").addObject("listaCarrinho", listaCarrinho);
         return mv;
     }
 
@@ -90,23 +95,31 @@ public class VendaController {
         return new ModelAndView("/venda/pagamento").addObject("listaCarrinho", listaCarrinho).addObject("clienteSessao", c).addObject("cartao", cartao).addObject("endereco", endereco);
     }
 
-    @GetMapping("/{pedido}/efetuarvenda")
-    public ModelAndView efetuarVenda(@PathVariable("pedido") String pedido) {
+    @GetMapping("/efetuarvenda")
+    public ModelAndView efetuarVenda(@ModelAttribute("numeropedido") String numeroPedido) {
         Cliente cliente = clienteRepository.findById(1l);
         Venda venda = new Venda();
+        venda.setIdCliente(cliente.getId());
         venda.setData(LocalDate.now());
-        venda.setNotaFiscal(pedido);
+        venda.setNotaFiscal(numeroPedido);
         List<ItemVenda> listaVenda = new ArrayList<>();
         List<Carrinho> listaCarrinho;
         listaCarrinho = carrinhoRepository.findCarrinhoByIdCliente(1l);
         for (Carrinho carrinho : listaCarrinho) {
             ItemVenda itemVenda = new ItemVenda();
+            itemVenda.setProduto(carrinho.getProduto());
+            itemVenda.setQuantidade(carrinho.getQuantidade());
             listaVenda.add(itemVenda);
         }
         venda.setItensVenda(listaVenda);
-        
-        
+
         return new ModelAndView("redirect:/mv/venda/pedido");
+    }
+    
+    @GetMapping("/pedido")
+    public ModelAndView pedido(@ModelAttribute("numeropedido") String numeroPedido) {
+        
+        return null;
     }
 
     public int gerarNumeroPedido(String pedido) {
@@ -116,15 +129,19 @@ public class VendaController {
             pedido = "" + randomNum;
         }
         boolean continuar = true;
-        while(continuar){
+        while (continuar) {
             Venda venda = vendaRepository.findByNotaFiscal(pedido);
             if (venda == null) {
                 return randomNum;
-            }else{
+            } else {
                 gerarNumeroPedido(pedido);
             }
         }
         return randomNum;
     }
 
+    @ModelAttribute("numeropedido")
+    public String getNumeroPedido(String numeropedido) {
+        return ""+gerarNumeroPedido(null);
+    }
 }

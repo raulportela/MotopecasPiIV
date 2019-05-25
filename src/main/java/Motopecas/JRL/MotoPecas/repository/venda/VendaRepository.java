@@ -46,7 +46,14 @@ public class VendaRepository {
 
     public Venda findByNotaFiscal(String pedido) {
         Query jpqlQuery = entityManager.createNamedQuery("Venda.findByNotaFiscal").setParameter("notaFiscal",pedido);
-        Venda venda = (Venda) jpqlQuery.getSingleResult();
+        Venda venda = null;
+        try {
+            venda = (Venda) jpqlQuery.getSingleResult();
+        } catch (Exception e) {
+            return null;
+        } catch (Throwable t){
+            return null;
+        }
         return venda;
     }
 }
