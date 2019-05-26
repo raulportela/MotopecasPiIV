@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -58,15 +59,16 @@ public class VendaController {
     ProdutoRepository produtoRepository;
 
     @GetMapping("/carrinho")
-    public ModelAndView carrinho(
+    public ModelAndView carrinho(HttpServletRequest request,
             @RequestParam(name = "offset", defaultValue = "0") int offset,
             @RequestParam(name = "qtd", defaultValue = "100") int qtd) {
         List<Carrinho> listaCarrinho;
         listaCarrinho = carrinhoRepository.findCarrinhoByIdCliente(1l);
-        return new ModelAndView("/venda/carrinho").addObject("listaCarrinho", listaCarrinho);
-
+        double totalCarrinho = gerarTotal(listaCarrinho);
+        return new ModelAndView("/venda/carrinho").addObject("listaCarrinho", listaCarrinho).addObject("valorTotalCarrinho", totalCarrinho);
+        
     }
-
+    
     @GetMapping("/confirmacao")
     public ModelAndView confirmacao(@ModelAttribute("numeropedido") String numeroPedido,
             RedirectAttributes redirectAttributes) {
@@ -76,10 +78,10 @@ public class VendaController {
 //        listaCartao.add(cartao);
 //        cliente.setCartao(listaCartao);
         List<Carrinho> listaCarrinho;
-        numeroPedido = "" + gerarNumeroPedido(null);
         getNumeroPedido(numeroPedido);
         listaCarrinho = carrinhoRepository.findCarrinhoByIdCliente(1l);
-        ModelAndView mv = new ModelAndView("/venda/confirmacao").addObject("listaCarrinho", listaCarrinho);
+        double totalCarrinho = gerarTotal(listaCarrinho);
+        ModelAndView mv = new ModelAndView("/venda/confirmacao").addObject("listaCarrinho", listaCarrinho).addObject("valorTotalCarrinho", totalCarrinho);
         return mv;
     }
 
@@ -148,9 +150,17 @@ public class VendaController {
         }
         return randomNum;
     }
-
+    
     @ModelAttribute("numeropedido")
     public String getNumeroPedido(String numeropedido) {
         return ""+gerarNumeroPedido(null);
+    }
+    
+    public double gerarTotal(List<Carrinho> listaCarrinho){
+        double totalCarrinho = 0;
+        for (Carrinho carrinho : listaCarrinho) {
+            totalCarrinho += (carrinho.getQuantidade() * carrinho.getProduto().getValor());
+        }
+        return totalCarrinho;
     }
 }
