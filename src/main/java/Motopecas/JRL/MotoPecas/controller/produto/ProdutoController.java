@@ -5,9 +5,12 @@ import Motopecas.JRL.MotoPecas.entidade.produto.Produto;
 import Motopecas.JRL.MotoPecas.repository.carrinho.CarrinhoRepository;
 import Motopecas.JRL.MotoPecas.repository.produto.ProdutoRepository;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,7 +23,6 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 @RequestMapping("/mv/produto")
-//@SessionAttributes("valorTotalCarrinho")
 public class ProdutoController {
 
     @Autowired
@@ -29,6 +31,9 @@ public class ProdutoController {
     @Autowired
     CarrinhoRepository carrinhoRepository;
 
+    private double totalCarrinho;
+
+    
     @GetMapping("/listAll")
     public ModelAndView listAll(
             @RequestParam(name = "offset", defaultValue = "0") int offset,
@@ -64,9 +69,12 @@ public class ProdutoController {
         ModelAndView mv = new ModelAndView("redirect:/mv/venda/carrinho");
         return mv;
     }
-
+    
+    
+    
     public ModelAndView paginamoto() {
         ModelAndView mv = new ModelAndView("/produto/pageModeloMoto");
         return mv;
     }
+    
 }
