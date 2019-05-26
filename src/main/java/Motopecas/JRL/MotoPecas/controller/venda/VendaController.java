@@ -11,6 +11,7 @@ import Motopecas.JRL.MotoPecas.repository.cliente.ClienteRepository;
 import Motopecas.JRL.MotoPecas.repository.endereco.EnderecoRepository;
 import Motopecas.JRL.MotoPecas.repository.produto.ProdutoRepository;
 import Motopecas.JRL.MotoPecas.repository.venda.VendaRepository;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -101,6 +102,12 @@ public class VendaController {
         Venda venda = new Venda();
         venda.setIdCliente(cliente.getId());
         venda.setData(LocalDate.now());
+        
+        String t = "4444.33";   // ISSO É UM TESTE PARA TENTAR INCLUIR NO BANCO DE DADOS;    
+        BigDecimal s = new BigDecimal(t);
+        venda.setValorTotal(s);
+        venda.setParcelas(3);
+        
         venda.setNotaFiscal(numeroPedido);
         List<ItemVenda> listaVenda = new ArrayList<>();
         List<Carrinho> listaCarrinho;
@@ -112,14 +119,16 @@ public class VendaController {
             listaVenda.add(itemVenda);
         }
         venda.setItensVenda(listaVenda);
-
+        
+        vendaRepository.saveVenda(venda);
+        
         return new ModelAndView("redirect:/mv/venda/pedido");
     }
     
     @GetMapping("/pedido")
-    public ModelAndView pedido(@ModelAttribute("numeropedido") String numeroPedido) {
+    public ModelAndView pedido() {
         
-        return null;
+        return new ModelAndView("/venda/pedido");
     }
 
     public int gerarNumeroPedido(String pedido) {
