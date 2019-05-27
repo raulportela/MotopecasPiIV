@@ -5,16 +5,12 @@ import Motopecas.JRL.MotoPecas.entidade.produto.Produto;
 import Motopecas.JRL.MotoPecas.repository.carrinho.CarrinhoRepository;
 import Motopecas.JRL.MotoPecas.repository.produto.ProdutoRepository;
 import java.util.List;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -33,7 +29,6 @@ public class ProdutoController {
 
     private double totalCarrinho;
 
-    
     @GetMapping("/listAll")
     public ModelAndView listAll(
             @RequestParam(name = "offset", defaultValue = "0") int offset,
@@ -50,31 +45,29 @@ public class ProdutoController {
     }
 
     @GetMapping("/{id}/additemcart")
-    public ModelAndView additemcart(@PathVariable("id") Long id,
-            @RequestParam(name = "listaCarrinho", required = false) List<Carrinho> listaCarrinho,
-            @RequestParam(name = "totalValorCarrinho", required = false) String totalValorCarrinho) {
+    public ModelAndView additemcart(@PathVariable("id") Long id) {
         Produto produto;
-        Carrinho carrinho = new Carrinho();
-        if (listaCarrinho != null && listaCarrinho.isEmpty()) {
-            produto = produtoRepository.findById(id);
-            carrinho.setProduto(produto);
+        int i = 10;
+        produto = produtoRepository.findById(id);
+        Carrinho carrinho = carrinhoRepository.findByIdProduto(produto);
+        if (carrinho != null) {
+            carrinho.setQuantidade(carrinho.getQuantidade() + 1);
             carrinhoRepository.save(carrinho);
-            
         } else {
-            produto = produtoRepository.findById(id);
-            carrinho.setQuantidade(2);
+            carrinho = new Carrinho();
+            
+            carrinho.setQuantidade(1);
             carrinho.setProduto(produto);
             carrinhoRepository.save(carrinho);
         }
+
         ModelAndView mv = new ModelAndView("redirect:/mv/venda/carrinho");
         return mv;
     }
-    
-    
-    
+
     public ModelAndView paginamoto() {
         ModelAndView mv = new ModelAndView("/produto/pageModeloMoto");
         return mv;
     }
-    
+
 }

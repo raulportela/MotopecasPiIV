@@ -159,6 +159,18 @@ ol {
     -webkit-box-shadow: inset 0 0 0 1px #fff;
     box-shadow: inset 0 0 0 1px #fff;
 }
+.site-btn.sb-grey:hover {
+    border: 1px solid #ffb025;
+    
+}
+.site-btn.sb-grey {
+    border-radius: 30px;
+    background: #596275;
+    color: #fff;
+    padding: 8px;
+    -webkit-box-shadow: inset 0 0 0 1px #fff;
+    box-shadow: inset 0 0 0 1px #fff;
+}
 
 .site-btn.sb-dark {
     background: #413a3a;

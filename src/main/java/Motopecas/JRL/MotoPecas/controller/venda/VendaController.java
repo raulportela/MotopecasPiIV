@@ -65,23 +65,24 @@ public class VendaController {
         List<Carrinho> listaCarrinho;
         listaCarrinho = carrinhoRepository.findCarrinhoByIdCliente(1l);
         double totalCarrinho = gerarTotal(listaCarrinho);
-        return new ModelAndView("/venda/carrinho").addObject("listaCarrinho", listaCarrinho).addObject("valorTotalCarrinho", totalCarrinho);
+        return new ModelAndView("/venda/carrinho")
+                .addObject("listaCarrinho", listaCarrinho)
+                .addObject("valorTotalCarrinho", totalCarrinho);
         
     }
     
     @GetMapping("/confirmacao")
     public ModelAndView confirmacao(@ModelAttribute("numeropedido") String numeroPedido,
             RedirectAttributes redirectAttributes) {
-//        long id = 1;
-//        Cliente cliente = clienteRepository.findById(id);
-//        List <Cartao> listaCartao = new ArrayList<Cartao>();
-//        listaCartao.add(cartao);
-//        cliente.setCartao(listaCartao);
+        Cliente cliente = clienteRepository.findById(1l);
         List<Carrinho> listaCarrinho;
         getNumeroPedido(numeroPedido);
         listaCarrinho = carrinhoRepository.findCarrinhoByIdCliente(1l);
         double totalCarrinho = gerarTotal(listaCarrinho);
-        ModelAndView mv = new ModelAndView("/venda/confirmacao").addObject("listaCarrinho", listaCarrinho).addObject("valorTotalCarrinho", totalCarrinho);
+        ModelAndView mv = new ModelAndView("/venda/confirmacao")
+                .addObject("listaCarrinho", listaCarrinho)
+                .addObject("valorTotalCarrinho", totalCarrinho)
+                .addObject("cliente", cliente);
         return mv;
     }
 
@@ -104,33 +105,35 @@ public class VendaController {
         Venda venda = new Venda();
         venda.setIdCliente(cliente.getId());
         venda.setData(LocalDate.now());
-        
-        String t = "4444.33";   // ISSO É UM TESTE PARA TENTAR INCLUIR NO BANCO DE DADOS; PQ NAO CONSEGUI PUXAR O VALOR TOTAL DA VIEW 
-        BigDecimal s = new BigDecimal(t);
-        venda.setValorTotal(s);
         venda.setParcelas(3);
-        
         venda.setNotaFiscal(numeroPedido);
         List<ItemVenda> listaVenda = new ArrayList<>();
         List<Carrinho> listaCarrinho;
         listaCarrinho = carrinhoRepository.findCarrinhoByIdCliente(1l);
+        double totalCompra = 0;
+        for (Endereco endereco : cliente.getEndereco()) {
+            if (endereco.getSelecionado() == 1) {
+                venda.setEndereco(endereco);
+            }
+        }
         for (Carrinho carrinho : listaCarrinho) {
+            totalCompra += (carrinho.getQuantidade() * carrinho.getProduto().getValor());
             ItemVenda itemVenda = new ItemVenda();
             itemVenda.setProduto(carrinho.getProduto());
             itemVenda.setQuantidade(carrinho.getQuantidade());
             listaVenda.add(itemVenda);
         }
+        BigDecimal s = new BigDecimal(""+totalCompra);
+        venda.setValorTotal(s);
         venda.setItensVenda(listaVenda);
-        
         vendaRepository.saveVenda(venda);
-        
-        return new ModelAndView("redirect:/mv/venda/pedido");
+        return new ModelAndView("redirect:/mv/venda/pedido").addObject("numeropedido", numeroPedido);
     }
     
     @GetMapping("/pedido")
-    public ModelAndView pedido() {
-        
-        return new ModelAndView("/venda/pedido");
+    public ModelAndView pedido(@ModelAttribute("numeropedido") String numeroPedido) {
+        Venda venda = vendaRepository.findByNotaFiscal(numeroPedido);
+        return new ModelAndView("/venda/pedido").addObject("venda", venda);
     }
 
     public int gerarNumeroPedido(String pedido) {
@@ -149,6 +152,37 @@ public class VendaController {
             }
         }
         return randomNum;
+    }
+    
+    @GetMapping("/{id}/higher")
+    public ModelAndView higherQtd(@PathVariable("id") String idCarrinho) {
+        List<Carrinho> listaCarrinho = carrinhoRepository.findCarrinhoByIdCliente(1l);
+        for (Carrinho carrinho : listaCarrinho) {
+            if (idCarrinho.equals((""+carrinho.getId()))) {
+                carrinho.setQuantidade(carrinho.getQuantidade()+1);
+                carrinhoRepository.save(carrinho);
+                return new ModelAndView("redirect:/mv/venda/carrinho");
+            }
+            
+        }
+        return new ModelAndView("redirect:/mv/venda/carrinho");
+    }
+    
+    @GetMapping("/{id}/lower")
+    public ModelAndView lowerQtd(@PathVariable("id") String idCarrinho) {
+        List<Carrinho> listaCarrinho = carrinhoRepository.findCarrinhoByIdCliente(1l);
+        for (Carrinho carrinho : listaCarrinho) {
+            if (idCarrinho.equals((""+carrinho.getId()))) {
+                carrinho.setQuantidade(carrinho.getQuantidade()-1);
+                if (carrinho.getQuantidade() == 0) {
+                    carrinhoRepository.deleteById(carrinho);
+                }
+                carrinhoRepository.save(carrinho);
+                return new ModelAndView("redirect:/mv/venda/carrinho");
+            }
+            
+        }
+        return new ModelAndView("redirect:/mv/venda/carrinho");
     }
     
     @ModelAttribute("numeropedido")

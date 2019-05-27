@@ -16,13 +16,13 @@
         <!-- cart section end -->
         <section class="cart-section spad">
 
-            <div class="container" if="${listaCarrinho != null}">
+            <div class="container" if="${venda != null}">
                 <div class="row">
                     <div class="col">
-                        <div class="alert alert-success" role="alert" th:if="${session.numeropedido != null}" >
-                            <h5 th:text="'Compra realizada com sucesso, Pedido nº: #' + ${session.numeropedido}"></h5> 
+                        <div class="alert alert-success" role="alert">
+                            <h5 th:text="'Compra realizada com sucesso, Pedido nº: #' + ${venda.notaFiscal}"></h5> 
                         </div>    
-                        <div class="progress margincols" style="height: 10px;">
+                        <div class="progress margincols" style="height: 13px;">
                             <div class="progress-bar bg-success" role="progressbar" style="width: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
@@ -54,21 +54,21 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr th:each="cart, stat: ${listaCarrinho}" >
+                                    <tr th:each="itens, stat: ${venda.itensVenda}" >
                                         <td class="product-col td-confirmacao">
                                             <div class="pc-title">
-                                                <h4 th:text="${cart.produto.nome}"></h4>
-                                                <p th:text=" 'R$ ' + ${cart.produto.valor}"></p>
+                                                <h4 th:text="${itens.produto.nome}"></h4>
+                                                <p th:text=" 'R$ ' + ${itens.produto.valor}"></p>
                                             </div>
                                         </td>
                                         <td class="quy-col td-confirmacao">
-                                            <p th:text="${cart.quantidade}  "></p>
+                                            <p th:text="${itens.quantidade}"></p>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                             <div class="total-cost">
-                                <h6>Total <span>R$58.000,00</span></h6>
+                                <h6>Total <span th:text="${'R$' + venda.valorTotal}"></span></h6>
                             </div>
                         </div>
                     </div>

@@ -5,6 +5,7 @@
  */
 package Motopecas.JRL.MotoPecas.entidade.venda;
 
+import Motopecas.JRL.MotoPecas.entidade.endereco.Endereco;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -22,6 +23,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -58,6 +60,9 @@ public class Venda implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "ID_ITEMVENDA")
     )
     private List<ItemVenda> itensVenda = new ArrayList<>();
+    
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Endereco endereco;
 
     public List<ItemVenda> getItensVenda() {
         return itensVenda;
@@ -115,4 +120,22 @@ public class Venda implements Serializable {
         this.parcelas = parcelas;
     }
 
+    public LocalDate getDataCompra() {
+        return dataCompra;
+    }
+
+    public void setDataCompra(LocalDate dataCompra) {
+        this.dataCompra = dataCompra;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
+    
+    
 }

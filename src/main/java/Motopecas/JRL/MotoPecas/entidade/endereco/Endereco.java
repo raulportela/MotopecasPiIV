@@ -8,7 +8,6 @@ package Motopecas.JRL.MotoPecas.entidade.endereco;
 import Motopecas.JRL.MotoPecas.entidade.cliente.Cliente;
 import java.io.Serializable;
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -37,7 +36,10 @@ public class Endereco implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    
+    @Column(length = 1)
+    private int selecionado;
+    
     @Column(length = 130, nullable = false)
     private String rua;
 
@@ -131,6 +133,14 @@ public class Endereco implements Serializable {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+
+    public int getSelecionado() {
+        return selecionado;
+    }
+
+    public void setSelecionado(int selecionado) {
+        this.selecionado = selecionado;
     }
 
     
