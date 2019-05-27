@@ -35,10 +35,6 @@ public class Papel implements GrantedAuthority, Serializable{
     @Column(length = 100, nullable = false)
     private String nome;
     
-    @OneToOne(mappedBy = "papel", fetch = FetchType.LAZY, cascade = javax.persistence.CascadeType.ALL)
-    private Cliente cliente; 
-    
-    
     public Long getId() {
         return id;
     }
@@ -60,15 +56,4 @@ public class Papel implements GrantedAuthority, Serializable{
         return getNome();
     }
 
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-    
-    
-    
-    
 }

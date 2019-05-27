@@ -13,6 +13,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -24,6 +25,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import org.springframework.security.core.GrantedAuthority;
@@ -48,7 +50,7 @@ public class Cliente implements Serializable, UserDetails {
     @Column(length = 100, nullable = false)
     private String email;
 
-    @Column(length = 12, nullable = false)
+    @Column(length = 200, nullable = false)
     private String hashsenha;
     
     @Column(length = 50, nullable = false)
@@ -80,16 +82,16 @@ public class Cliente implements Serializable, UserDetails {
     @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY, cascade = javax.persistence.CascadeType.ALL)
     private List<Cartao> cartao;
     
-    @OneToOne
-    @JoinColumn(name="papel_id")
-    private Papel papel;  
+    
+    @Column(length = 11, nullable = true)
+    private int papel;
     
     
     public Cliente() {
 
     }
 
-    public Cliente(Long id, String email, String senhaAberta, String nome, String sobrenome, Integer telefone, String cpf, boolean disponivel, LocalDateTime dataNascimento, boolean sexo, List<Endereco> endereco, List<Cartao> cartao, Papel papel) {
+    public Cliente(Long id, String email, String senhaAberta, String nome, String sobrenome, Integer telefone, String cpf, boolean disponivel, LocalDateTime dataNascimento, boolean sexo, List<Endereco> endereco, List<Cartao> cartao, int papel) {
         this.id = id;
         this.email = email;
         setHashsenha(senhaAberta);
@@ -104,7 +106,6 @@ public class Cliente implements Serializable, UserDetails {
         this.cartao = cartao;
         this.papel = papel;
     }
-    
 
     public Long getId() {
         return id;
@@ -209,46 +210,46 @@ public class Cliente implements Serializable, UserDetails {
                            .encode(senhaAberta);
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     @Override
+    public String getPassword() {
+        return getHashsenha();
     }
 
     @Override
-    public String getPassword() {
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    @Override
+    public List <Papel> getAuthorities() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public String getUsername() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return getEmail();
     }
 
-    @Override
-    public boolean isAccountNonExpired() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean isEnabled() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public Papel getPapel() {
+    public int getPapel() {
         return papel;
     }
 
-    public void setPapel(Papel papel) {
+    public void setPapel(int papel) {
         this.papel = papel;
     }
 
