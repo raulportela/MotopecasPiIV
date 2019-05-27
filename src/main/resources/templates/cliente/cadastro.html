@@ -30,11 +30,26 @@
                                 </div>
                             </div>
                             <div class="row address-inputs justify-content-center">
+                                <label for="inputPessoa">Tipo de pessoa:</label>
+                                <div class="col-sm-10">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="papel" id="optPessoa" value="1" th:field="*{papel}">
+                                        <label class="form-check-label" >
+                                            Física
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="papel" id="optPessoa" value="0" th:field="*{papel}">
+                                        <label class="form-check-label" >
+                                            Juridica
+                                        </label>
+                                    </div>
+                                </div>
                                 <div class="col-md-8">
                                     <label>E-mail*:</label> 
                                     <input type="text" name="email" th:classappend="${#fields.hasErrors('email')}? is-invalid" id="txtEmail" placeholder="Email" th:field="*{email}" >
                                     <label>Senha*:</label>  
-                                    <input type="text" name="senha" th:classappend="${#fields.hasErrors('hashsenha')}? is-invalid" id="txtSenha" placeholder="Senha" th:field="*{hashSenha}" >
+                                    <input type="text" name="senha" th:classappend="${#fields.hasErrors('hashsenha')}? is-invalid" id="txtHashSenha" placeholder="Senha" th:field="*{hashsenha}" >
                                     <label>Confirmar senha*:</label> <input type="text" >
                                 </div>
 

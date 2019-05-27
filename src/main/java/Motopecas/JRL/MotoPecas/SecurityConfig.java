@@ -59,7 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .loginPage("/login") // DEFINE A TELA DE LOGIN DO SISTEMA E NAO DO SPRING
                     .usernameParameter("username")
                     .passwordParameter("senha")
-                    .defaultSuccessUrl("/mv/**").permitAll()
+                    .defaultSuccessUrl("/mv/home").permitAll()
             .and()
                 .logout()
                     .logoutUrl("/logout")
