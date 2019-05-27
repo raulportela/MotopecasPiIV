@@ -67,11 +67,11 @@ public class Cliente implements Serializable {
     @Column(length = 100, nullable = false)
     private boolean sexo;
     
-    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY ,cascade = javax.persistence.CascadeType.ALL)
     @Cascade(CascadeType.ALL)
     private List<Endereco> endereco;
     
-    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY, cascade = javax.persistence.CascadeType.ALL)
     @Cascade(CascadeType.ALL)
     private List<Cartao> cartao;
     

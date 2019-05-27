@@ -46,7 +46,7 @@ public class Cartao implements Serializable {
     private int codSeguranca;
     private int parcela;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = javax.persistence.CascadeType.ALL)
     @JoinColumn(name = "cliente_id", insertable = true, updatable = true)
     @Fetch(FetchMode.JOIN)
     @Cascade(CascadeType.ALL)
