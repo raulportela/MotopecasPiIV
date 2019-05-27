@@ -34,7 +34,7 @@
                                     <label>E-mail*:</label> 
                                     <input type="text" name="email" th:classappend="${#fields.hasErrors('email')}? is-invalid" id="txtEmail" placeholder="Email" th:field="*{email}" >
                                     <label>Senha*:</label>  
-                                    <input type="text" name="senha" th:classappend="${#fields.hasErrors('senha')}? is-invalid" id="txtSenha" placeholder="Senha" th:field="*{senha}" >
+                                    <input type="text" name="senha" th:classappend="${#fields.hasErrors('hashsenha')}? is-invalid" id="txtSenha" placeholder="Senha" th:field="*{hashSenha}" >
                                     <label>Confirmar senha*:</label> <input type="text" >
                                 </div>
 

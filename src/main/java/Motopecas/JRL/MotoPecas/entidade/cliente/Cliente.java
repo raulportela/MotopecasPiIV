@@ -5,10 +5,13 @@
  */
 package Motopecas.JRL.MotoPecas.entidade.cliente;
 
+import Motopecas.JRL.MotoPecas.SecurityConfig;
+import Motopecas.JRL.MotoPecas.entidade.acesso.Papel;
 import Motopecas.JRL.MotoPecas.entidade.cartao.Cartao;
 import Motopecas.JRL.MotoPecas.entidade.endereco.Endereco;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,11 +19,15 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 /**
  *
@@ -32,7 +39,7 @@ import org.hibernate.annotations.CascadeType;
     
 })
 
-public class Cliente implements Serializable {
+public class Cliente implements Serializable, UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,8 +49,8 @@ public class Cliente implements Serializable {
     private String email;
 
     @Column(length = 12, nullable = false)
-    private String senha;
-
+    private String hashsenha;
+    
     @Column(length = 50, nullable = false)
     private String nome;
 
@@ -56,7 +63,7 @@ public class Cliente implements Serializable {
     @Column(length = 100, nullable = false)
     private String cpf;
 
-   @Column(nullable = false)
+    @Column(nullable = false)
     private boolean disponivel;
 
     @Column(nullable = false, insertable = true, updatable = false)
@@ -68,30 +75,36 @@ public class Cliente implements Serializable {
     private boolean sexo;
     
     @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY ,cascade = javax.persistence.CascadeType.ALL)
-    @Cascade(CascadeType.ALL)
     private List<Endereco> endereco;
     
     @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY, cascade = javax.persistence.CascadeType.ALL)
-    @Cascade(CascadeType.ALL)
     private List<Cartao> cartao;
+    
+    @OneToOne
+    @JoinColumn(name="papel_id")
+    private Papel papel;  
     
     
     public Cliente() {
 
     }
 
-    public Cliente(Long id, String email, String senha, String nome, String sobrenome, Integer telefone, String cpf, boolean sexo, LocalDateTime dataNascimento, boolean disponivel) {
+    public Cliente(Long id, String email, String senhaAberta, String nome, String sobrenome, Integer telefone, String cpf, boolean disponivel, LocalDateTime dataNascimento, boolean sexo, List<Endereco> endereco, List<Cartao> cartao, Papel papel) {
         this.id = id;
         this.email = email;
-        this.senha = senha;
+        setHashsenha(senhaAberta);
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.telefone = telefone;
         this.cpf = cpf;
-        this.sexo = sexo;
-        this.dataNascimento = dataNascimento;
         this.disponivel = disponivel;
+        this.dataNascimento = dataNascimento;
+        this.sexo = sexo;
+        this.endereco = endereco;
+        this.cartao = cartao;
+        this.papel = papel;
     }
+    
 
     public Long getId() {
         return id;
@@ -107,14 +120,6 @@ public class Cliente implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
     }
 
     public String getNome() {
@@ -175,7 +180,7 @@ public class Cliente implements Serializable {
 
     @Override
     public String toString() {
-        return "Cliente{" + "id=" + id + ", email=" + email + ", senha=" + senha + ", nome=" + nome + ", sobrenome=" + sobrenome + ", telefone=" + telefone + ", cpf=" + cpf + ", sexo=" + sexo + ", dataNascimento=" + dataNascimento + ", disponivel=" + disponivel + '}';
+        return "Cliente{" + "id=" + id + ", email=" + email + ", senha=" + getHashsenha() + ", nome=" + nome + ", sobrenome=" + sobrenome + ", telefone=" + telefone + ", cpf=" + cpf + ", sexo=" + sexo + ", dataNascimento=" + dataNascimento + ", disponivel=" + disponivel + '}';
     }
 
     public List<Endereco> getEndereco() {
@@ -192,6 +197,59 @@ public class Cliente implements Serializable {
 
     public void setCartao(List<Cartao> cartao) {
         this.cartao = cartao;
+    }
+
+    public String getHashsenha() {
+        return hashsenha;
+    }
+
+    public final void setHashsenha(String senhaAberta ) {
+        this.hashsenha = 
+                SecurityConfig.bcryptPasswordEncoder()
+                           .encode(senhaAberta);
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getPassword() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getUsername() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean isEnabled() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Papel getPapel() {
+        return papel;
+    }
+
+    public void setPapel(Papel papel) {
+        this.papel = papel;
     }
 
 }
