@@ -105,7 +105,7 @@ public class VendaController {
         venda.setIdCliente(cliente.getId());
         venda.setData(LocalDate.now());
         
-        String t = "4444.33";   // ISSO É UM TESTE PARA TENTAR INCLUIR NO BANCO DE DADOS;    
+        String t = "4444.33";   // ISSO É UM TESTE PARA TENTAR INCLUIR NO BANCO DE DADOS; PQ NAO CONSEGUI PUXAR O VALOR TOTAL DA VIEW 
         BigDecimal s = new BigDecimal(t);
         venda.setValorTotal(s);
         venda.setParcelas(3);
