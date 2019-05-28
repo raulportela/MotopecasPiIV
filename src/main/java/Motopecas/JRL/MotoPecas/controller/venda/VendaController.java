@@ -40,7 +40,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  */
 @Controller
 @RequestMapping("/mv/venda")
-@SessionAttributes("numeropedido")
 public class VendaController {
 
     @Autowired
@@ -61,23 +60,21 @@ public class VendaController {
     @GetMapping("/carrinho")
     public ModelAndView carrinho(HttpServletRequest request,
             @RequestParam(name = "offset", defaultValue = "0") int offset,
-            @RequestParam(name = "qtd", defaultValue = "100") int qtd) {
+            @RequestParam(name = "qtd", defaultValue = "100") int qtd){
         List<Carrinho> listaCarrinho;
         listaCarrinho = carrinhoRepository.findCarrinhoByIdCliente(1l);
         double totalCarrinho = gerarTotal(listaCarrinho);
         return new ModelAndView("/venda/carrinho")
                 .addObject("listaCarrinho", listaCarrinho)
                 .addObject("valorTotalCarrinho", totalCarrinho);
-        
     }
-    
+
     @GetMapping("/confirmacao")
-    public ModelAndView confirmacao(@ModelAttribute("numeropedido") String numeroPedido,
-            RedirectAttributes redirectAttributes) {
+    public ModelAndView confirmacao(RedirectAttributes redirectAttributes) {
         Cliente cliente = clienteRepository.findById(1l);
         List<Carrinho> listaCarrinho;
-        getNumeroPedido(numeroPedido);
         listaCarrinho = carrinhoRepository.findCarrinhoByIdCliente(1l);
+        
         double totalCarrinho = gerarTotal(listaCarrinho);
         ModelAndView mv = new ModelAndView("/venda/confirmacao")
                 .addObject("listaCarrinho", listaCarrinho)
@@ -86,22 +83,10 @@ public class VendaController {
         return mv;
     }
 
-    @GetMapping("/pagamento")
-    public ModelAndView pagamento(@RequestParam(name = "offset", defaultValue = "0") int offset,
-            @RequestParam(name = "qtd", defaultValue = "100") int qtd) {
-        long id = 1;
-        Cliente c = clienteRepository.findById(id);
-        Cartao cartao = new Cartao();
-
-        Endereco endereco = enderecoRepository.findByIdCliente(id);
-        List<Carrinho> listaCarrinho;
-        listaCarrinho = carrinhoRepository.findCarrinhoByIdCliente(1l);
-        return new ModelAndView("/venda/pagamento").addObject("listaCarrinho", listaCarrinho).addObject("clienteSessao", c).addObject("cartao", cartao).addObject("endereco", endereco);
-    }
-
     @GetMapping("/efetuarvenda")
-    public ModelAndView efetuarVenda(@ModelAttribute("numeropedido") String numeroPedido) {
+    public ModelAndView efetuarVenda() {
         Cliente cliente = clienteRepository.findById(1l);
+        String numeroPedido = "" + gerarNumeroPedido(null);
         Venda venda = new Venda();
         venda.setIdCliente(cliente.getId());
         venda.setData(LocalDate.now());
@@ -123,15 +108,16 @@ public class VendaController {
             itemVenda.setQuantidade(carrinho.getQuantidade());
             listaVenda.add(itemVenda);
         }
-        BigDecimal s = new BigDecimal(""+totalCompra);
+        BigDecimal s = new BigDecimal("" + totalCompra);
         venda.setValorTotal(s);
         venda.setItensVenda(listaVenda);
+        carrinhoRepository.deleteByIdCliente(cliente);
         vendaRepository.saveVenda(venda);
         return new ModelAndView("redirect:/mv/venda/pedido").addObject("numeropedido", numeroPedido);
     }
-    
+
     @GetMapping("/pedido")
-    public ModelAndView pedido(@ModelAttribute("numeropedido") String numeroPedido) {
+    public ModelAndView pedido(@RequestParam("numeropedido") String numeroPedido) {
         Venda venda = vendaRepository.findByNotaFiscal(numeroPedido);
         return new ModelAndView("/venda/pedido").addObject("venda", venda);
     }
@@ -153,50 +139,45 @@ public class VendaController {
         }
         return randomNum;
     }
-    
+
     @GetMapping("/{id}/higher")
     public ModelAndView higherQtd(@PathVariable("id") String idCarrinho) {
         List<Carrinho> listaCarrinho = carrinhoRepository.findCarrinhoByIdCliente(1l);
         for (Carrinho carrinho : listaCarrinho) {
-            if (idCarrinho.equals((""+carrinho.getId()))) {
-                carrinho.setQuantidade(carrinho.getQuantidade()+1);
+            if (idCarrinho.equals(("" + carrinho.getId()))) {
+                carrinho.setQuantidade(carrinho.getQuantidade() + 1);
                 carrinhoRepository.save(carrinho);
                 return new ModelAndView("redirect:/mv/venda/carrinho");
             }
-            
+
         }
         return new ModelAndView("redirect:/mv/venda/carrinho");
     }
-    
+
     @GetMapping("/{id}/alteraddress")
     public ModelAndView alterAddres(@PathVariable("id") Long idEndereco) {
         enderecoRepository.alterById(idEndereco);
         return new ModelAndView("redirect:/mv/venda/confirmacao");
     }
-    
+
     @GetMapping("/{id}/lower")
     public ModelAndView lowerQtd(@PathVariable("id") String idCarrinho) {
         List<Carrinho> listaCarrinho = carrinhoRepository.findCarrinhoByIdCliente(1l);
         for (Carrinho carrinho : listaCarrinho) {
-            if (idCarrinho.equals((""+carrinho.getId()))) {
-                carrinho.setQuantidade(carrinho.getQuantidade()-1);
+            if (idCarrinho.equals(("" + carrinho.getId()))) {
+                carrinho.setQuantidade(carrinho.getQuantidade() - 1);
                 if (carrinho.getQuantidade() == 0) {
                     carrinhoRepository.deleteById(carrinho);
                 }
                 carrinhoRepository.save(carrinho);
                 return new ModelAndView("redirect:/mv/venda/carrinho");
             }
-            
+
         }
         return new ModelAndView("redirect:/mv/venda/carrinho");
     }
-    
-    @ModelAttribute("numeropedido")
-    public String getNumeroPedido(String numeropedido) {
-        return ""+gerarNumeroPedido(null);
-    }
-    
-    public double gerarTotal(List<Carrinho> listaCarrinho){
+
+    public double gerarTotal(List<Carrinho> listaCarrinho) {
         double totalCarrinho = 0;
         for (Carrinho carrinho : listaCarrinho) {
             totalCarrinho += (carrinho.getQuantidade() * carrinho.getProduto().getValor());

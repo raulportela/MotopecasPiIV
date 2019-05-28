@@ -25,6 +25,7 @@ import javax.persistence.OneToOne;
 @NamedQueries({
     @NamedQuery(name = "Carrinho.findByIdCliente", query = "SELECT c FROM Carrinho c"),
     @NamedQuery(name = "Carrinho.deleteById", query = "DELETE FROM Carrinho c WHERE c.id = :idCarrinho"),
+    @NamedQuery(name = "Carrinho.deleteByIdCliente", query = "DELETE FROM Carrinho c WHERE c.Cliente = :cliente"),
     @NamedQuery(name = "Carrinho.findByIdProduto", query = "SELECT c FROM Carrinho c WHERE c.Produto = :produto")
     
 })
@@ -64,7 +65,16 @@ public class Carrinho implements Serializable {
     public int getQuantidade() {
         return quantidade;
     }
+    
+    public Cliente getCliente() {
+        return Cliente;
+    }
 
+    public void setCliente(Cliente Cliente) {
+        this.Cliente = Cliente;
+    }
+
+    
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
     }
