@@ -31,13 +31,12 @@
                     <div class="col-6 col-sm-6 col-md-7">
                         <div class="cart-table ">
                             <div class="checkout-cart" th:each="end, stat: ${cliente.endereco}">
-                                <div class="row">
-                                    <div class="col-8" th:if="!end.selecionado != 1">
+                                <div class="row" th:if="${end.selecionado != 0}">
+                                    <div class="col-8">
                                         <h3>Endereço de entrega <i class="fa fa-map-marker"></i></h3>
                                         <p th:text="${end.rua + ', ' + end.numero + ' - ' + end.cep}"></p>
                                         <p th:text="${end.bairro + ' São Paulo - SP'}"></p>
                                         <p th:if="end.complemento != null" th:text="${'Observações: '+ end.complemento}"></p>
-
                                     </div>
                                     <div class="col-4 align-self-end">
                                         <a th:href="@{/mv/venda/confirmacao}" class="site-btn sb-grey" data-toggle="modal" data-target="#modal-endereco">Alterar<br> endereço</a>
@@ -148,8 +147,8 @@
                                         </thead>
                                         <tbody>
                                             <tr  th:each="end, stat: ${cliente.endereco}">
-                                                <th th:text="${end.rua + ', ' + end.numero + ' - ' + end.cep +'/ ' + end.bairro + ' Sao Paulo - SP' }"></th>
-                                                <td><a th:href="@{/mv/venda/{id}/checkaddress}" ><i class="fa fa-map-marker"></i><i class="fa fa-check"></i></a></td>
+                                                <th th:text="${end.rua + ', ' + end.numero + ' - ' + end.cep +' - ' + end.bairro + ' Sao Paulo/SP' }"></th>
+                                                <td><a th:href="@{/mv/venda/{id}/alteraddress(id=${end.id})}" ><i class="fa fa-map-marker"></i><i class="fa fa-check"></i></a></td>
                                             </tr>
                                         </tbody>
                                     </table>

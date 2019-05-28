@@ -79,11 +79,10 @@ public class Cliente implements Serializable, UserDetails {
     @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY, cascade = javax.persistence.CascadeType.ALL)
     private List<Cartao> cartao;
     
-    
-    @Column(length = 11, nullable = true)
-    private int papel;
-    
-    
+//    
+//    @Column(length = 11, nullable = true)
+//    private int papel;
+//    
     public Cliente() {
 
     }
@@ -101,7 +100,7 @@ public class Cliente implements Serializable, UserDetails {
         this.sexo = sexo;
         this.endereco = endereco;
         this.cartao = cartao;
-        this.papel = papel;
+//        this.papel = papel;
     }
 
     public Long getId() {
@@ -241,13 +240,16 @@ public class Cliente implements Serializable, UserDetails {
     public String getUsername() {
         return getEmail();
     }
+    
+    //NAO ESQUECE DE TIRAR O COMENTARIO DO CONSTRUTOR
+    
 
-    public int getPapel() {
-        return papel;
-    }
-
-    public void setPapel(int papel) {
-        this.papel = papel;
-    }
+//    public int getPapel() {
+//        return papel;
+//    }
+//
+//    public void setPapel(int papel) {
+//        this.papel = papel;
+//    }
 
 }

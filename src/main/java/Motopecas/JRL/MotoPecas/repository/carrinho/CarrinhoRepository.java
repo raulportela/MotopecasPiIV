@@ -12,7 +12,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 import org.springframework.stereotype.Repository;
 
 /**

@@ -29,7 +29,9 @@ import org.hibernate.annotations.FetchMode;
 
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "Endereco.findByIdCliente", query = "SELECT e FROM Endereco e WHERE cliente_id = :idCliente")
+    @NamedQuery(name = "Endereco.findByIdCliente", query = "SELECT e FROM Endereco e WHERE cliente_id = :idCliente"),
+    @NamedQuery(name = "Endereco.findById", query = "SELECT e FROM Endereco e WHERE e.id = :id"),
+    @NamedQuery(name = "Endereco.findBySelecionado", query = "SELECT e FROM Endereco e WHERE e.selecionado = 1")
 })
 public class Endereco implements Serializable {
 

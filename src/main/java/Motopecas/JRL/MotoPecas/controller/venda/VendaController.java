@@ -168,6 +168,12 @@ public class VendaController {
         return new ModelAndView("redirect:/mv/venda/carrinho");
     }
     
+    @GetMapping("/{id}/alteraddress")
+    public ModelAndView alterAddres(@PathVariable("id") Long idEndereco) {
+        enderecoRepository.alterById(idEndereco);
+        return new ModelAndView("redirect:/mv/venda/confirmacao");
+    }
+    
     @GetMapping("/{id}/lower")
     public ModelAndView lowerQtd(@PathVariable("id") String idCarrinho) {
         List<Carrinho> listaCarrinho = carrinhoRepository.findCarrinhoByIdCliente(1l);
