@@ -1,8 +1,10 @@
 package Motopecas.JRL.MotoPecas.controller.produto;
 
 import Motopecas.JRL.MotoPecas.entidade.carrinho.Carrinho;
+import Motopecas.JRL.MotoPecas.entidade.cliente.Cliente;
 import Motopecas.JRL.MotoPecas.entidade.produto.Produto;
 import Motopecas.JRL.MotoPecas.repository.carrinho.CarrinhoRepository;
+import Motopecas.JRL.MotoPecas.repository.cliente.ClienteRepository;
 import Motopecas.JRL.MotoPecas.repository.produto.ProdutoRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,9 @@ public class ProdutoController {
 
     @Autowired
     ProdutoRepository produtoRepository;
+    
+    @Autowired
+    ClienteRepository clienteRepository;
 
     @Autowired
     CarrinhoRepository carrinhoRepository;
@@ -48,6 +53,7 @@ public class ProdutoController {
     public ModelAndView additemcart(@PathVariable("id") Long id) {
         Produto produto;
         int i = 10;
+        Cliente cliente = clienteRepository.findById(1l);
         produto = produtoRepository.findById(id);
         Carrinho carrinho = carrinhoRepository.findByIdProduto(produto);
         if (carrinho != null) {
@@ -55,7 +61,7 @@ public class ProdutoController {
             carrinhoRepository.save(carrinho);
         } else {
             carrinho = new Carrinho();
-            
+            carrinho.setCliente(cliente);
             carrinho.setQuantidade(1);
             carrinho.setProduto(produto);
             carrinhoRepository.save(carrinho);

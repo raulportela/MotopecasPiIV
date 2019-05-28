@@ -6,6 +6,7 @@
 package Motopecas.JRL.MotoPecas.repository.carrinho;
 
 import Motopecas.JRL.MotoPecas.entidade.carrinho.Carrinho;
+import Motopecas.JRL.MotoPecas.entidade.cliente.Cliente;
 import Motopecas.JRL.MotoPecas.entidade.produto.Produto;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -50,6 +51,12 @@ public class CarrinhoRepository {
     @Transactional
     public void deleteById(Carrinho carrinho) {
         Query jpqlQuery = entityManager.createNamedQuery("Carrinho.deleteById").setParameter("idCarrinho", carrinho.getId());
+        jpqlQuery.executeUpdate();
+    }
+    
+    @Transactional
+    public void deleteByIdCliente(Cliente cliente) {
+        Query jpqlQuery = entityManager.createNamedQuery("Carrinho.deleteByIdCliente").setParameter("cliente", cliente);
         jpqlQuery.executeUpdate();
     }
 
