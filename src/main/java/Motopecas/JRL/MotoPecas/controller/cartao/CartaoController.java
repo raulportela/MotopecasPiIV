@@ -5,16 +5,12 @@
  */
 package Motopecas.JRL.MotoPecas.controller.cartao;
 
-import Motopecas.JRL.MotoPecas.controller.cliente.*;
 import Motopecas.JRL.MotoPecas.entidade.cliente.Cliente;
-import Motopecas.JRL.MotoPecas.controller.produto.ProdutoController;
 import Motopecas.JRL.MotoPecas.entidade.cartao.Cartao;
 import Motopecas.JRL.MotoPecas.repository.cartao.CartaoRepository;
 import Motopecas.JRL.MotoPecas.repository.cliente.ClienteRepository;
-import java.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,12 +28,16 @@ public class CartaoController{
     @Autowired
     private CartaoRepository cartaoRepository;
     
+    @Autowired
+    private ClienteRepository clienteRepository;
+    
     
     @PostMapping("/salvar")
     public ModelAndView salvar(
             @ModelAttribute("cartao") Cartao cartao, 
             /*BindingResult bindingResult,*/ RedirectAttributes redirectAttributes) {
-        
+        Cliente cliente = clienteRepository.findById(1l);
+        cartao.setCliente(cliente);
         cartaoRepository.save(cartao);
         redirectAttributes.addFlashAttribute("mensagemSucesso", 
                 "Cartao " + cartao.getBandeira()+ " salvo com sucesso");

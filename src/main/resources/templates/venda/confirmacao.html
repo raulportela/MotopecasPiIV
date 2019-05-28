@@ -194,58 +194,56 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col">
-                                   
-                                        <form class="form-group" th:action="@{/mv/venda/salvarcartao}" method="post" th:object="${cartao}" novalidate>
-                                            <label>Bandeira:</label>
-                                            <br>
-                                            <input type="radio" name="bandeira" id="optBandeira" value="visa" th:field="*{bandeira}" >
-                                            <label>Visa</label>
-                                            <input type="radio" name="bandeira" id="optBandeira" value="mastercard" th:field="*{bandeira}" >
-                                            <label>MasterCard</label>
-                                            <br>
-                                            <label>Numero do cartão:</label> 
-                                            <br>
-                                            <input type="text" name="numeroCartao" id="txtnumeroCartao" th:classappend="${#fields.hasErrors('numeroCartao')}? is-invalid"  placeholder="8888.8888.8888.8888" th:field="*{numeroCartao}">
-                                            <br>
-                                            <label>Nome do Titular</label> 
-                                            <br>
-                                            <input type="text" name="nomeTitular" id="txtnomeTitular" th:classappend="${#fields.hasErrors('nomeTitular')}? is-invalid" placeholder="Como esta impresso no cartão" th:field="*{nomeTitular}">
-                                            <br>
-                                            <label>Data de validade:</label> 
-                                            <br>
-                                            <input type="text" name="dataValidade" id="txtdataValidade" th:classappend="${#fields.hasErrors('dataValidade')}? is-invalid" placeholder="MM/ANO" th:field="*{dataValidade}">
-                                            <br>
-                                            <label>Código de segurança:</label> 
-                                            <br>
-                                            <input type="text" name="codSeguranca" id="txtcodSeguranca" th:classappend="${#fields.hasErrors('codSeguranca')}? is-invalid" placeholder="Código no verso do cartão" th:field="*{codSeguranca}">
-                                            <br>
-                                            <label>Opçoes de parcela:</label>
-                                            <br>
-                                            <select  th:field="*{parcela}">
-                                                <option th:value='1' th:text="1"></option>
-                                                <option th:value='2' th:text="2"></option>
-                                                <option th:value='3' th:text="3"></option>
-                                                <option th:value='4' th:text="4"></option>
-                                                <option th:value='5' th:text="5"></option>
-                                                <option th:value='6' th:text="6"></option>
-                                                <option th:value='7' th:text="7"></option>
-                                                <option th:value='8' th:text="8"></option>
-                                                <option th:value='9' th:text="9"></option>
-                                                <option th:value='10' th:text="10"></option>
-                                                <option th:value='11' th:text="11"></option>
-                                                <option th:value='12' th:text="12"></option>
-                                            </select>
-                                        </form>
+
+                                    <form class="form-group" th:action="@{/mv/cartao/salvar}" method="post" th:object="${cartao}" novalidate>
+                                        <label>Bandeira:</label>
+                                        <br>
+                                        <input type="radio" name="bandeira" id="optBandeira" value="visa" th:field="*{bandeira}" >
+                                        <label>Visa</label>
+                                        <input type="radio" name="bandeira" id="optBandeira" value="mastercard" th:field="*{bandeira}" >
+                                        <label>MasterCard</label>
+                                        <br>
+                                        <label>Numero do cartão:</label> 
+                                        <br>
+                                        <input type="text" name="numeroCartao" id="txtnumeroCartao" th:classappend="${#fields.hasErrors('numeroCartao')}? is-invalid"  placeholder="8888.8888.8888.8888" th:field="*{numeroCartao}">
+                                        <br>
+                                        <label>Nome do Titular</label> 
+                                        <br>
+                                        <input type="text" name="nomeTitular" id="txtnomeTitular" th:classappend="${#fields.hasErrors('nomeTitular')}? is-invalid" placeholder="Como esta impresso no cartão" th:field="*{nomeTitular}">
+                                        <br>
+                                        <label>Data de validade:</label> 
+                                        <br>
+                                        <input type="text" name="dataValidade" id="txtdataValidade" th:classappend="${#fields.hasErrors('dataValidade')}? is-invalid" placeholder="MM/ANO" th:field="*{dataValidade}">
+                                        <br>
+                                        <label>Código de segurança:</label> 
+                                        <br>
+                                        <input type="text" name="codSeguranca" id="txtcodSeguranca" th:classappend="${#fields.hasErrors('codSeguranca')}? is-invalid" placeholder="Código no verso do cartão" th:field="*{codSeguranca}">
+                                        <br>
+                                        <label>Opçoes de parcela:</label>
+                                        <br>
+                                        <select  th:field="*{parcela}">
+                                            <option th:value='1' th:text="1"></option>
+                                            <option th:value='2' th:text="2"></option>
+                                            <option th:value='3' th:text="3"></option>
+                                            <option th:value='4' th:text="4"></option>
+                                            <option th:value='5' th:text="5"></option>
+                                            <option th:value='6' th:text="6"></option>
+                                            <option th:value='7' th:text="7"></option>
+                                            <option th:value='8' th:text="8"></option>
+                                            <option th:value='9' th:text="9"></option>
+                                            <option th:value='10' th:text="10"></option>
+                                            <option th:value='11' th:text="11"></option>
+                                            <option th:value='12' th:text="12"></option>
+                                        </select>
+                                        <input type="submit" value="Cadastrar">
+                                    </form>
                                     <hr>
                                 </div>
-                            </div>
-                                    <a th:href="@{/mv/cartao/salvar}" data-toggle="modal" data-target="#modal-cartao">Cadastrar <i class="fa fa-map-marker"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
     </body>
 </html>
