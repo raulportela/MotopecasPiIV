@@ -29,7 +29,9 @@ import org.hibernate.annotations.FetchMode;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "Cartao.findByIdCliente", query = "SELECT c FROM Cartao c WHERE cliente_id = :idCliente")
+    @NamedQuery(name = "Cartao.findByIdCliente", query = "SELECT c FROM Cartao c WHERE cliente_id = :idCliente"),
+    @NamedQuery(name = "Cartao.findById", query = "SELECT c FROM Cartao c WHERE c.id = :id"),
+    @NamedQuery(name = "Cartao.findBySelecionado", query = "SELECT c FROM Cartao c WHERE c.selecionado = 1")   
 })
 public class Cartao implements Serializable {
 
@@ -45,6 +47,9 @@ public class Cartao implements Serializable {
     private String dataValidade;
     private int codSeguranca;
     private int parcela;
+    
+    @Column(length = 1)
+    private int selecionado;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = javax.persistence.CascadeType.ALL)
     @JoinColumn(name = "cliente_id", insertable = true, updatable = true)
@@ -114,6 +119,14 @@ public class Cartao implements Serializable {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+
+    public int getSelecionado() {
+        return selecionado;
+    }
+
+    public void setSelecionado(int selecionado) {
+        this.selecionado = selecionado;
     }
     
 }

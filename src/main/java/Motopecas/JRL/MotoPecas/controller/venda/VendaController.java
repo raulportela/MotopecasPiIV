@@ -7,6 +7,7 @@ import Motopecas.JRL.MotoPecas.entidade.endereco.Endereco;
 import Motopecas.JRL.MotoPecas.entidade.venda.ItemVenda;
 import Motopecas.JRL.MotoPecas.entidade.venda.Venda;
 import Motopecas.JRL.MotoPecas.repository.carrinho.CarrinhoRepository;
+import Motopecas.JRL.MotoPecas.repository.cartao.CartaoRepository;
 import Motopecas.JRL.MotoPecas.repository.cliente.ClienteRepository;
 import Motopecas.JRL.MotoPecas.repository.endereco.EnderecoRepository;
 import Motopecas.JRL.MotoPecas.repository.produto.ProdutoRepository;
@@ -44,6 +45,9 @@ public class VendaController {
 
     @Autowired
     ClienteRepository clienteRepository;
+    
+    @Autowired
+    CartaoRepository cartaoRepository;
 
     @Autowired
     EnderecoRepository enderecoRepository;
@@ -158,6 +162,12 @@ public class VendaController {
     @GetMapping("/{id}/alteraddress")
     public ModelAndView alterAddres(@PathVariable("id") Long idEndereco) {
         enderecoRepository.alterById(idEndereco);
+        return new ModelAndView("redirect:/mv/venda/confirmacao");
+    }
+    
+    @GetMapping("/{id}/alteracard")
+    public ModelAndView alterCard(@PathVariable("id") Long idCartao) {
+        cartaoRepository.alterById(idCartao);
         return new ModelAndView("redirect:/mv/venda/confirmacao");
     }
 

@@ -42,5 +42,28 @@ public class CartaoRepository {
         Cartao cartao = (Cartao) jpqlQyery.getSingleResult();
         return cartao;
     }
+    
+    @Transactional
+    public Cartao findBySelecionado() {
+        Query jpqlQyery = entityManager.createNamedQuery("Cartao.findBySelecionado");
+        Cartao cartao = (Cartao) jpqlQyery.getSingleResult();
+        cartao.setSelecionado(0);
+        save(cartao);
+        return cartao;
+    }
 
+    @Transactional
+    public void alterById(Long id) {
+        Query jpqlQyery = entityManager.createNamedQuery("Cartao.findById").setParameter("id", id);
+
+        //Esse cartao é o que estava selecionado e eu vou tirar o selecionado dele.
+        Cartao cartaoPraMudar = findBySelecionado();
+        cartaoPraMudar.setSelecionado(0);
+        save(cartaoPraMudar);
+
+        //Esse cartao é o que vou marcar como selecionado
+        Cartao cartaoSelecionar = (Cartao) jpqlQyery.getSingleResult();
+        cartaoSelecionar.setSelecionado(1);
+        save(cartaoSelecionar);
+    }
 }

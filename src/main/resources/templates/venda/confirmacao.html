@@ -46,10 +46,24 @@
                             <br>
                             <div class="checkout-cart">
                                 <h3>Forma de pagamento <i class="fa fa-dollar"></i></h3>
+                                <div class="checkout-cart" th:if="${cliente.cartao != null}" >
+                                    <div class="checkout-cart" th:each="cartao, stat: ${cliente.cartao}">
+                                        <div class="row" th:if="${cartao.selecionado != 0}">
+                                            <div class="col-8">
+                                                <h3>Dados do Cartão</h3>
+                                                <p th:text="${cartao.numeroCartao}"></p>
+                                                <p th:text="${cartao.nomeTitular}"></p>
+                                                <p th:text="${cartao.dataValidade}"></p>
+                                                <p th:text="${cartao.bandeira}"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="col-4 align-self-end">
                                     <a th:href="@{/mv/venda/confirmacao}" class="site-btn sb-grey" data-toggle="modal" data-target="#modal-cartao">Adicionar <br> Cartão</a>
                                 </div>
-                            </div><br>
+                            </div>
                         </div>
                     </div>
                     <div class="col-6 col-sm-6 col-md-5">
@@ -159,9 +173,9 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr  th:each="end, stat: ${cliente.endereco}">
-                                                <th th:text="${end.rua + ', ' + end.numero + ' - ' + end.cep +' - ' + end.bairro + ' Sao Paulo/SP' }"></th>
-                                                <td><a th:href="@{/mv/venda/{id}/alteraddress(id=${end.id})}" ><i class="fa fa-map-marker"></i><i class="fa fa-check"></i></a></td>
+                                            <tr  th:each="cartao, stat: ${cliente.cartao}">
+                                                <th th:text="${cartao.numeroCartao + ', ' + cartao.bandeira + ' - ' + cartao.dataValidade }"></th>
+                                                <td><a th:href="@{/mv/venda/{id}/alteracard(id=${cartao.id})}" ><i class="fa fa-map-marker"></i><i class="fa fa-check"></i></a></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -235,6 +249,13 @@
                                             <option th:value='11' th:text="11"></option>
                                             <option th:value='12' th:text="12"></option>
                                         </select>
+                                        <br>
+                                        <!-- ESSE CHECKBOX É PARA O USUÁRIO SELECIONAR O CARTÃO JÁ COMO FAVORITO, MAIS NÃO ESTA APARECENDO, DEVE SER POR CAUSA DO TH-->
+                                        <div >
+                                            <input type="checkbox"  id="cardfavorito" th:value="1" id="favorito"  th:field="*{selecionado}">
+                                            <label class="form-check-label" for="favorito">Add Favorito</label>
+                                        </div>
+                                        <br>
                                         <input type="submit" value="Cadastrar">
                                     </form>
                                     <hr>
