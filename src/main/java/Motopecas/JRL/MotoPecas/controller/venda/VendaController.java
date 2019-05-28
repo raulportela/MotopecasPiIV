@@ -82,7 +82,8 @@ public class VendaController {
         ModelAndView mv = new ModelAndView("/venda/confirmacao")
                 .addObject("listaCarrinho", listaCarrinho)
                 .addObject("valorTotalCarrinho", totalCarrinho)
-                .addObject("cliente", cliente);
+                .addObject("cliente", cliente)
+                .addObject("cartao", new Cartao());
         return mv;
     }
 
