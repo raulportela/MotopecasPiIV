@@ -18,7 +18,7 @@
 
             <div class="container" th:if="${listaCarrinho != null}">
                 <div class="row">
-                    <div class="col">
+                    <div class="col-lg-10 order-1 order-lg-1">
                         <div class="alert alert-warning" role="alert" th:if="${numeropedido != null}" >
                             <h5 th:text="'Seu numero de pedido será: #' + ${numeropedido}"></h5> 
                         </div>    
@@ -27,10 +27,13 @@
                         </div>
                     </div>
                 </div>
+
+                <br>
+
                 <div class="row">
-                    <div class="col-6 col-sm-6 col-md-7">
+                    <div class="col-lg-10 order-2 order-lg-1">
                         <div class="cart-table ">
-                            <div class="checkout-cart" th:each="end, stat: ${cliente.endereco}">
+                            <div class="" th:each="end, stat: ${cliente.endereco}">
                                 <div class="row" th:if="${end.selecionado != 0}">
                                     <div class="col-8">
                                         <h3>Endereço de entrega <i class="fa fa-map-marker"></i></h3>
@@ -38,36 +41,50 @@
                                         <p th:text="${end.bairro + ' São Paulo - SP'}"></p>
                                         <p th:if="end.complemento != null" th:text="${'Observações: '+ end.complemento}"></p>
                                     </div>
-                                    <div class="col-4 align-self-end">
-                                        <a th:href="@{/mv/venda/confirmacao}" class="site-btn sb-grey" data-toggle="modal" data-target="#modal-endereco">Alterar<br> endereço</a>
-                                    </div>
+                                    <br>
+
                                 </div>
                             </div>
+                            <div class="col-sm-5 align-self-sm-end">
+                                <a th:href="@{/mv/venda/confirmacao}" class="site-btn sb-grey" data-toggle="modal" data-target="#modal-endereco">Alterar<br> endereço</a>
+                            </div>
                             <br>
-                            <div class="checkout-cart">
-                                <h3>Forma de pagamento <i class="fa fa-dollar"></i></h3>
-                                <div class="checkout-cart" th:if="${cliente.cartao != null}" >
-                                    <div class="checkout-cart" th:each="cartao, stat: ${cliente.cartao}">
-                                        <div class="row" th:if="${cartao.selecionado != 0}">
-                                            <div class="col-8">
-                                                <h3>Dados do Cartão</h3>
-                                                <p th:text="${cartao.numeroCartao}"></p>
-                                                <p th:text="${cartao.nomeTitular}"></p>
-                                                <p th:text="${cartao.dataValidade}"></p>
-                                                <p th:text="${cartao.bandeira}"></p>
-                                            </div>
+                        </div>
+                    </div>
+                </div> 
+
+                <br>
+
+                <div class="row">
+                    <div class="col-lg-10 order-3 order-lg-1">
+                        <div class="cart-table ">
+                            <h3>Forma de pagamento <i class="fa fa-dollar"></i></h3>
+                            <div th:if="${cliente.cartao != null}" >
+                                <div class="checkout-form" th:each="cartao, stat: ${cliente.cartao}">
+                                    <div class="row" th:if="${cartao.selecionado != 0}">
+                                        <div class="col-8">
+                                            <h3>Dados do Cartão</h3>
+                                            <p th:text="${cartao.numeroCartao}"></p>
+                                            <p th:text="${cartao.nomeTitular}"></p>
+                                            <p th:text="${cartao.dataValidade}"></p>
+                                            <p th:text="${cartao.bandeira}"></p>
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="col-4 align-self-end">
-                                    <a th:href="@{/mv/venda/confirmacao}" class="site-btn sb-grey" data-toggle="modal" data-target="#modal-cartao">Adicionar <br> Cartão</a>
-                                </div>
                             </div>
+                            <div class="col-sm-5 align-self-sm-end">
+                                <a th:href="@{/mv/venda/confirmacao}" class="site-btn sb-grey" data-toggle="modal" data-target="#modal-cartao">Adicionar <br> Cartão</a>
+                            </div>
+                            <br>
                         </div>
                     </div>
-                    <div class="col-6 col-sm-6 col-md-5">
-                        <div class="cart-table margincols cart-table-warp" >
+                </div>
+
+                <br>
+
+                <div class="row">
+                    <div class="col-lg-10 order-4 order-lg-1">
+                        <div class="cart-table cart-table-warp" >
                             <h4>Resumo da compra <i class="fa fa-list-alt"></i></h4>
                             <table>
                                 <thead>
@@ -84,9 +101,9 @@
                                                 <p th:text=" 'R$ ' + ${cart.produto.valor}"></p>
                                             </div>
                                         </td>
-                                        <td class="quy-col td-confirmacao">
+                                        <th class="quy-col td-confirmacao">
                                             <p th:text="${cart.quantidade}  "></p>
-                                        </td>
+                                        </th>
                                     </tr>
                                 </tbody>
                             </table>
@@ -94,12 +111,19 @@
                                 <h6>Total <span th:text="${'R$' + valorTotalCarrinho}"></span></h6>
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="row">
+                    <div class="col-lg-10 order-5 order-lg-1">
                         <div class="row">
-                            <div class="col-4"></div>
-                            <div class="col-8">
+                            <div class="col-8"></div>
+                            <div class="col-4">
                                 <a th:href="@{/mv/venda/efetuarvenda}"><button class="site-btn submit-order-btn">Concluir Compra</button></a>
                             </div>
-                        </div> 
+                        </div>
                     </div>
                 </div>
             </div>
@@ -265,6 +289,7 @@
                     </div>
                 </div>
             </div>
+        </div>
 
     </body>
 </html>
