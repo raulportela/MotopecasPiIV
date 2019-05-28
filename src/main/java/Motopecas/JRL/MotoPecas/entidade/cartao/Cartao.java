@@ -8,7 +8,6 @@ package Motopecas.JRL.MotoPecas.entidade.cartao;
 import Motopecas.JRL.MotoPecas.entidade.cliente.Cliente;
 import java.io.Serializable;
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -56,7 +55,7 @@ public class Cartao implements Serializable {
     @Fetch(FetchMode.JOIN)
     @Cascade(CascadeType.ALL)
     private Cliente cliente;
-
+    
     public String getBandeira() {
         return bandeira;
     }

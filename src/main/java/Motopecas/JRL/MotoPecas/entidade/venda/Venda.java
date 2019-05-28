@@ -5,6 +5,7 @@
  */
 package Motopecas.JRL.MotoPecas.entidade.venda;
 
+import Motopecas.JRL.MotoPecas.entidade.cartao.Cartao;
 import Motopecas.JRL.MotoPecas.entidade.endereco.Endereco;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -31,8 +32,9 @@ import javax.persistence.OneToOne;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "Venda.findByNotaFiscal", query = "SELECT v FROM Venda v WHERE v.notaFiscal = :notaFiscal")
-    
+    @NamedQuery(name = "Venda.findByNotaFiscal", query = "SELECT v FROM Venda v WHERE v.notaFiscal = :notaFiscal"),
+    @NamedQuery(name = "Venda.findByIdCliente", query = "SELECT v FROM Venda v WHERE v.idCliente = :idCliente")
+
 })
 public class Venda implements Serializable {
 
@@ -50,7 +52,7 @@ public class Venda implements Serializable {
     private Long idCliente;
 
     private int parcelas;
-    
+
     private LocalDate dataCompra;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -60,9 +62,12 @@ public class Venda implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "ID_ITEMVENDA")
     )
     private List<ItemVenda> itensVenda = new ArrayList<>();
-    
+
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Endereco endereco;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Cartao cartao;
 
     public List<ItemVenda> getItensVenda() {
         return itensVenda;
@@ -83,7 +88,7 @@ public class Venda implements Serializable {
     public void setData(LocalDate data) {
         this.dataCompra = data;
     }
-    
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -136,6 +141,12 @@ public class Venda implements Serializable {
         this.endereco = endereco;
     }
 
-    
-    
+    public Cartao getCartao() {
+        return cartao;
+    }
+
+    public void setCartao(Cartao cartao) {
+        this.cartao = cartao;
+    }
+
 }

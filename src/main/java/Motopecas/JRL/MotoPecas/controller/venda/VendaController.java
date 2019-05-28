@@ -14,7 +14,6 @@ import Motopecas.JRL.MotoPecas.repository.produto.ProdutoRepository;
 import Motopecas.JRL.MotoPecas.repository.venda.VendaRepository;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -22,11 +21,9 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -106,6 +103,11 @@ public class VendaController {
                 venda.setEndereco(endereco);
             }
         }
+        for (Cartao cartao : cliente.getCartao()) {
+            if (cartao.getSelecionado() == 1) {
+                venda.setCartao(cartao);
+            }
+        }
         for (Carrinho carrinho : listaCarrinho) {
             totalCompra += (carrinho.getQuantidade() * carrinho.getProduto().getValor());
             ItemVenda itemVenda = new ItemVenda();
@@ -117,14 +119,17 @@ public class VendaController {
         venda.setValorTotal(s);
         venda.setItensVenda(listaVenda);
         carrinhoRepository.deleteByIdCliente(cliente);
+        cartaoRepository.desativarSelecionado();
         vendaRepository.saveVenda(venda);
         return new ModelAndView("redirect:/mv/venda/pedido").addObject("numeropedido", numeroPedido);
     }
 
     @GetMapping("/pedido")
     public ModelAndView pedido(@RequestParam("numeropedido") String numeroPedido) {
+        Cliente cliente = clienteRepository.findById(1l);
         Venda venda = vendaRepository.findByNotaFiscal(numeroPedido);
-        return new ModelAndView("/venda/pedido").addObject("venda", venda);
+        List<Venda> listaVenda = vendaRepository.findByIdCliente(cliente);
+        return new ModelAndView("/venda/pedido").addObject("venda", venda).addObject("listaVenda", listaVenda);
     }
 
     public int gerarNumeroPedido(String pedido) {
@@ -195,4 +200,6 @@ public class VendaController {
         }
         return totalCarrinho;
     }
+    
+    
 }

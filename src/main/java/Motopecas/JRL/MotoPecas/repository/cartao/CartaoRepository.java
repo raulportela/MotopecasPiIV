@@ -6,8 +6,6 @@
 package Motopecas.JRL.MotoPecas.repository.cartao;
 
 import Motopecas.JRL.MotoPecas.entidade.cartao.Cartao;
-import Motopecas.JRL.MotoPecas.repository.endereco.*;
-import Motopecas.JRL.MotoPecas.entidade.endereco.Endereco;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -42,24 +40,31 @@ public class CartaoRepository {
         Cartao cartao = (Cartao) jpqlQyery.getSingleResult();
         return cartao;
     }
-    
+
     @Transactional
-    public Cartao findBySelecionado() {
+    public void desativarSelecionado() {
+        Cartao cartao = null;
         Query jpqlQyery = entityManager.createNamedQuery("Cartao.findBySelecionado");
-        Cartao cartao = (Cartao) jpqlQyery.getSingleResult();
-        cartao.setSelecionado(0);
-        save(cartao);
-        return cartao;
+        try {
+            cartao = (Cartao) jpqlQyery.getSingleResult();
+        } catch (Exception e) {
+            return;
+        } catch (Throwable t) {
+            return;
+        }
+        if (cartao != null) {
+            cartao.setSelecionado(0);
+            save(cartao);
+        }
+
     }
 
     @Transactional
     public void alterById(Long id) {
         Query jpqlQyery = entityManager.createNamedQuery("Cartao.findById").setParameter("id", id);
 
-        //Esse cartao é o que estava selecionado e eu vou tirar o selecionado dele.
-        Cartao cartaoPraMudar = findBySelecionado();
-        cartaoPraMudar.setSelecionado(0);
-        save(cartaoPraMudar);
+        //Esse metodo altera a seleção do cartão, caso exista algum selecionado.
+        desativarSelecionado();
 
         //Esse cartao é o que vou marcar como selecionado
         Cartao cartaoSelecionar = (Cartao) jpqlQyery.getSingleResult();

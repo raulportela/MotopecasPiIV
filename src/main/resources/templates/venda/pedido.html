@@ -33,13 +33,27 @@
                     <div class="col-6 col-sm-6 col-md-7">
                         <div class="cart-table ">
                             <div class="checkout-cart">
-                                <h3>Endereço de entrega <i class="fa fa-map-marker"></i></h3>
-                                <p> Rua pedra mineira, 8 - 04856700</p>
-                                <p> Jardim das pedras / Sâo Paulo - SP</p>
+                                <div class="row">
+                                    <div class="col-8">
+                                        <h3>Endereço de entrega <i class="fa fa-map-marker"></i></h3>
+                                        <p th:text="${venda.endereco.rua + ', ' + venda.endereco.numero + ' - ' + venda.endereco.cep}"></p>
+                                        <p th:text="${venda.endereco.bairro + ' São Paulo - SP'}"></p>
+                                        <p th:if="venda.endereco.complemento != null" th:text="${'Observações: '+ venda.endereco.complemento}"></p>
+                                    </div>
+                                </div>
                             </div><br>
                             <div class="checkout-cart">
                                 <h3>Detalhe da forma de pagamento <i class="fa fa-money"></i></h3>
-                                
+                                <div class="col-8 checkout-form">
+                                    <h6>Nome do Titular</h6> 
+                                    <input type="text" th:value="${venda.cartao.nomeTitular}" disabled>
+                                    <h6>Numero do cartão:</h6> 
+                                    <input type="text" th:value="${venda.cartao.numeroCartao}" disabled>
+                                    <h6>Data de validade:</h6> 
+                                    <input type="text" th:value="${venda.cartao.dataValidade}" disabled>
+                                    <h6>Código de segurança:</h6> 
+                                    <input type="text" th:value="${venda.cartao.codSeguranca}" disabled>
+                                </div>
                             </div><br>
                         </div>
                     </div>
@@ -69,6 +83,22 @@
                             </table>
                             <div class="total-cost">
                                 <h6>Total <span th:text="${'R$' + venda.valorTotal}"></span></h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="container">
+                <h3>Outras compras</h3>
+                <div class="row"th:if="${listaVenda != null}">
+                    
+                    <div class="col-4 col-sm-4 col-md-4" th:each="venda, stat: ${listaVenda}">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title" th:text="${venda.notaFiscal}"></h5>
+                                <h6 class="card-subtitle mb-2 text-muted" th:text="${venda.dataCompra}"></h6>
+                                <a th:href="@{/mv/venda/pedido?numeropedido={numeropedido}(numeropedido=${venda.notaFiscal})}">Visualizar</a>
                             </div>
                         </div>
                     </div>

@@ -37,6 +37,8 @@ public class CartaoController{
             @ModelAttribute("cartao") Cartao cartao, 
             /*BindingResult bindingResult,*/ RedirectAttributes redirectAttributes) {
         Cliente cliente = clienteRepository.findById(1l);
+        cartaoRepository.desativarSelecionado();
+        cartao.setSelecionado(1);
         cartao.setCliente(cliente);
         cartaoRepository.save(cartao);
         redirectAttributes.addFlashAttribute("mensagemSucesso", 

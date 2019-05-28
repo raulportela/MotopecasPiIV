@@ -5,6 +5,7 @@
  */
 package Motopecas.JRL.MotoPecas.repository.venda;
 
+import Motopecas.JRL.MotoPecas.entidade.cliente.Cliente;
 import Motopecas.JRL.MotoPecas.entidade.venda.ItemVenda;
 import Motopecas.JRL.MotoPecas.entidade.venda.Venda;
 import java.util.List;
@@ -56,4 +57,10 @@ public class VendaRepository {
         }
         return venda;
     }
+    
+    public List<Venda> findByIdCliente(Cliente cliente){
+        Query jpqlQuery = entityManager.createNamedQuery("Venda.findByIdCliente").setParameter("idCliente", cliente.getId());
+        return jpqlQuery.getResultList();
+    }
+
 }
