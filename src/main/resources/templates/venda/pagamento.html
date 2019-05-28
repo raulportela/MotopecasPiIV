@@ -115,7 +115,7 @@
                                                                 <label>MasterCard</label>
                                                                 <br>
                                                                 <label>Numero do cartão:</label> 
-                                                                <input type="text" name="numeroCartao" id="txtnumeroCartao" th:classappend="${#fields.hasErrors('numeroCartao')}? is-invalid"  placeholder="8888.8888.8888.8888" th:field="*{numeroCartao}">
+                                                                <input type="text" class="form-group" name="numeroCartao" id="txtnumeroCartao" th:classappend="${#fields.hasErrors('numeroCartao')}? is-invalid"  placeholder="8888.8888.8888.8888" th:field="*{numeroCartao}">
                                                                 <label>Nome do Titular</label> 
                                                                 <input type="text" name="nomeTitular" id="txtnomeTitular" th:classappend="${#fields.hasErrors('nomeTitular')}? is-invalid" placeholder="Como esta impresso no cartão" th:field="*{nomeTitular}">
                                                                 <label>Data de validade:</label> 

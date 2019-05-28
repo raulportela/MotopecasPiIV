@@ -41,6 +41,6 @@ public class CartaoController{
         cartaoRepository.save(cartao);
         redirectAttributes.addFlashAttribute("mensagemSucesso", 
                 "Cartao " + cartao.getBandeira()+ " salvo com sucesso");
-        return new ModelAndView("redirect:/mv/home");
+        return new ModelAndView("redirect:/mv/venda/confirmacao");
     }
 }
