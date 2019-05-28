@@ -46,39 +46,9 @@
                             <br>
                             <div class="checkout-cart">
                                 <h3>Forma de pagamento <i class="fa fa-dollar"></i></h3>
-                                <!-- <form class="checkout-form" th:action="@{/mv/venda/salvarcartao}" method="post" th:object="${cartao}" novalidate>
-                                    <label>Bandeira:</label>
-                                    <br>
-                                    <input type="radio" name="bandeira" id="optBandeira" value="visa" th:field="*{bandeira}" >
-                                    <label>Visa</label>
-                                    <input type="radio" name="bandeira" id="optBandeira" value="mastercard" th:field="*{bandeira}" >
-                                    <label>MasterCard</label>
-                                    <br>
-                                    <label>Numero do cartão:</label> 
-                                    <input type="text" name="numeroCartao" id="txtnumeroCartao" th:classappend="${#fields.hasErrors('numeroCartao')}? is-invalid"  placeholder="8888.8888.8888.8888" th:field="*{numeroCartao}">
-                                    <label>Nome do Titular</label> 
-                                    <input type="text" name="nomeTitular" id="txtnomeTitular" th:classappend="${#fields.hasErrors('nomeTitular')}? is-invalid" placeholder="Como esta impresso no cartão" th:field="*{nomeTitular}">
-                                    <label>Data de validade:</label> 
-                                    <input type="text" name="dataValidade" id="txtdataValidade" th:classappend="${#fields.hasErrors('dataValidade')}? is-invalid" placeholder="MM/ANO" th:field="*{dataValidade}">
-                                    <label>Código de segurança:</label> 
-                                    <input type="text" name="codSeguranca" id="txtcodSeguranca" th:classappend="${#fields.hasErrors('codSeguranca')}? is-invalid" placeholder="Código no verso do cartão" th:field="*{codSeguranca}">
-                                    <label>Opçoes de parcela:</label>
-                                    <select  th:field="*{parcela}">
-                                        <option th:value='1' th:text="1"></option>
-                                        <option th:value='2' th:text="2"></option>
-                                        <option th:value='3' th:text="3"></option>
-                                        <option th:value='4' th:text="4"></option>
-                                        <option th:value='5' th:text="5"></option>
-                                        <option th:value='6' th:text="6"></option>
-                                        <option th:value='7' th:text="7"></option>
-                                        <option th:value='8' th:text="8"></option>
-                                        <option th:value='9' th:text="9"></option>
-                                        <option th:value='10' th:text="10"></option>
-                                        <option th:value='11' th:text="11"></option>
-                                        <option th:value='12' th:text="12"></option>
-                                    </select>
-                                </form>
-                                -->
+                                <div class="col-4 align-self-end">
+                                    <a th:href="@{/mv/venda/confirmacao}" class="site-btn sb-grey" data-toggle="modal" data-target="#modal-cartao">Adicionar <br> Cartão</a>
+                                </div>
                             </div><br>
                         </div>
                     </div>
@@ -166,5 +136,116 @@
                 </div>
             </div>
         </div>
+
+        <!-- Modal selecinar cartão-->
+        <div class="modal fade" id="modal-cartao" tabindex="-1" role="dialog" aria-labelledby="modal-cartao" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Selecinar Cartão</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    <table class="table table-striped ">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Cartão</th>
+                                                <th scope="col">Selecionar</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr  th:each="end, stat: ${cliente.endereco}">
+                                                <th th:text="${end.rua + ', ' + end.numero + ' - ' + end.cep +' - ' + end.bairro + ' Sao Paulo/SP' }"></th>
+                                                <td><a th:href="@{/mv/venda/{id}/alteraddress(id=${end.id})}" ><i class="fa fa-map-marker"></i><i class="fa fa-check"></i></a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <hr>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-9"></div>
+                                <div class="col-3">
+                                    <a th:href="@{/mv/venda/confirmacao}" data-toggle="modal" data-target="#modal-formCartao">Novo <i class="fa fa-map-marker"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal formulario cartao-->
+        <div class="modal fade" id="modal-formCartao" tabindex="-1" role="dialog" aria-labelledby="modal-formCartao" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Cadastrar Cartão</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                   
+                                        <form class="form-group" th:action="@{/mv/venda/salvarcartao}" method="post" th:object="${cartao}" novalidate>
+                                            <label>Bandeira:</label>
+                                            <br>
+                                            <input type="radio" name="bandeira" id="optBandeira" value="visa" th:field="*{bandeira}" >
+                                            <label>Visa</label>
+                                            <input type="radio" name="bandeira" id="optBandeira" value="mastercard" th:field="*{bandeira}" >
+                                            <label>MasterCard</label>
+                                            <br>
+                                            <label>Numero do cartão:</label> 
+                                            <br>
+                                            <input type="text" name="numeroCartao" id="txtnumeroCartao" th:classappend="${#fields.hasErrors('numeroCartao')}? is-invalid"  placeholder="8888.8888.8888.8888" th:field="*{numeroCartao}">
+                                            <br>
+                                            <label>Nome do Titular</label> 
+                                            <br>
+                                            <input type="text" name="nomeTitular" id="txtnomeTitular" th:classappend="${#fields.hasErrors('nomeTitular')}? is-invalid" placeholder="Como esta impresso no cartão" th:field="*{nomeTitular}">
+                                            <br>
+                                            <label>Data de validade:</label> 
+                                            <br>
+                                            <input type="text" name="dataValidade" id="txtdataValidade" th:classappend="${#fields.hasErrors('dataValidade')}? is-invalid" placeholder="MM/ANO" th:field="*{dataValidade}">
+                                            <br>
+                                            <label>Código de segurança:</label> 
+                                            <br>
+                                            <input type="text" name="codSeguranca" id="txtcodSeguranca" th:classappend="${#fields.hasErrors('codSeguranca')}? is-invalid" placeholder="Código no verso do cartão" th:field="*{codSeguranca}">
+                                            <br>
+                                            <label>Opçoes de parcela:</label>
+                                            <br>
+                                            <select  th:field="*{parcela}">
+                                                <option th:value='1' th:text="1"></option>
+                                                <option th:value='2' th:text="2"></option>
+                                                <option th:value='3' th:text="3"></option>
+                                                <option th:value='4' th:text="4"></option>
+                                                <option th:value='5' th:text="5"></option>
+                                                <option th:value='6' th:text="6"></option>
+                                                <option th:value='7' th:text="7"></option>
+                                                <option th:value='8' th:text="8"></option>
+                                                <option th:value='9' th:text="9"></option>
+                                                <option th:value='10' th:text="10"></option>
+                                                <option th:value='11' th:text="11"></option>
+                                                <option th:value='12' th:text="12"></option>
+                                            </select>
+                                        </form>
+                                    <hr>
+                                </div>
+                            </div>
+                                    <a th:href="@{/mv/cartao/salvar}" data-toggle="modal" data-target="#modal-cartao">Cadastrar <i class="fa fa-map-marker"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </body>
 </html>
