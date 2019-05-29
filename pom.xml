@@ -36,12 +36,11 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         
-        <!-- ESTA COMENTANDO PORQUE PRECISA SER BAIXADO NOVAMENTE A API DO SQLMICROSOFT, E APÓS BAIXAR COLOCAR NA PASTA DO PROJETO E SALVR NO GUITHUB. --> 
-         <!--<dependency>
+        <dependency>
             <groupId>com.microsoft.sqlserver</groupId>
             <artifactId>sqljdbc4</artifactId>
             <version>4.0</version>
-        </dependency> -->
+        </dependency>
         
         <dependency>
             <groupId>org.springframework.boot</groupId>
