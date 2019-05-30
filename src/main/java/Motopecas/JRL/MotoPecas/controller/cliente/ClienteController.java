@@ -51,6 +51,6 @@ public class ClienteController{
         clienteRepository.save(cliente);
         redirectAttributes.addFlashAttribute("mensagemSucesso", 
                 "Cliente " + cliente.getNome() + " salvo com sucesso");
-        return new ModelAndView("redirect:/mv/home");
+        return new ModelAndView("redirect:/login");
     }
 }

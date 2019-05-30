@@ -52,7 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/mv/home").permitAll()
                     .antMatchers("/mv/cliente/**").permitAll()
                     .antMatchers("/mv/produto/**").permitAll() 
-                    .antMatchers("/mv/venda/**").permitAll()
+                    .antMatchers("/mv/venda/carrinho").permitAll()
                     .antMatchers("/mv/cartao/**").permitAll()
                     .antMatchers("/**").authenticated()
             .and()
@@ -60,7 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .loginPage("/login") // DEFINE A TELA DE LOGIN DO SISTEMA E NAO DO SPRING
                     .usernameParameter("username")
                     .passwordParameter("senha")
-                    .defaultSuccessUrl("/mv/home").permitAll()
+                    .defaultSuccessUrl("/mv/venda/confirmacao").permitAll()
             .and()
                 .logout()
                     .logoutUrl("/logout")
@@ -68,26 +68,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .invalidateHttpSession(true).deleteCookies("JSESSIONID")
             .and()
                 .exceptionHandling().accessDeniedPage("/erro/403");
-        /*
-        http.csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/css/**", "/img/**", "/js/**", "/font/**").permitAll()
-                .antMatchers("/protegido/peao").hasRole("PEAO")
-                .antMatchers("/protegido/fodon").hasRole("FODON")
-                .antMatchers("/protegido/god").hasRole("GOD")
-                .antMatchers("/**").authenticated()
-            .and()
-                .formLogin()
-                    .loginPage("/login") // DEFINE A TELA DE LOGIN DO SISTEMA E NAO DO SPRING
-                    .usernameParameter("username")
-                    .passwordParameter("senha")
-                    .defaultSuccessUrl("/home").permitAll()
-            .and()
-                .logout()
-                    .logoutUrl("/logout")
-                    .logoutSuccessUrl("/login?logout")
-                    .invalidateHttpSession(true).deleteCookies("JSESSIONID");
-        */
+        
     }
 
 }

@@ -4,20 +4,24 @@
     <!-- head importado -->
     <head th:include="fragments/head :: head"></head>
     <body>
+
         <!-- Page Preloder -->
         <div id="preloder" style="display: none;">
             <div class="loader" style="display: none;"></div>
         </div>
-        
+
         <!-- Cabeçalho importado -->
         <header th:include="fragments/header :: header"></header>
 
         <section class="checkout-section spad">
             <div class="container">
+                
                 <div class="row">
-
                     <div class="col">
-                        <form class="checkout-form" th:action="@{/mv/login}" method="post">
+                        <div class="alert alert-success" th:if="${messagemSucesso!=null}" role="alert">
+                            <div class="alert" th:text="${mensagemSucesso}"></div> 
+                        </div>
+                        <form class="checkout-form" th:action="@{/login}" method="post">
                             <div class="cf-title">Ja sou cadastrdo <i class="fa fa-user"></i></div>
                             <div class="col-md-12">
                                 Email: <input type="text" name="username"  >
@@ -28,6 +32,7 @@
                     </div>
                     <div class="col">
                         <div class="col">
+                            
                             <form class="checkout-form">
                                 <div class="cf-title">Crie uma nova conta <i class="fa fa-user-plus"></i></div>
                                 <div class="col-md-12">
@@ -37,12 +42,12 @@
                             </form>
                         </div>
                     </div>
-
                 </div>
             </div>
         </section>
-        
+
         <!-- Rodapé importado -->
         <footer th:include="fragments/footer :: footer"></footer>
 
-    </body></html>
+    </body>
+</html>

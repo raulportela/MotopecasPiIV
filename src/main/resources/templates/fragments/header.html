@@ -8,7 +8,7 @@
     <link rel="stylesheet" th:href="@{/css/owl.carousel.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/animate.css}"/>
     <link rel="stylesheet" th:href="@{/css/style.css}"/>
-    
+
 
     <header class="header-section">
         <div class="header-top">
@@ -28,10 +28,17 @@
                     </div>
                     <div class="col-xl-4 col-lg-5">
                         <div class="user-panel">
-                            <div class="up-item">
+                            <div class="up-item" th:if="${clienteSessao == null}">
                                 <i class="flaticon-profile"></i>
-                                <a th:href="@{/mv/login}">Faça login</a> ou <a th:href="@{mv/cliente/cadastro}">Cadastre-se</a>
+                                <a th:href="@{/login}">Faça login</a> ou <a th:href="@{mv/cliente/cadastro}">Cadastre-se</a>
                             </div>
+                            <div class="up-item" th:if="${clienteSessao != null}">
+                                <div class="cf-title" th:text="${'Boas Compras, '+ clienteSessao.nome}"></div>
+                                <p><a th:href="@{/logout}">Sair</a></p>
+                                <i class="flaticon-profile"></i>
+                                <a href="#">Minha conta</a>
+                            </div>
+                            
                             <div class="up-item">
                                 <div class="shopping-card">
                                     <i class="flaticon-bag"></i>

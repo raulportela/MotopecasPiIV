@@ -1978,6 +1978,18 @@ td-confirmacao{
     font-size: 14px;
 }
 
+.checkout-form input[type=password] {
+    box-shadow: 0 0 0 1px #ffb025;
+    width: 100%;
+    height: 44px;
+    border: none;
+    padding: 0 18px;
+    background: #f0f0f0;
+    border-radius: 40px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
 .checkout-form .address-inputs {
     margin-bottom: 54px;
 }
