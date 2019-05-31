@@ -33,8 +33,8 @@
                                 <a th:href="@{/login}">Faça login</a> ou <a th:href="@{mv/cliente/cadastro}">Cadastre-se</a>
                             </div>
                             <div class="up-item" sec:authorize="isAuthenticated()">
-                                <span sec:authentication="principal.nome"></span>
-                                <div class="cf-title" text="Boas compras" sec:authentication=" principal.nome" ></div>
+                                Boas Compras, <span sec:authentication="principal.nome"></span>
+                               
                                 <p><a th:href="@{/logout}">Sair</a></p>
                                 <i class="flaticon-profile"></i>
                                 <a href="#">Minha conta</a>

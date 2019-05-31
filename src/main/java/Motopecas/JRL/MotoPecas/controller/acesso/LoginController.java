@@ -25,9 +25,4 @@ public class LoginController{
    public String loginPersonalizado(){
        return "/acesso/login";
     }
-    
-    @ModelAttribute("dtRegistro")
-    public List<LocalDateTime> getListaRegistros() {
-        return new ArrayList<LocalDateTime>();
-    }
 }
