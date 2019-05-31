@@ -5,8 +5,12 @@
  */
 package Motopecas.JRL.MotoPecas.controller.acesso;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -20,7 +24,10 @@ public class LoginController{
    @GetMapping
    public String loginPersonalizado(){
        return "/acesso/login";
-   }
+    }
     
-    
+    @ModelAttribute("dtRegistro")
+    public List<LocalDateTime> getListaRegistros() {
+        return new ArrayList<LocalDateTime>();
+    }
 }

@@ -28,12 +28,13 @@
                     </div>
                     <div class="col-xl-4 col-lg-5">
                         <div class="user-panel">
-                            <div class="up-item" th:if="${clienteSessao == null}">
+                            <div class="up-item" sec:authorize="!isAuthenticated()">
                                 <i class="flaticon-profile"></i>
                                 <a th:href="@{/login}">Faça login</a> ou <a th:href="@{mv/cliente/cadastro}">Cadastre-se</a>
                             </div>
-                            <div class="up-item" th:if="${clienteSessao != null}">
-                                <div class="cf-title" th:text="${'Boas Compras, '+ clienteSessao.nome}"></div>
+                            <div class="up-item" sec:authorize="isAuthenticated()">
+                                <span sec:authentication="principal.nome"></span>
+                                <div class="cf-title" text="Boas compras" sec:authentication=" principal.nome" ></div>
                                 <p><a th:href="@{/logout}">Sair</a></p>
                                 <i class="flaticon-profile"></i>
                                 <a href="#">Minha conta</a>

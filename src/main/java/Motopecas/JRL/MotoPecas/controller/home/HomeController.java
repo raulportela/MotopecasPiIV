@@ -1,6 +1,8 @@
 package Motopecas.JRL.MotoPecas.controller.home;
 
 import Motopecas.JRL.MotoPecas.entidade.cliente.Cliente;
+import Motopecas.JRL.MotoPecas.repository.cliente.ClienteRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +25,7 @@ public class HomeController {
     @GetMapping("/home")
     public ModelAndView home(Authentication authentication) {
         Cliente cliente = null;
-        if(authentication != null){
+        if (authentication != null) {
             cliente = (Cliente) authentication.getPrincipal();
         }
         
