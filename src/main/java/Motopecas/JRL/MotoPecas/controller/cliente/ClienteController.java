@@ -42,6 +42,12 @@ public class ClienteController{
         
     }
     
+    @GetMapping("/perfil")
+    public ModelAndView perfil() {
+        return new ModelAndView("/cliente/perfil");
+        
+    }
+    
     @PostMapping("/salvar")
     public ModelAndView salvar(
             @ModelAttribute("cliente") Cliente cliente, 
