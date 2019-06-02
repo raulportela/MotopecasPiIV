@@ -692,7 +692,7 @@ ol {
 .text-shadow p,
 .text-shadow a{
     color: #fff;
-    text-shadow: 0.1em 0.1em 0.2em #ffb025;
+    text-shadow: 0 0 0.2em #000, 0 0 0.2em #000;
 }
 
 .hero-slider .owl-item.active .hs-item span {
@@ -1202,10 +1202,10 @@ ol {
 }
 
 .social-links a.instagram:hover i {
-    color: #2F5D84;
+    color: #dd2a7b; 
 }
 
-.social-links a.whatsApp:hover i {
+.social-links a.whatsapp:hover i {
     color: #04D960;
 }
 
