@@ -600,9 +600,10 @@ ol {
     width: calc(100% - 10px);
     height: calc(100% - 10px);
     border: 1px solid #000;
-    left: 50px;
+    left: 5px;
     top: 5px;
     border-radius: 50%;
+/*    box-shadow: 2px 2px 2px 1px #000;*/
 }
 
 .hero-slider .hs-item .offer-card span {
