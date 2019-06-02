@@ -603,6 +603,7 @@ ol {
     left: 5px;
     top: 5px;
     border-radius: 50%;
+/*    box-shadow: 2px 2px 2px 1px #000;*/
 }
 
 .hero-slider .hs-item .offer-card span {
@@ -1197,8 +1198,8 @@ ol {
     color: #2F5D84;
 }
 
-.social-links a.google-plus:hover i {
-    color: #ffb025;
+.social-links a.whatsApp:hover i {
+    color: #04D960;
 }
 
 .social-links a.twitter:hover i {
@@ -1215,6 +1216,10 @@ ol {
 
 .social-links a.twitter:hover i {
     color: #5abed6;
+}
+
+.social-links a.whatsApp:hover i {
+    color: #04D960;
 }
 
 .social-links a.youtube:hover i {

@@ -12,78 +12,71 @@
     <footer class="footer-section">
         <div class="container">
             <div class="footer-logo text-center">
-                <a th:href="@{/#}"><img th:src="@{/img/logo-light.png}" alt=""></a>
+                <a th:href="@{/#}"><img th:src="@{/img/logo-light.png}" alt="Logotipo JRL" title="JRL"></a>
             </div>
             <div class="row">
-                <div class="col-lg-3 col-sm-6">
+                <div class="col-lg-4 col-sm-6">
                     <div class="footer-widget about-widget">
-                        <h2>About</h2>
-                        <p>Donec vitae purus nunc. Morbi faucibus erat sit amet congue mattis. Nullam frin-gilla faucibus urna, id dapibus erat iaculis ut. Integer ac sem.</p>
+                        <h2>Sobre a JRL</h2>
+                        <ul>
+                            <li><a th:href="@{/#}">Quem somos</a></li>
+                            <li><a th:href="@{/#}">Fale conosco</a></li>
+                            <li><a th:href="@{/#}">Trabalhe conosco</a></li>
+                            <li><a th:href="@{/#}">Mapa do site</a></li>
+                        </ul>
+                        <!-- Imagens dos cartões
                         <img th:src="@{/img/cards.png}" alt="">
+                        -->
                     </div>
                 </div>
-                <div class="col-lg-3 col-sm-6">
+                <div class="col-lg-4 col-sm-6">
                     <div class="footer-widget about-widget">
-                        <h2>Questions</h2>
+                        <h2>Central do cliente</h2>
                         <ul>
-                            <li><a th:href="@{/#}">About Us</a></li>
-                            <li><a th:href="@{/#}">Track Orders</a></li>
-                            <li><a th:href="@{/#}">Returns</a></li>
-                            <li><a th:href="@{/#}">Jobs</a></li>
-                            <li><a th:href="@{/#}">Shipping</a></li>
-                            <li><a th:href="@{/#}">Blog</a></li>
-                        </ul>
-                        <ul>
-                            <li><a th:href="@{/#}">Partners</a></li>
-                            <li><a th:href="@{/#}">Bloggers</a></li>
-                            <li><a th:href="@{/#}">Support</a></li>
-                            <li><a th:href="@{/#}">Terms of Use</a></li>
-                            <li><a th:href="@{/#}">Press</a></li>
+                            <li><a th:href="@{/mv/login}" alt="Login">Login</a></li>
+                            <li><a th:href="@{/mv/cliente/cadastro}" alt="Cadastro">Cadastro</a></li>
+                            <li><a th:href="@{/#}" alt="Esqueci minha senha">Esqueci minha senha</a></li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-3 col-sm-6">
+                <div class="col-lg-4 col-sm-6">
                     <div class="footer-widget about-widget">
-                        <h2>Questions</h2>
+                        <h2>Parceiros</h2>
                         <div class="fw-latest-post-widget">
                             <div class="lp-item">
-                                <div class="lp-thumb set-bg" th:data-setbg="@{/img/blog-thumbs/1.jpg}"></div>
-                                <div class="lp-content">
+                                <a th:href="@{https://www.honda.com.br/motos/}" class="lp-thumb set-bg">
+                                    <img th:src="@{/img/thumbnails/honda.jpg}" alt="Logotipo Honda" title="Clique para acessar o site">
+                                </a>
+                                <a th:href="@{https://www2.yamaha-motor.com.br}" class="lp-thumb set-bg">
+                                    <img th:src="@{/img/thumbnails/yamaha.png}" alt="Logotipo Yamaha" title="Clique para acessar o site">
+                                </a>
+                                <a th:href="@{https://www.bmw-motorrad.com.br/pt/models/modeloverview.html}" class="lp-thumb set-bg">
+                                    <img th:src="@{/img/thumbnails/bmw.jpg}" alt="Logotipo BMW" title="Clique para acessar o site">
+                                </a>
+                                <!-- Insere informações  ao lado das fotos -->
+                                <!-- <div class="lp-content">
                                     <h6>what shoes to wear</h6>
                                     <span>Oct 21, 2018</span>
                                     <a th:href="@{/#}" class="readmore">Read More</a>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="lp-item">
-                                <div class="lp-thumb set-bg" th:data-setbg="@{/img/blog-thumbs/2.jpg}"></div>
-                                <div class="lp-content">
-                                    <h6>trends this year</h6>
-                                    <span>Oct 21, 2018</span>
-                                    <a th:href="@{/#}" class="readmore">Read More</a>
-                                </div>
+                                <a th:href="@{https://www.pirelli.com/tyres/pt-br/motorcycle/homepage}" class="lp-thumb set-bg">
+                                    <img th:src="@{/img/thumbnails/pirelli.jpg}" alt="Logotipo Pirelli" title="Clique para acessar o site">
+                                </a>
+                                <a th:href="@{https://www.bridgestone.pt/pneus-moto/?referrer=https%3A%2F%2Fwww.google.com%2F}" class="lp-thumb set-bg">
+                                    <img th:src="@{/img/thumbnails/bridgestone.jpg}" alt="Logotipo Bridgestone" title="Clique para acessar o site">
+                                </a>
+                                <a th:href="@{http://ls2.com.br}" class="lp-thumb set-bg">
+                                    <img th:src="@{/img/thumbnails/ls2.jpg}" alt="Logotipo LS2" title="Clique para acessar o site">
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6">
                     <div class="footer-widget contact-widget">
-                        <h2>Questions</h2>
-                        <div class="con-info">
-                            <span>C.</span>
-                            <p>Your Company Ltd </p>
-                        </div>
-                        <div class="con-info">
-                            <span>B.</span>
-                            <p>1481 Creekside Lane  Avila Beach, CA 93424, P.O. BOX 68 </p>
-                        </div>
-                        <div class="con-info">
-                            <span>T.</span>
-                            <p>+53 345 7953 32453</p>
-                        </div>
-                        <div class="con-info">
-                            <span>E.</span>
-                            <p>office@youremail.com</p>
-                        </div>
+                           
                     </div>
                 </div>
             </div>
@@ -92,15 +85,13 @@
         <div class="social-links-warp">
             <div class="container">
                 <div class="social-links social-links-orientation">
-                    <a th:href="@{/#}" class="instagram"><i class="fa fa-instagram"></i><span>instagram</span></a>
-                    <a th:href="@{/#}" class="facebook"><i class="fa fa-facebook"></i><span>facebook</span></a>
-                    <a th:href="@{/#}" class="twitter"><i class="fa fa-twitter"></i><span>twitter</span></a>
+                    <a th:href="@{https://www.instagram.com/jrlmotopecas/}" class="instagram" title="Instagram - JRL"><i class="fa fa-instagram"></i><span>instagram</span></a>
+                    <a th:href="@{https://www.facebook.com/JRL-Motopeças-381896569334641/?modal=admin_todo_tour}" class="facebook" title="Facebook - JRL"><i class="fa fa-facebook"></i><span>facebook</span></a>
+                    <a th:href="@{https://twitter.com/JMotopecas}" class="twitter" title="Twitter - JRL"><i class="fa fa-twitter"></i><span>twitter</span></a>
+                    <a th:href="@{https://api.whatsapp.com/send?phone=5511977544550&text=Olá! Acessei o link através do site! Me chamo }" class="whatsapp" title="WhatsApp - JRL">
+                        <i class="fa fa-whatsapp"></i><span>whatsapp</span>
+                    </a>
                 </div>
-
-                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --> 
-                <p class="text-white text-center mt-5">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a th:href="@{/#}" target="_blank">Colorlib</a></p>
-                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-
             </div>
         </div>
     </footer>
