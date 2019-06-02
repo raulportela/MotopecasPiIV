@@ -586,7 +586,6 @@ ol {
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
     opacity: 0;
-
 }
 .margincols{
 
@@ -686,6 +685,14 @@ ol {
 .hero-slider .owl-item.active .hs-item .site-btn {
     top: 0;
     opacity: 1;
+}
+
+.text-shadow span,
+.text-shadow h2,
+.text-shadow p,
+.text-shadow a{
+    color: #fff;
+    text-shadow: 0.1em 0.1em 0.2em #ffb025;
 }
 
 .hero-slider .owl-item.active .hs-item span {
