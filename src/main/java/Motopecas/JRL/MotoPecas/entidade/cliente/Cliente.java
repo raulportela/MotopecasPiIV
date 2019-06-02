@@ -12,19 +12,19 @@ import Motopecas.JRL.MotoPecas.entidade.endereco.Endereco;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.security.core.userdetails.UserDetails;
 
 /**
@@ -33,10 +33,12 @@ import org.springframework.security.core.userdetails.UserDetails;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "Cliente.findById", query = "SELECT c FROM Cliente c WHERE c.id = :idCliente"),
-    @NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c "),
+    @NamedQuery(name = "Cliente.findById", query = "SELECT c FROM Cliente c WHERE c.id = :idCliente")
+    ,
+    @NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c ")
+    ,
     @NamedQuery(name = "Cliente.findByEmail", query = "SELECT c FROM Cliente c WHERE c.email = :email")
-    
+
 })
 
 public class Cliente implements Serializable, UserDetails {
@@ -50,7 +52,7 @@ public class Cliente implements Serializable, UserDetails {
 
     @Column(length = 200, nullable = false)
     private String hashsenha;
-    
+
     @Column(length = 50, nullable = false)
     private String nome;
 
@@ -73,16 +75,17 @@ public class Cliente implements Serializable, UserDetails {
     // '0'== Feminino
     @Column(length = 100, nullable = false)
     private boolean sexo;
-    
-    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY ,cascade = javax.persistence.CascadeType.ALL)
+
+    @Fetch(FetchMode.SUBSELECT)
+    @OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Endereco> endereco;
-    
-    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY, cascade = javax.persistence.CascadeType.ALL)
+
+    @Fetch(FetchMode.SUBSELECT)
+    @OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Cartao> cartao;
-    
-    
-//    @Column(length = 11, nullable = true)
-//    private int papel;
+
+    @Column(length = 11, nullable = true)
+    private int papel;
     
     public Cliente() {
 
@@ -101,12 +104,12 @@ public class Cliente implements Serializable, UserDetails {
         this.sexo = sexo;
         this.endereco = endereco;
         this.cartao = cartao;
-//        this.papel = papel;
+        this.papel = papel;
     }
 
-    public Cliente(String email, String nome, String SenhaAberta ) {
-        this.email =email;
-        this.nome =nome;
+    public Cliente(String email, String nome, String SenhaAberta) {
+        this.email = email;
+        this.nome = nome;
         setHashsenha(SenhaAberta);
     }
 
@@ -207,13 +210,13 @@ public class Cliente implements Serializable, UserDetails {
         return hashsenha;
     }
 
-    public final void setHashsenha(String senhaAberta ) {
-        this.hashsenha = 
-                SecurityConfig.bcryptPasswordEncoder()
-                           .encode(senhaAberta);
+    public final void setHashsenha(String senhaAberta) {
+        this.hashsenha
+                = SecurityConfig.bcryptPasswordEncoder()
+                        .encode(senhaAberta);
     }
 
-     @Override
+    @Override
     public String getPassword() {
         return getHashsenha();
     }
@@ -239,7 +242,7 @@ public class Cliente implements Serializable, UserDetails {
     }
 
     @Override
-    public List <Papel> getAuthorities() {
+    public List<Papel> getAuthorities() {
         return new ArrayList();
     }
 
@@ -247,15 +250,12 @@ public class Cliente implements Serializable, UserDetails {
     public String getUsername() {
         return getEmail();
     }
-    
-    
 
-//    public int getPapel() {
-//        return papel;
-//    }
-//
-//    public void setPapel(int papel) {
-//        this.papel = papel;
-//    }
+    public int getPapel() {
+        return papel;
+    }
 
+    public void setPapel(int papel) {
+        this.papel = papel;
+    }
 }
