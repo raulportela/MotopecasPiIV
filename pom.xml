@@ -66,12 +66,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
-        <!--
         <dependency>
-            <groupId> br.com.uol.pagseguro</groupId>
-            <artifactId>pagseguro-api</artifactId>
-            <version>2.2.0</version>
-        </dependency> -->
+            <groupId>com.paypal.sdk</groupId>
+            <artifactId>rest-api-sdk</artifactId>
+            <version>LATEST</version>
+        </dependency>
     </dependencies>
 
     <build>
