@@ -15,24 +15,24 @@
 
         <section class="checkout-section spad">
             <div class="container">
-                
+                <div th:if="${param.error}" class="alert alert-danger">    
+                    Email ou senha invalida.
+                </div>
                 <div class="row">
                     <div class="col">
-                        <div class="alert alert-success" th:if="${messagemSucesso!=null}" role="alert">
-                            <div class="alert" th:text="${mensagemSucesso}"></div> 
-                        </div>
                         <form class="checkout-form" th:action="@{/login}" method="post">
                             <div class="cf-title">Ja sou cadastrdo <i class="fa fa-user"></i></div>
                             <div class="col-md-12">
                                 Email: <input type="text" name="username"  >
                                 Senha: <input type="password"  name="senha">
+
                                 <button  type="submit" class="site-btn">Login</button>
                             </div>
                         </form>
                     </div>
                     <div class="col">
                         <div class="col">
-                            
+
                             <form class="checkout-form">
                                 <div class="cf-title">Crie uma nova conta <i class="fa fa-user-plus"></i></div>
                                 <div class="col-md-12">
