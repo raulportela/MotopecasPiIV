@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Motopecas.JRL.MotoPecas.controller.acesso;
+package Motopecas.JRL.MotoPecas.controller.erro;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,14 +11,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  *
- * @author Raul Portela
+ * @author Luana
  */
 @Controller
-@RequestMapping("/login")
-public class LoginController{
+@RequestMapping("/erro")
+public class Erro {
 
-   @GetMapping
-   public String loginPersonalizado(){
-       return "/acesso/login";
+    @GetMapping("/403")
+    public String erroNaoPermitido() {
+        return "/erro/403";
     }
+    
 }
