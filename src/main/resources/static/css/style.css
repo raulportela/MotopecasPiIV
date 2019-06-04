@@ -689,8 +689,7 @@ ol {
 
 .text-shadow span,
 .text-shadow h2,
-.text-shadow p,
-.text-shadow a{
+.text-shadow p{
     color: #fff;
     text-shadow: 0 0 0.2em #000, 0 0 0.2em #000;
 }
