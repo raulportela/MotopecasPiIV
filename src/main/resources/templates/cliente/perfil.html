@@ -10,7 +10,7 @@ and open the template in the editor.
         <header th:include="fragments/header :: header"></header>   
         <div class="container">
             <div class="row">
-                <div class="col-xs-4 col-sm-4 col-md-5 col-lg-4">
+                <div class="col-xs-3 col-sm-3 col-md-4 col-lg-3">
                     <!-- <img th:src="@{/img/product/10.jpg}" alt=""> -->
                     <div class="row">
                         <div class="float-sm-left float-lg-left float-xs-left float-md-left">
@@ -26,31 +26,109 @@ and open the template in the editor.
                         </div> 
                     </div>
                 </div>
-                <div >
-                    <div class="row">
-                        <div id="dadosPessoais" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <form class="checkout-form">
-                                <div>
-                                    <br>
-                                    <h4>Dados Pessoais</h4>
-                                </div>
-                                <div>
-                                    <br>
-                                    <label>Nome:</label>
-                                    <input type="text" id="txtNome" placeholder="Nome">
-                                    <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12"
-                                        <label>CPF:</label>
-                                        <input type="text" id="txtNome" placeholder="Nome">
+                <div id="dadosPessoais" class="col-xs-9 col-sm-9 col-md-8 col-lg-9 box">
+                    <form class="checkout-form">
+                        <div>
+                            <br>
+                            <h4>Dados Pessoais</h4>
+                            <br>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <label>Nome:</label>
                                     </div>
-                                    <div class="row col-xs-6 col-sm-6 col-md-6 col-lg-6"
-                                        <label>CPF:</label>
+                                    <div class="col-8">
                                         <input type="text" id="txtNome" placeholder="Nome">
                                     </div>
                                 </div>
-                            </form>
-                        </div>    
-                    </div>
-                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <label>Sobrenome:</label>
+                                    </div>
+                                    <div class="col-8">
+                                        <input type="text" id="txtSobrenome" placeholder="Sobrenome">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <label>CPF:</label>
+                                    </div>
+                                    <div class="col-8">
+                                        <input type="text" id="txtCpf" placeholder="CPF">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <label>Genero:</label>
+                                    </div>
+                                    <div class="col-8">
+                                        <input type="text" id="txtGenero" placeholder="Genero">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <label>Telefone:</label>
+                                    </div>
+                                    <div class="col-8">
+                                        <input type="text" id="txtTel" placeholder="Telefone">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <label>E-mail:</label>
+                                    </div>
+                                    <div class="col-8">
+                                        <input type="text" id="txtCelular" placeholder="Celular">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <br>
+                            <h4>Cartões</h4>
+                            <br>
+                        </div>
+                        <div class="row">
+                            <!-- aqui vem um foreach com os cartões. A mesma coisa com o Endereço mais pra baixo auqi no codigo -->
+                            <div class="col-2">
+                                <label>Cartão:</label>
+                            </div>
+                            <div class="col-10">
+                                <input type="text" id="txtcartao" value="Cartão numero: 0000000XXXXXX, CCV: 222 - Validade: 12/2022"placeholder="Cartao">
+                            </div>
+                        </div>
+                        <div>
+                            <br>
+                            <h4>Endereços</h4>
+                            <br>
+                        </div>
+                        <div class="row">
+                            <div class="col-2">
+                                <label>Endereço:</label>
+                            </div>
+                            <div class="col-10">
+                                <input type="text" id="txtcartao" value="Rua pedra mineira, numero: 8, Jardim das Pedras - São Paulo - SP"placeholder="Cartao">
+                            </div>
+                        </div>
+                        
+                    </form>
+                </div>    
 
             </div>
 
