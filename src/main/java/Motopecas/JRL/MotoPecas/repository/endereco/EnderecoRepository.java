@@ -5,6 +5,7 @@
  */
 package Motopecas.JRL.MotoPecas.repository.endereco;
 
+import Motopecas.JRL.MotoPecas.entidade.cliente.Cliente;
 import Motopecas.JRL.MotoPecas.entidade.endereco.Endereco;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -34,8 +35,8 @@ public class EnderecoRepository {
     }
 
     @Transactional
-    public Endereco findByIdCliente(Long id) {
-        Query jpqlQyery = entityManager.createNamedQuery("Endereco.findByIdCliente").setParameter("idCliente", id);
+    public Endereco findByIdCliente(Cliente cliente) {
+        Query jpqlQyery = entityManager.createNamedQuery("Endereco.findByIdCliente").setParameter("cliente", cliente);
         Endereco Endereco = (Endereco) jpqlQyery.getSingleResult();
         return Endereco;
     }

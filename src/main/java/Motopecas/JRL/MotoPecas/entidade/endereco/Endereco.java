@@ -9,18 +9,12 @@ import Motopecas.JRL.MotoPecas.entidade.cliente.Cliente;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 /**
  *
@@ -29,7 +23,7 @@ import org.hibernate.annotations.FetchMode;
 
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "Endereco.findByIdCliente", query = "SELECT e FROM Endereco e WHERE cliente_id = :idCliente"),
+    @NamedQuery(name = "Endereco.findByIdCliente", query = "SELECT e FROM Endereco e WHERE e.cliente = :cliente"),
     @NamedQuery(name = "Endereco.findById", query = "SELECT e FROM Endereco e WHERE e.id = :id"),
     @NamedQuery(name = "Endereco.findBySelecionado", query = "SELECT e FROM Endereco e WHERE e.selecionado = 1")
 })
