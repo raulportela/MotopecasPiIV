@@ -17,7 +17,7 @@ and open the template in the editor.
                             <div class="footer-widget about-widget">
                                 <br>
                                 <ul>
-                                    <li><a th:href="@{/#}">Informações de Login</a></li>
+                                    <li><a href="#inf-login">Informações de Login</a></li>
                                     <li><a th:href="@{/#}">Endereços cadastrados</a></li>
                                     <li><a th:href="@{/#}">Cartoes cadastrados</a></li>
                                     <li><a th:href="@{/#}">Compras</a></li>
@@ -110,7 +110,7 @@ and open the template in the editor.
                                 <label>Cartão:</label>
                             </div>
                             <div class="col-10">
-                                <input type="text" id="txtcartao" value="Cartão numero: 0000000XXXXXX, CCV: 222 - Validade: 12/2022"placeholder="Cartao">
+                                <input type="text" id="txtcartao" value="Cartão numero: 0000000XXXXXX, CCV: 222 - Validade: 12/2022"placeholder="Cartao" disabled>
                             </div>
                         </div>
                         <div>
@@ -123,12 +123,12 @@ and open the template in the editor.
                                 <label>Endereço:</label>
                             </div>
                             <div class="col-10">
-                                <input type="text" id="txtcartao" value="Rua pedra mineira, numero: 8, Jardim das Pedras - São Paulo - SP"placeholder="Cartao">
+                                <input type="text" id="txtcartao" value="Rua pedra mineira, numero: 8, Jardim das Pedras - São Paulo - SP"placeholder="Cartao" disabled>
                             </div>
                         </div>
                         <div>
                             <br>
-                            <h4>Informações de Login</h4>
+                            <h4 id="inf-login">Informações de Login</h4>
                             <br>
                         </div>
                         <div class="row">
