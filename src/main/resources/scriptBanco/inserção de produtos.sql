@@ -16,7 +16,7 @@ insert into papel values (default, "JURIDICA");
 
 insert into cliente values (default, 11111111,	'2019-05-23 17:43:54',	0,	'jeferson_nls@hotmail.com',	'Jeferson', '2019',	'1', 'Nls', '1195544', '1');
 
-insert into endereco values (default, 'Luso', '04421070', 'CASA 8', 20, 'Rua Xpto', 1);
+insert into endereco values (default, 'Luso', '04421070', 'CASA 8', 20, 'Rua Xpto',1 , 1);
 
 insert into produto values (default, 'preto', '2019-05-11', 'Produto 01 bla bla bla', '', 'Produto 01', 10,17,2,50);
 
