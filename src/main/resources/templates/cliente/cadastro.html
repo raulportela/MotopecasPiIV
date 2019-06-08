@@ -33,15 +33,15 @@
                                 <label for="inputPessoa">Tipo de pessoa:</label>
                                 <div class="col-sm-10">
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="papel" id="optPessoa" value="1" th:field="*{papel}">
+                                       <!-- <input class="form-check-input" type="radio" name="papel" id="optPessoa" value="1" th:field="*{papel}"> -->
                                         <label class="form-check-label" >
-                                            Física
+                                           <!-- Física -->
                                         </label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="papel" id="optPessoa" value="0" th:field="*{papel}">
+                                     <!--   <input class="form-check-input" type="radio" name="papel" id="optPessoa" value="0" th:field="*{papel}"> -->
                                         <label class="form-check-label" >
-                                            Juridica
+                                          <!--  Juridica -->
                                         </label>
                                     </div>
                                 </div>
@@ -50,7 +50,7 @@
                                     <input type="text" name="email" th:classappend="${#fields.hasErrors('email')}? is-invalid" id="txtEmail" placeholder="Email" th:field="*{email}" >
                                     <label>Senha*:</label>  
                                     <input type="text" name="senha" th:classappend="${#fields.hasErrors('hashsenha')}? is-invalid" id="txtHashSenha" placeholder="Senha" th:field="*{hashsenha}" >
-                                    <label>Confirmar senha*:</label> <input type="text" >
+                                   <!-- <label>Confirmar senha*:</label> <input type="text" > -->
                                 </div>
 
                             </div>
@@ -97,10 +97,10 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col">
+                            <!--    <div class="col">
                                     <input class="form-check-input" type="checkbox" id="gridCheck">
                                     <p>Deseja receber e-mail com novidades?</p>
-                                </div>
+                                </div> -->
 
                             </div>
                             <div class="container"> 
