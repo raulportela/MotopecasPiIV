@@ -28,9 +28,9 @@ import org.hibernate.annotations.FetchMode;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "Cartao.findByIdCliente", query = "SELECT c FROM Cartao c WHERE cliente_id = :idCliente"),
+    @NamedQuery(name = "Cartao.findByIdCliente", query = "SELECT c FROM Cartao c WHERE c.cliente = :idCliente"),
     @NamedQuery(name = "Cartao.findById", query = "SELECT c FROM Cartao c WHERE c.id = :id"),
-    @NamedQuery(name = "Cartao.findBySelecionado", query = "SELECT c FROM Cartao c WHERE c.selecionado = 1")   
+    @NamedQuery(name = "Cartao.findBySelecionado", query = "SELECT c FROM Cartao c WHERE c.selecionado = 1")
 })
 public class Cartao implements Serializable {
 

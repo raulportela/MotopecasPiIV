@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Random;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,7 +43,7 @@ public class VendaController {
 
     @Autowired
     ClienteRepository clienteRepository;
-    
+
     @Autowired
     CartaoRepository cartaoRepository;
 
@@ -61,7 +62,7 @@ public class VendaController {
     @GetMapping("/carrinho")
     public ModelAndView carrinho(HttpServletRequest request,
             @RequestParam(name = "offset", defaultValue = "0") int offset,
-            @RequestParam(name = "qtd", defaultValue = "100") int qtd){
+            @RequestParam(name = "qtd", defaultValue = "100") int qtd) {
         List<Carrinho> listaCarrinho;
         listaCarrinho = carrinhoRepository.findCarrinhoByIdCliente(1l);
         double totalCarrinho = gerarTotal(listaCarrinho);
@@ -71,23 +72,37 @@ public class VendaController {
     }
 
     @GetMapping("/confirmacao")
-    public ModelAndView confirmacao(RedirectAttributes redirectAttributes) {
-        Cliente cliente = clienteRepository.findById(1l);
-        List<Carrinho> listaCarrinho;
-        listaCarrinho = carrinhoRepository.findCarrinhoByIdCliente(1l);
+    public ModelAndView confirmacao(RedirectAttributes redirectAttributes, Authentication authentication) {
+        List <Cartao>  listCartao = null;
+        Cliente cliente = null;
+        if (authentication != null) {
+            cliente = (Cliente) authentication.getPrincipal();
+            if(cliente.getCartao() != null){
+                listCartao = (List<Cartao>) cartaoRepository.findByIdCliente(cliente.getId());
+            }
+            }else{
+                listCartao.add(new Cartao());
+            }
         
+        List<Carrinho> listaCarrinho;
+        listaCarrinho = carrinhoRepository.findCarrinhoByIdCliente(cliente.getId());
+
         double totalCarrinho = gerarTotal(listaCarrinho);
         ModelAndView mv = new ModelAndView("/venda/confirmacao")
                 .addObject("listaCarrinho", listaCarrinho)
                 .addObject("valorTotalCarrinho", totalCarrinho)
                 .addObject("cliente", cliente)
-                .addObject("cartao", new Cartao());
+                .addObject("listCartao", listCartao);
         return mv;
     }
 
     @GetMapping("/efetuarvenda")
-    public ModelAndView efetuarVenda() {
-        Cliente cliente = clienteRepository.findById(1l);
+    public ModelAndView efetuarVenda(Authentication authentication ) {
+        
+        Cliente cliente = null;
+        if(authentication !=  null){
+            cliente = (Cliente) authentication.getPrincipal();
+        }
         String numeroPedido = "" + gerarNumeroPedido(null);
         Venda venda = new Venda();
         venda.setIdCliente(cliente.getId());
@@ -96,7 +111,7 @@ public class VendaController {
         venda.setNotaFiscal(numeroPedido);
         List<ItemVenda> listaVenda = new ArrayList<>();
         List<Carrinho> listaCarrinho;
-        listaCarrinho = carrinhoRepository.findCarrinhoByIdCliente(1l);
+        listaCarrinho = carrinhoRepository.findCarrinhoByIdCliente(cliente.getId());
         double totalCompra = 0;
         for (Endereco endereco : cliente.getEndereco()) {
             if (endereco.getSelecionado() == 1) {
@@ -125,8 +140,9 @@ public class VendaController {
     }
 
     @GetMapping("/pedido")
-    public ModelAndView pedido(@RequestParam("numeropedido") String numeroPedido) {
-        Cliente cliente = clienteRepository.findById(1l);
+    public ModelAndView pedido(@RequestParam("numeropedido") String numeroPedido, Authentication authentication) {
+        Cliente cliente = (Cliente) authentication.getPrincipal();
+        
         Venda venda = vendaRepository.findByNotaFiscal(numeroPedido);
         List<Venda> listaVenda = vendaRepository.findByIdCliente(cliente);
         return new ModelAndView("/venda/pedido").addObject("venda", venda).addObject("listaVenda", listaVenda);
@@ -169,7 +185,7 @@ public class VendaController {
         enderecoRepository.alterById(idEndereco);
         return new ModelAndView("redirect:/mv/venda/confirmacao");
     }
-    
+
     @GetMapping("/{id}/alteracard")
     public ModelAndView alterCard(@PathVariable("id") Long idCartao) {
         cartaoRepository.alterById(idCartao);
@@ -200,6 +216,5 @@ public class VendaController {
         }
         return totalCarrinho;
     }
-    
-    
+
 }

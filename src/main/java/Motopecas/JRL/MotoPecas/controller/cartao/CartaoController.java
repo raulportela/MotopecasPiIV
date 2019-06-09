@@ -10,6 +10,7 @@ import Motopecas.JRL.MotoPecas.entidade.cartao.Cartao;
 import Motopecas.JRL.MotoPecas.repository.cartao.CartaoRepository;
 import Motopecas.JRL.MotoPecas.repository.cliente.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,26 +24,22 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  */
 @Controller
 @RequestMapping("/mv/cartao")
-public class CartaoController{
-    
+public class CartaoController {
+
     @Autowired
     private CartaoRepository cartaoRepository;
-    
-    @Autowired
-    private ClienteRepository clienteRepository;
-    
-    
+
     @PostMapping("/salvar")
     public ModelAndView salvar(
-            @ModelAttribute("cartao") Cartao cartao, 
-            /*BindingResult bindingResult,*/ RedirectAttributes redirectAttributes) {
-        Cliente cliente = clienteRepository.findById(1l);
+            @ModelAttribute("cartao") Cartao cartao,
+            /*BindingResult bindingResult,*/ RedirectAttributes redirectAttributes,Authentication authentication) {
+        Cliente cliente = (Cliente) authentication.getPrincipal();
         cartaoRepository.desativarSelecionado();
         cartao.setSelecionado(1);
         cartao.setCliente(cliente);
         cartaoRepository.save(cartao);
-        redirectAttributes.addFlashAttribute("mensagemSucesso", 
-                "Cartao " + cartao.getBandeira()+ " salvo com sucesso");
+        redirectAttributes.addFlashAttribute("mensagemSucesso",
+                "Cartao " + cartao.getBandeira() + " salvo com sucesso");
         return new ModelAndView("redirect:/mv/venda/confirmacao");
     }
 }
