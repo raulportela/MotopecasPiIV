@@ -31,9 +31,9 @@
                     <div class="col-6 col-sm-6 col-md-7">
                         <div class="cart-table ">
                             <div class="checkout-cart">
+                                <h3>Endereço de entrega <i class="fa fa-map-marker"></i></h3>
                                 <div class="row" th:each="end, stat: ${cliente.endereco}">
                                     <div class="col-8" th:if="${end.selecionado != 0}">
-                                        <h3>Endereço de entrega <i class="fa fa-map-marker"></i></h3>
                                         <p th:text="${end.rua + ', ' + end.numero + ' - ' + end.cep}"></p>
                                         <p th:text="${end.bairro + ' São Paulo - SP'}"></p>
                                         <p th:if="end.complemento != null" th:text="${'Observações: '+ end.complemento}"></p>
@@ -72,6 +72,7 @@
                             </div>
                         </div>
                     </div>
+                
                     <div class="col-6 col-sm-6 col-md-5">
                         <div class="cart-table margincols cart-table-warp" >
                             <h4>Resumo da compra <i class="fa fa-list-alt"></i></h4>
@@ -109,7 +110,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="container">
                 <section th:include="fragments/section-produto :: section-produto"></section>
             </div>
@@ -219,17 +220,17 @@
                             <div class="row">
                                 <div class="col">
 
-                                    <form class="form-group" th:action="@{/mv/cartao/salvar}" method="post" th:object="${listCartao.cartao}" novalidate>
+                                    <form class="form-group" th:action="@{/mv/cartao/salvar}" method="post" th:object="${newCard}" novalidate>
                                         <label>Bandeira:</label>
                                         <br>
                                         <input type="radio" name="bandeira" id="optBandeira" value="visa" th:field="*{bandeira}" >
                                         <label>Visa</label>
                                         <input type="radio" name="bandeira" id="optBandeira" value="mastercard" th:field="*{bandeira}" >
-                                        <label>MasterCard</label>
+                                        <label>MasterCard</label
                                         <br>
                                         <label>Numero do cartão:</label> 
                                         <br>
-                                        <input type="text" name="numeroCartao" id="txtnumeroCartao" th:classappend="${#fields.hasErrors('numeroCartao')}? is-invalid"  placeholder="8888.8888.8888.8888" th:field="*{numeroCartao}">
+                                        <input type="text" name="numeroCartao" id="txtnumeroCartao" th:classappend="${#fields.hasErrors('numeroCartao')}? is-invalid"  placeholder="8888.8888.8888.8888" th:field="*{.numeroCartao}">
                                         <br>
                                         <label>Nome do Titular</label> 
                                         <br>
@@ -269,6 +270,7 @@
                     </div>
                 </div>
             </div>
+        </div>
 
     </body>
 </html>

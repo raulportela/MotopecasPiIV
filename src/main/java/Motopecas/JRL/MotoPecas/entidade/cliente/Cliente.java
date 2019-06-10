@@ -59,7 +59,7 @@ public class Cliente implements Serializable, UserDetails {
     @Column(length = 100, nullable = false)
     private String sobrenome;
 
-    @Column(length = 11, nullable = false)
+    @Column(length = 12, nullable = false)
     private Integer telefone;
 
     @Column(length = 100, nullable = false)

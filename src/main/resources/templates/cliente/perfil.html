@@ -9,7 +9,7 @@ and open the template in the editor.
     <body>
         <header th:include="fragments/header :: header"></header>   
         <div class="container">
-            <div class="row">
+            <div class="row" >
                 <div class="col-xs-3 col-sm-3 col-md-4 col-lg-3">
                     <!-- <img th:src="@{/img/product/10.jpg}" alt=""> -->
                     <div class="row">
@@ -40,7 +40,7 @@ and open the template in the editor.
                                         <label>Nome:</label>
                                     </div>
                                     <div class="col-8">
-                                        <input type="text" id="txtNome" placeholder="Nome">
+                                        <input type="text"  th:value="${cliente.nome}" id="txtNome" placeholder="Nome" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -50,7 +50,7 @@ and open the template in the editor.
                                         <label>Sobrenome:</label>
                                     </div>
                                     <div class="col-8">
-                                        <input type="text" id="txtSobrenome" placeholder="Sobrenome">
+                                        <input type="text" th:value="${cliente.sobrenome}" id="txtSobrenome" placeholder="Sobrenome" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -62,7 +62,7 @@ and open the template in the editor.
                                         <label>CPF:</label>
                                     </div>
                                     <div class="col-8">
-                                        <input type="text" id="txtCpf" placeholder="CPF">
+                                        <input type="text" th:value="${cliente.cpf}" id="txtCpf" placeholder="CPF" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -71,8 +71,12 @@ and open the template in the editor.
                                     <div class="col-4">
                                         <label>Genero:</label>
                                     </div>
-                                    <div class="col-8">
-                                        <input type="text" id="txtGenero" placeholder="Genero">
+                                    <div class="col-8" th:if="${cliente.sexo == false}">
+                                        <input type="text"  value="Feminino" id="txtGenero" placeholder="Genero" disabled>
+                                    </div>
+
+                                    <div class="col-8" th:if="${cliente.sexo == true}">
+                                        <input type="text"  value="Masculino" id="txtGenero" placeholder="Genero" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -84,7 +88,7 @@ and open the template in the editor.
                                         <label>Telefone:</label>
                                     </div>
                                     <div class="col-8">
-                                        <input type="text" id="txtTel" placeholder="Telefone">
+                                        <input type="text"  th:value="${cliente.telefone}" id="txtTel" placeholder="Telefone" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -94,23 +98,29 @@ and open the template in the editor.
                                         <label>E-mail:</label>
                                     </div>
                                     <div class="col-8">
-                                        <input type="text" id="txtEmail" placeholder="Email">
+                                        <input type="text" th:value="${cliente.email}" id="txtEmail" placeholder="Email" disabled>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div>
+                        <div >
                             <br>
                             <h4>Cartões</h4>
                             <br>
                         </div>
-                        <div class="row">
-                            <!-- aqui vem um foreach com os cartões. A mesma coisa com o Endereço mais pra baixo auqi no codigo -->
-                            <div class="col-2">
-                                <label>Cartão:</label>
+                        <div class="row" th:if="${cliente.cartao != null}">
+                            <div th:each="cartao, stat: ${cliente.cartao}">
+                                <div class="col-2">
+                                    <label>Cartão:</label>
+                                </div>
+                                <div class="col-10">
+                                    <input  th:text="${'Cartão numero' + cartao.numeroCartao + ', ' + cartao.nomeTitular + ' - ' + cartao.bandeira}" id="txtcartao" placeholder="Cartao" disabled>
+                                </div>
                             </div>
+                        </div>
+                        <div class="row" th:if="${cliente.cartao == null}">
                             <div class="col-10">
-                                <input type="text" id="txtcartao" value="Cartão numero: 0000000XXXXXX, CCV: 222 - Validade: 12/2022"placeholder="Cartao" disabled>
+                                <input  th:text="Você não possui nenhum cartão cadastrado" id="txtcartao" placeholder="Cartao" disabled>
                             </div>
                         </div>
                         <div>
@@ -118,12 +128,14 @@ and open the template in the editor.
                             <h4>Endereços</h4>
                             <br>
                         </div>
-                        <div class="row">
-                            <div class="col-2">
-                                <label>Endereço:</label>
-                            </div>
-                            <div class="col-10">
-                                <input type="text" id="txtcartao" value="Rua pedra mineira, numero: 8, Jardim das Pedras - São Paulo - SP"placeholder="Cartao" disabled>
+                        <div class="row" th:if="${cliente.endereco != null}">
+                            <div class="row" th:each="end, stat: ${cliente.endereco}">
+                                <div class="col-2">
+                                    <label>Endereço:</label>
+                                </div>
+                                <div class="col-10">
+                                    <input th:text="${end.rua + ', ' + end.numero + ' - ' + end.bairro + ' - ' + 'São Paulo - SP' }" placeholder="Cartao" disabled>
+                                </div>
                             </div>
                         </div>
                         <div>
@@ -135,10 +147,10 @@ and open the template in the editor.
                             <div class="col-6">
                                 <div class="row">
                                     <div class="col-4">
-                                        <label>Email:</label>
+                                        <label>Login:</label>
                                     </div>
                                     <div class="col-8">
-                                        <input type="text" id="txtEmail" value="raul.p.p@hotmail.com">
+                                        <input type="text" th:value="${cliente.email}" id="txtEmail" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -148,7 +160,7 @@ and open the template in the editor.
                                         <label>Senha:</label>
                                     </div>
                                     <div class="col-8">
-                                        <input type="password" id="txtPassword" value="Dominio55">
+                                        <input type="password" th:value="${cliente.hashsenha}" id="txtPassword" disabled >
                                     </div>
                                 </div>
                             </div>

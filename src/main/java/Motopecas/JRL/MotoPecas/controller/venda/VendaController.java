@@ -73,17 +73,17 @@ public class VendaController {
 
     @GetMapping("/confirmacao")
     public ModelAndView confirmacao(RedirectAttributes redirectAttributes, Authentication authentication) {
-        List <Cartao>  listCartao = null;
+        List<Cartao> listCartao = null;
         Cliente cliente = null;
         if (authentication != null) {
             cliente = (Cliente) authentication.getPrincipal();
-            if(cliente.getCartao() != null){
+            if (!cliente.getCartao().isEmpty()) {
                 listCartao = (List<Cartao>) cartaoRepository.findByIdCliente(cliente.getId());
+            } else {
+                listCartao = new ArrayList <>();
             }
-            }else{
-                listCartao.add(new Cartao());
-            }
-        
+        }
+
         List<Carrinho> listaCarrinho;
         listaCarrinho = carrinhoRepository.findCarrinhoByIdCliente(cliente.getId());
 
@@ -92,15 +92,16 @@ public class VendaController {
                 .addObject("listaCarrinho", listaCarrinho)
                 .addObject("valorTotalCarrinho", totalCarrinho)
                 .addObject("cliente", cliente)
-                .addObject("listCartao", listCartao);
+                .addObject("listCartao", listCartao)
+                .addObject("newCard", new Cartao());
         return mv;
     }
 
     @GetMapping("/efetuarvenda")
-    public ModelAndView efetuarVenda(Authentication authentication ) {
-        
+    public ModelAndView efetuarVenda(Authentication authentication) {
+
         Cliente cliente = null;
-        if(authentication !=  null){
+        if (authentication != null) {
             cliente = (Cliente) authentication.getPrincipal();
         }
         String numeroPedido = "" + gerarNumeroPedido(null);
@@ -142,7 +143,7 @@ public class VendaController {
     @GetMapping("/pedido")
     public ModelAndView pedido(@RequestParam("numeropedido") String numeroPedido, Authentication authentication) {
         Cliente cliente = (Cliente) authentication.getPrincipal();
-        
+
         Venda venda = vendaRepository.findByNotaFiscal(numeroPedido);
         List<Venda> listaVenda = vendaRepository.findByIdCliente(cliente);
         return new ModelAndView("/venda/pedido").addObject("venda", venda).addObject("listaVenda", listaVenda);

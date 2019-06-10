@@ -50,7 +50,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                     .antMatchers("/css/**", "/img/**", "/js/**","/icon-fonts/**", "/Source.sass/**").permitAll()
                     .antMatchers("/mv/home").permitAll()
-                    .antMatchers("/mv/cliente/**").permitAll()
                     .antMatchers("/mv/produto/**").permitAll() 
                     .antMatchers("/mv/venda/**").permitAll()
                     .antMatchers("/mv/cartao/**").permitAll()

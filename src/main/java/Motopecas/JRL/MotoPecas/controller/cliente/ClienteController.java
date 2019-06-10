@@ -10,6 +10,7 @@ import Motopecas.JRL.MotoPecas.controller.produto.ProdutoController;
 import Motopecas.JRL.MotoPecas.repository.cliente.ClienteRepository;
 import java.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -43,8 +44,13 @@ public class ClienteController{
     }
     
     @GetMapping("/perfil")
-    public ModelAndView perfil() {
-        return new ModelAndView("/cliente/perfil");
+    public ModelAndView perfil(Authentication authentication) {
+          Cliente cliente = null;
+        if (authentication != null) {
+            cliente = (Cliente) authentication.getPrincipal();
+        }
+        
+        return new ModelAndView("/cliente/perfil").addObject(cliente);
         
     }
     
