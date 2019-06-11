@@ -93,7 +93,8 @@ public class VendaController {
                 .addObject("valorTotalCarrinho", totalCarrinho)
                 .addObject("cliente", cliente)
                 .addObject("listCartao", listCartao)
-                .addObject("newCard", new Cartao());
+                .addObject("newCard", new Cartao())
+                .addObject("newEnd", new Endereco());
         return mv;
     }
 

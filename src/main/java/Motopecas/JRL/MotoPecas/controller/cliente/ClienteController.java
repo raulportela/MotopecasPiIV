@@ -7,8 +7,14 @@ package Motopecas.JRL.MotoPecas.controller.cliente;
 
 import Motopecas.JRL.MotoPecas.entidade.cliente.Cliente;
 import Motopecas.JRL.MotoPecas.controller.produto.ProdutoController;
+import Motopecas.JRL.MotoPecas.entidade.cartao.Cartao;
+import Motopecas.JRL.MotoPecas.entidade.endereco.Endereco;
+import Motopecas.JRL.MotoPecas.repository.cartao.CartaoRepository;
 import Motopecas.JRL.MotoPecas.repository.cliente.ClienteRepository;
+import Motopecas.JRL.MotoPecas.repository.endereco.EnderecoRepository;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -29,6 +35,12 @@ public class ClienteController{
     
     @Autowired
     private ClienteRepository clienteRepository;
+    
+    @Autowired
+    private EnderecoRepository enderecoRepository;
+    
+    @Autowired
+    private CartaoRepository cartaoRepository;
 
     @GetMapping("/contato")
     public ModelAndView contato() {
@@ -50,9 +62,19 @@ public class ClienteController{
             cliente = (Cliente) authentication.getPrincipal();
         }
         
-        return new ModelAndView("/cliente/perfil").addObject(cliente);
+        List<Endereco> listEndereco = new ArrayList<>();
+        if(!cliente.getEndereco().isEmpty()){
+            listEndereco = enderecoRepository.findByAll(cliente);
+        }
         
+        List<Cartao> listCartao = new ArrayList<>();
+        if(!cliente.getCartao().isEmpty()){
+            listCartao = cartaoRepository.findByIdCliente(cliente);
+        }
+        
+        return new ModelAndView("/cliente/perfil").addObject(listEndereco).addObject(listCartao).addObject(cliente);
     }
+    
     
     @PostMapping("/salvar")
     public ModelAndView salvar(

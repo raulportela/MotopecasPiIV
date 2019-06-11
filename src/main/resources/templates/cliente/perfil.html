@@ -108,17 +108,15 @@ and open the template in the editor.
                             <h4>Cartões</h4>
                             <br>
                         </div>
-                        <div class="row" th:if="${cliente.cartao != null}">
-                            <div th:each="cartao, stat: ${cliente.cartao}">
-                                <div class="col-2">
-                                    <label>Cartão:</label>
-                                </div>
+                        <div class="row" th:if="${listCartao != null}">
+                            <label>Cartão:</label>
+                            <div th:each="cartao, stat: ${listCartao}">
                                 <div class="col-10">
-                                    <input  th:text="${'Cartão numero' + cartao.numeroCartao + ', ' + cartao.nomeTitular + ' - ' + cartao.bandeira}" id="txtcartao" placeholder="Cartao" disabled>
+                                    <input  th:text="" th:value="${'Cartão numero' + cartao.numeroCartao + ', ' + cartao.nomeTitular + ' - ' + cartao.bandeira}" id="txtcartao" placeholder="Cartao" disabled>
                                 </div>
                             </div>
                         </div>
-                        <div class="row" th:if="${cliente.cartao == null}">
+                        <div class="row" th:if="${listCartao == null}">
                             <div class="col-10">
                                 <input  th:text="Você não possui nenhum cartão cadastrado" id="txtcartao" placeholder="Cartao" disabled>
                             </div>

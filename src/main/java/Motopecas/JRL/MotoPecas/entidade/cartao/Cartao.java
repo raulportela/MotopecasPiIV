@@ -40,7 +40,6 @@ public class Cartao implements Serializable {
 
     
     private String bandeira;
-
     private String nomeTitular;
     private String numeroCartao;
     private String dataValidade;
