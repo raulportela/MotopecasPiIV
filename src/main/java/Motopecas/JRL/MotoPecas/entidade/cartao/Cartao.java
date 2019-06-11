@@ -28,7 +28,7 @@ import org.hibernate.annotations.FetchMode;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "Cartao.findByIdCliente", query = "SELECT c FROM Cartao c WHERE c.cliente = :idCliente"),
+    @NamedQuery(name = "Cartao.findByIdCliente", query = "SELECT c FROM Cartao c WHERE c.cliente = :cliente"),
     @NamedQuery(name = "Cartao.findById", query = "SELECT c FROM Cartao c WHERE c.id = :id"),
     @NamedQuery(name = "Cartao.findBySelecionado", query = "SELECT c FROM Cartao c WHERE c.selecionado = 1")
 })

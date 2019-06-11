@@ -226,11 +226,11 @@
                                         <input type="radio" name="bandeira" id="optBandeira" value="visa" th:field="*{bandeira}" >
                                         <label>Visa</label>
                                         <input type="radio" name="bandeira" id="optBandeira" value="mastercard" th:field="*{bandeira}" >
-                                        <label>MasterCard</label
+                                        <label>MasterCard</label>
                                         <br>
                                         <label>Numero do cartão:</label> 
                                         <br>
-                                        <input type="text" name="numeroCartao" id="txtnumeroCartao" th:classappend="${#fields.hasErrors('numeroCartao')}? is-invalid"  placeholder="8888.8888.8888.8888" th:field="*{.numeroCartao}">
+                                        <input type="text" name="numeroCartao" id="txtnumeroCartao" th:classappend="${#fields.hasErrors('numeroCartao')}? is-invalid"  placeholder="8888.8888.8888.8888" th:field="*{numeroCartao}">
                                         <br>
                                         <label>Nome do Titular</label> 
                                         <br>

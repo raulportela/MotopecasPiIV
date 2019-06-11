@@ -6,6 +6,7 @@
 package Motopecas.JRL.MotoPecas.repository.cartao;
 
 import Motopecas.JRL.MotoPecas.entidade.cartao.Cartao;
+import Motopecas.JRL.MotoPecas.entidade.cliente.Cliente;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -35,11 +36,18 @@ public class CartaoRepository {
         entityManager.remove(c);
     }
 
+//     @Transactional
+//    public Cartao findByIdCliente(Cliente cliente) {
+//        Query jpqlQyery = entityManager.createNamedQuery("Cartao.findByIdCliente").setParameter("cliente", cliente);
+//        Cartao Cartao = (Cartao) jpqlQyery.getSingleResult();
+//        return Cartao;
+//    }
+    
     @Transactional
-    public List <Cartao> findByIdCliente(Long id) {
-        Query jpqlQyery = entityManager.createNamedQuery("Cartao.findByIdCliente").setParameter("idCliente", id);
-      List <Cartao> listCard = (List<Cartao>) jpqlQyery.getSingleResult();
-        return listCard;
+    public List<Cartao> findByIdCliente(Cliente cliente) {
+        Query jpqlQuery = entityManager.createNamedQuery("Cartao.findByIdCliente").setParameter("cliente", cliente);
+        List<Cartao> listCartao= jpqlQuery.getResultList();
+        return listCartao;
     }
 
     @Transactional

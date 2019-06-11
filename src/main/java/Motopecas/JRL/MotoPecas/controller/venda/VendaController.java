@@ -73,12 +73,13 @@ public class VendaController {
 
     @GetMapping("/confirmacao")
     public ModelAndView confirmacao(RedirectAttributes redirectAttributes, Authentication authentication) {
+        
         List<Cartao> listCartao = null;
         Cliente cliente = null;
         if (authentication != null) {
             cliente = (Cliente) authentication.getPrincipal();
             if (!cliente.getCartao().isEmpty()) {
-                listCartao = (List<Cartao>) cartaoRepository.findByIdCliente(cliente.getId());
+               listCartao = (List<Cartao>) cartaoRepository.findByIdCliente(cliente);
             } else {
                 listCartao = new ArrayList <>();
             }
@@ -86,7 +87,6 @@ public class VendaController {
 
         List<Carrinho> listaCarrinho;
         listaCarrinho = carrinhoRepository.findCarrinhoByIdCliente(cliente.getId());
-
         double totalCarrinho = gerarTotal(listaCarrinho);
         ModelAndView mv = new ModelAndView("/venda/confirmacao")
                 .addObject("listaCarrinho", listaCarrinho)
