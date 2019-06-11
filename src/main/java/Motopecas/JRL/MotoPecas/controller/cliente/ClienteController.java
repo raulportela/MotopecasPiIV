@@ -72,7 +72,10 @@ public class ClienteController{
             listCartao = cartaoRepository.findByIdCliente(cliente);
         }
         
-        return new ModelAndView("/cliente/perfil").addObject(listEndereco).addObject(listCartao).addObject(cliente);
+        return new ModelAndView("/cliente/perfil")
+                .addObject("listEndereco",listEndereco)
+                .addObject("listCartao", listCartao)
+                .addObject("cliente",cliente);
     }
     
     

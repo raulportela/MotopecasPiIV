@@ -108,39 +108,50 @@ and open the template in the editor.
                             <h4>Cartões</h4>
                             <br>
                         </div>
+
                         <div class="row" th:if="${listCartao != null}">
-                            <label>Cartão:</label>
-                            <div th:each="cartao, stat: ${listCartao}">
-                                <div class="col-10">
-                                    <input  th:text="" th:value="${'Cartão numero' + cartao.numeroCartao + ', ' + cartao.nomeTitular + ' - ' + cartao.bandeira}" id="txtcartao" placeholder="Cartao" disabled>
+                            <div class="col-2">
+                                Cartão:  
+                            </div>
+                            <div class="col-10">
+                                <div th:each="cartao, stat: ${listCartao}">
+                                    <input type="text" th:value="${'Cartão Nº: ' + cartao.numeroCartao + ', ' + cartao.nomeTitular + ' - ' + cartao.bandeira}" id="txtcartao"  disabled>
                                 </div>
                             </div>
                         </div>
-                        <div class="row" th:if="${listCartao == null}">
+
+                        <div class="row" th:if="${cliente.cartao == null}">
+                            <div class="col-2">
+
+                            </div>
                             <div class="col-10">
                                 <input  th:text="Você não possui nenhum cartão cadastrado" id="txtcartao" placeholder="Cartao" disabled>
                             </div>
                         </div>
+
                         <div>
                             <br>
                             <h4>Endereços</h4>
                             <br>
                         </div>
-                        <div class="row" th:if="${cliente.endereco != null}">
-                            <div class="row" th:each="end, stat: ${cliente.endereco}">
-                                <div class="col-2">
-                                    <label>Endereço:</label>
-                                </div>
-                                <div class="col-10">
-                                    <input th:text="${end.rua + ', ' + end.numero + ' - ' + end.bairro + ' - ' + 'São Paulo - SP' }" placeholder="Cartao" disabled>
+
+                        <div class="row" th:if="${listEndereco != null}">
+                            <div class="col-2">
+                                <label>Endereço:</label>
+                            </div>
+                            <div class="col-10" >
+                                <div th:each="end, stat: ${listEndereco}">
+                                    <input type="text" th:value="${end.rua + ', ' + end.numero + ' - ' + end.bairro + ' - ' + 'São Paulo - SP' }"  disabled>
                                 </div>
                             </div>
                         </div>
+
                         <div>
                             <br>
                             <h4 id="inf-login">Informações de Login</h4>
                             <br>
                         </div>
+
                         <div class="row">
                             <div class="col-6">
                                 <div class="row">
@@ -165,9 +176,7 @@ and open the template in the editor.
                         </div>
                     </form>
                 </div>    
-
             </div>
-
         </div>
 
 
