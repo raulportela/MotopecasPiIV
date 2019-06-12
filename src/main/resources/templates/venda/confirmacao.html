@@ -32,7 +32,7 @@
                         <div class="cart-table ">
                             <div class="checkout-cart">
                                 <h3>Endereço de entrega <i class="fa fa-map-marker"></i></h3>
-                                <div class="row" th:each="end, stat: ${cliente.endereco}">
+                                <div class="row" th:each="end, stat: ${listEnd}">
                                     <div class="col-8" th:if="${end.selecionado != 0}">
                                         <p th:text="${end.rua + ', ' + end.numero + ' - ' + end.cep}"></p>
                                         <p th:text="${end.bairro + ' São Paulo - SP'}"></p>
@@ -141,7 +141,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr  th:each="end, stat: ${cliente.endereco}">
+                                            <tr  th:each="end, stat: ${listEnd}">
                                                 <th th:text="${end.rua + ', ' + end.numero + ' - ' + end.cep +' - ' + end.bairro + ' Sao Paulo/SP' }"></th>
                                                 <td><a th:href="@{/mv/venda/{id}/alteraddress(id=${end.id})}" ><i class="fa fa-map-marker"></i><i class="fa fa-check"></i></a></td>
                                             </tr>

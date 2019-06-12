@@ -50,15 +50,30 @@ public class EnderecoRepository {
         save(endereco);
         return endereco;
     }
+    
+    public void desativarSelecionado() {
+        Endereco endereco = null;
+        Query jpqlQyery = entityManager.createNamedQuery("Endereco.findBySelecionado");
+        try {
+            endereco = (Endereco) jpqlQyery.getSingleResult();
+        } catch (Exception e) {
+            return;
+        } catch (Throwable t) {
+            return;
+        }
+        if (endereco != null) {
+            endereco.setSelecionado(0);
+            save(endereco);
+        }
+
+    }
 
     @Transactional
     public void alterById(Long id) {
         Query jpqlQyery = entityManager.createNamedQuery("Endereco.findById").setParameter("id", id);
 
         //Esse endereco é o que estava selecionado e eu vou tirar o selecionado dele.
-        Endereco enderecoPraMudar = findBySelecionado();
-        enderecoPraMudar.setSelecionado(0);
-        save(enderecoPraMudar);
+        desativarSelecionado();
 
         //Esse endereco é o que vou marcar como selecionado
         Endereco enderecoSelelecionar = (Endereco) jpqlQyery.getSingleResult();

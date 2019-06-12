@@ -36,6 +36,7 @@ public class EnderecoController {
             @ModelAttribute("endereco") Endereco endereco,
             /*BindingResult bindingResult,*/ RedirectAttributes redirectAttributes,Authentication authentication) {
         Cliente cliente = (Cliente) authentication.getPrincipal();
+        enderecoRepository.desativarSelecionado();
         endereco.setSelecionado(1);
         endereco.setCliente(cliente);
         enderecoRepository.save(endereco);

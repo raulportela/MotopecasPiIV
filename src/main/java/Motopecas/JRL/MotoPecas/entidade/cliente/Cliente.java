@@ -60,7 +60,7 @@ public class Cliente implements Serializable, UserDetails {
     private String sobrenome;
 
     @Column(length = 12, nullable = false)
-    private Integer telefone;
+    private Long telefone;
 
     @Column(length = 100, nullable = false)
     private String cpf;
@@ -91,7 +91,7 @@ public class Cliente implements Serializable, UserDetails {
 
     }
 
-    public Cliente(Long id, String email, String senhaAberta, String nome, String sobrenome, Integer telefone, String cpf, boolean disponivel, LocalDateTime dataNascimento, boolean sexo, List<Endereco> endereco, List<Cartao> cartao, int papel) {
+    public Cliente(Long id, String email, String senhaAberta, String nome, String sobrenome, Long telefone, String cpf, boolean disponivel, LocalDateTime dataNascimento, boolean sexo, List<Endereco> endereco, List<Cartao> cartao, int papel) {
         this.id = id;
         this.email = email;
         setHashsenha(senhaAberta);
@@ -145,11 +145,11 @@ public class Cliente implements Serializable, UserDetails {
         this.sobrenome = sobrenome;
     }
 
-    public Integer getTelefone() {
+    public Long getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(Integer telefone) {
+    public void setTelefone(Long telefone) {
         this.telefone = telefone;
     }
 
