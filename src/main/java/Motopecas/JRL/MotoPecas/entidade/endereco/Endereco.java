@@ -25,7 +25,7 @@ import javax.persistence.NamedQuery;
 @NamedQueries({
     @NamedQuery(name = "Endereco.findByIdCliente", query = "SELECT e FROM Endereco e WHERE e.cliente = :cliente"),
     @NamedQuery(name = "Endereco.findById", query = "SELECT e FROM Endereco e WHERE e.id = :id"),
-    @NamedQuery(name = "Endereco.findBySelecionado", query = "SELECT e FROM Endereco e WHERE e.selecionado = 1"),
+    @NamedQuery(name = "Endereco.findBySelecionado", query = "SELECT e FROM Endereco e WHERE e.selecionado = 1")
     
 })
 public class Endereco implements Serializable {
