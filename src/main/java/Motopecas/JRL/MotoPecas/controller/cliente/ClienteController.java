@@ -6,12 +6,13 @@
 package Motopecas.JRL.MotoPecas.controller.cliente;
 
 import Motopecas.JRL.MotoPecas.entidade.cliente.Cliente;
-import Motopecas.JRL.MotoPecas.controller.produto.ProdutoController;
 import Motopecas.JRL.MotoPecas.entidade.cartao.Cartao;
 import Motopecas.JRL.MotoPecas.entidade.endereco.Endereco;
+import Motopecas.JRL.MotoPecas.entidade.venda.Venda;
 import Motopecas.JRL.MotoPecas.repository.cartao.CartaoRepository;
 import Motopecas.JRL.MotoPecas.repository.cliente.ClienteRepository;
 import Motopecas.JRL.MotoPecas.repository.endereco.EnderecoRepository;
+import Motopecas.JRL.MotoPecas.repository.venda.VendaRepository;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,14 +32,17 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  */
 @Controller
 @RequestMapping("/mv/cliente")
-public class ClienteController{
-    
+public class ClienteController {
+
     @Autowired
     private ClienteRepository clienteRepository;
-    
+
+    @Autowired
+    VendaRepository vendaRepository;
+
     @Autowired
     private EnderecoRepository enderecoRepository;
-    
+
     @Autowired
     private CartaoRepository cartaoRepository;
 
@@ -47,46 +51,46 @@ public class ClienteController{
         ModelAndView mv = new ModelAndView("/cliente/contato");
         return mv;
     }
-    
+
     @GetMapping("/cadastro")
     public ModelAndView cadastro() {
         return new ModelAndView("/cliente/cadastro")
                 .addObject("cliente", new Cliente());
-        
+
     }
-    
+
     @GetMapping("/perfil")
     public ModelAndView perfil(Authentication authentication) {
-          Cliente cliente = null;
+        Cliente cliente = null;
         if (authentication != null) {
             cliente = (Cliente) authentication.getPrincipal();
         }
-        
+
+        List<Venda> listaPedidos = vendaRepository.findByIdCliente(cliente);
         List<Endereco> listEndereco = new ArrayList<>();
-        if(!cliente.getEndereco().isEmpty()){
+        if (!cliente.getEndereco().isEmpty()) {
             listEndereco = enderecoRepository.findByAll(cliente);
         }
-        
+
         List<Cartao> listCartao = new ArrayList<>();
-        if(!cliente.getCartao().isEmpty()){
+        if (!cliente.getCartao().isEmpty()) {
             listCartao = cartaoRepository.findByIdCliente(cliente);
         }
-        
+
         return new ModelAndView("/cliente/perfil")
-                .addObject("listEndereco",listEndereco)
+                .addObject("listEndereco", listEndereco)
                 .addObject("listCartao", listCartao)
-                .addObject("cliente",cliente);
+                .addObject("cliente", cliente)
+                .addObject("listaPedidos", listaPedidos);
     }
-    
-    
+
     @PostMapping("/salvar")
     public ModelAndView salvar(
-            @ModelAttribute("cliente") Cliente cliente, 
+            @ModelAttribute("cliente") Cliente cliente,
             /*BindingResult bindingResult,*/ RedirectAttributes redirectAttributes) {
         cliente.setDataNascimento(LocalDateTime.now());
-        
         clienteRepository.save(cliente);
-        redirectAttributes.addFlashAttribute("mensagemSucesso", 
+        redirectAttributes.addFlashAttribute("mensagemSucesso",
                 "Cliente " + cliente.getNome() + " salvo com sucesso");
         return new ModelAndView("redirect:/login");
     }

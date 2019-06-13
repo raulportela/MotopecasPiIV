@@ -77,7 +77,7 @@ public class VendaController {
         Cliente cliente = (Cliente) authentication.getPrincipal();
         List<Cartao> listCartao = (List<Cartao>) cartaoRepository.findByIdCliente(cliente);
         List<Endereco> listEndereco = (List<Endereco>) enderecoRepository.findByAll(cliente);
- 
+
         List<Carrinho> listaCarrinho;
         listaCarrinho = carrinhoRepository.findCarrinhoByIdCliente(cliente.getId());
         double totalCarrinho = gerarTotal(listaCarrinho);
@@ -138,9 +138,9 @@ public class VendaController {
     @GetMapping("/pedido")
     public ModelAndView pedido(@RequestParam("numeropedido") String numeroPedido, Authentication authentication) {
         Cliente cliente = (Cliente) authentication.getPrincipal();
-
-        Venda venda = vendaRepository.findByNotaFiscal(numeroPedido);
         List<Venda> listaVenda = vendaRepository.findByIdCliente(cliente);
+        Venda venda = vendaRepository.findByNotaFiscal(numeroPedido);
+
         return new ModelAndView("/venda/pedido").addObject("venda", venda).addObject("listaVenda", listaVenda);
     }
 
