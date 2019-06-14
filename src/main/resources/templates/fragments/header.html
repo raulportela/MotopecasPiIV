@@ -33,7 +33,7 @@
                                 <a th:href="@{/login}">Faça login</a> ou <a th:href="@{mv/cliente/cadastro}">Cadastre-se</a>
                             </div>
                             <div class="up-item" sec:authorize="isAuthenticated()">
-                                Boas Compras, <span sec:authentication="principal.nome"></span>
+                                Boas Compras, <a th:href="@{/mv/cliente/perfil}"><span sec:authentication="principal.nome"></span></a>
 
                                 <p><a th:href="@{/logout}">Sair</a></p>
                                 <i class="flaticon-profile"></i>
@@ -43,7 +43,6 @@
                             <div class="up-item">
                                 <div class="shopping-card">
                                     <i class="flaticon-bag"></i>
-                                    <span>0</span>
                                 </div>
                                 <a th:href="@{/mv/venda/carrinho}" title="Carrinho">Carrinho</a>
                             </div>

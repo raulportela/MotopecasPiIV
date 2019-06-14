@@ -62,25 +62,20 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div> 
-            <div class="container">
-                <div class="row " th:if="!${#lists.isEmpty(listaCarrinho)}">
-                    <div class="col-sm-7 "></div>
-                    <div class="col-sm-5 align-self-sm-end">
-                        <a th:href="@{/mv/produto/listAll}" class="site-btn">Continuar <br>Comprando</a>
-                        <a th:href="@{/mv/venda/confirmacao}" class="site-btn sb-dark">Concluir <br>Compra</a>
+                </div> 
+                <div class="container">
+                    <div class="row " th:if="!${#lists.isEmpty(listaCarrinho)}">
+                        <div class="col-sm-7 "></div>
+                        <div class="col-sm-5 align-self-sm-end">
+                            <a th:href="@{/mv/produto/listAll}" class="site-btn">Continuar <br>Comprando</a>
+                            <a th:href="@{/mv/venda/confirmacao}" class="site-btn sb-dark">Concluir <br>Compra</a>
+                        </div>
                     </div>
-                </div>
-            </div >
-        </div>
-    </div>
-</section>
-<!-- cart section end -->
-<div class="container">
-    <section th:include="fragments/section-produto :: section-produto"></section>
-</div>
-<footer th:include="fragments/footer :: footer"></footer>
+                </div >
+            </div>
+        </section>
+        <!-- cart section end -->
+        <footer th:include="fragments/footer :: footer"></footer>
 
-</body>
+    </body>
 </html>

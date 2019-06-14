@@ -1,75 +1,25 @@
 <div th:fragment="section-produto">
-    <div class="section-title text-uppercase">
-        <h2>Aproveite e leve tambem</h2>
-    </div>
-    <div class="row">
-        <div class="product-slider owl-carousel">
-            <div class="product-item">
-                <div class="pi-pic">
-                    <img th:src="@{/img/product/1.jpg}" alt="">
-                    <div class="pi-links">
-                        <a th:href="@{/#}" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-                        <a th:href="@{/#}" class="wishlist-btn"><i class="flaticon-heart"></i></a>
+    <section class="hero-section">
+        <div class="hero-slider owl-carousel">
+            <div class="hs-item set-bg" th:data-setbg="@{/img/product/fotoProduto.jpg}">
+                <div class="container" th:if="${produtos != null}">
+                    <div class="row" th:each="prod, stat: ${produtos}">
+                        <div class="col-xl-6 col-lg-7 text-shadow">
+                            <h2 th:text=" 'R$ ' + ${prod.nome}"></h2>
+                            <p th:text=" 'R$ ' + ${prod.descricao}"></p>
+                            <a th:href="@{/mv/produto/{id}/additemcart(id=${prod.id})}" class="add-card"><i class="flaticon-bag"></i><span>Adicionar ao carrinho</span></a>
+                            <!--pensar na possibilidade de criar uma lista de favoritos -->
+                            <a th:href="@{/mv/produto/{id}/additemfavoritelist(id=${prod.id})}" class="wishlist-btn"><i class="flaticon-heart"></i></a>
+                        </div>
                     </div>
-                </div>
-                <div class="pi-text">
-                    <h6>$35,00</h6>
-                    <p>Flamboyant Pink Top </p>
-                </div>
-            </div>
-            <div class="product-item">
-                <div class="pi-pic">
-                    <div class="tag-new">New</div>
-                    <img th:src="@{/img/product/2.jpg}" alt="">
-                    <div class="pi-links">
-                        <a th:href="@{/#}" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-                        <a th:href="@{/#}" class="wishlist-btn"><i class="flaticon-heart"></i></a>
+                    <div class="offer-card text-white">
+                        <h2 th:text=" 'R$ ' + ${prod.valor}"></h2>
                     </div>
-                </div>
-                <div class="pi-text">
-                    <h6>$35,00</h6>
-                    <p>Black and White Stripes Dress</p>
-                </div>
-            </div>
-            <div class="product-item">
-                <div class="pi-pic">
-                    <img th:src="@{/img/product/3.jpg}" alt="">
-                    <div class="pi-links">
-                        <a th:href="@{/#}" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-                        <a th:href="@{/#}" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-                    </div>
-                </div>
-                <div class="pi-text">
-                    <h6>$35,00</h6>
-                    <p>Flamboyant Pink Top </p>
-                </div>
-            </div>
-            <div class="product-item">
-                <div class="pi-pic">
-                    <img th:src="@{/img/product/4.jpg}" alt="">
-                    <div class="pi-links">
-                        <a th:href="@{/#}" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-                        <a th:href="@{/#}" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-                    </div>
-                </div>
-                <div class="pi-text">
-                    <h6>$35,00</h6>
-                    <p>Flamboyant Pink Top </p>
-                </div>
-            </div>
-            <div class="product-item">
-                <div class="pi-pic">
-                    <img th:src="@{/img/product/12.jpg}" alt="">
-                    <div class="pi-links">
-                        <a th:href="@{/#}" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-                        <a th:href="@{/#}" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-                    </div>
-                </div>
-                <div class="pi-text">
-                    <h6>$35,00</h6>
-                    <p>Flamboyant Pink Top </p>
                 </div>
             </div>
         </div>
-    </div>
+        <div class="container">
+            <div class="slide-num-holder" id="snh-1"></div>
+        </div>
+    </section>
 </div>

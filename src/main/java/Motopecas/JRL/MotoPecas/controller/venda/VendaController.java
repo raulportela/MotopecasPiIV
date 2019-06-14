@@ -4,6 +4,7 @@ import Motopecas.JRL.MotoPecas.entidade.carrinho.Carrinho;
 import Motopecas.JRL.MotoPecas.entidade.cartao.Cartao;
 import Motopecas.JRL.MotoPecas.entidade.cliente.Cliente;
 import Motopecas.JRL.MotoPecas.entidade.endereco.Endereco;
+import Motopecas.JRL.MotoPecas.entidade.produto.Produto;
 import Motopecas.JRL.MotoPecas.entidade.venda.ItemVenda;
 import Motopecas.JRL.MotoPecas.entidade.venda.Venda;
 import Motopecas.JRL.MotoPecas.repository.carrinho.CarrinhoRepository;
@@ -63,12 +64,15 @@ public class VendaController {
     public ModelAndView carrinho(HttpServletRequest request,
             @RequestParam(name = "offset", defaultValue = "0") int offset,
             @RequestParam(name = "qtd", defaultValue = "100") int qtd) {
+        List<Produto> listaProdutos;
+        listaProdutos = produtoRepository.findAll(offset, qtd);
         List<Carrinho> listaCarrinho;
         listaCarrinho = carrinhoRepository.findCarrinhoByIdCliente(1l);
         double totalCarrinho = gerarTotal(listaCarrinho);
         return new ModelAndView("/venda/carrinho")
                 .addObject("listaCarrinho", listaCarrinho)
-                .addObject("valorTotalCarrinho", totalCarrinho);
+                .addObject("valorTotalCarrinho", totalCarrinho)
+                .addObject("produtos", listaProdutos);
     }
 
     @GetMapping("/confirmacao")
