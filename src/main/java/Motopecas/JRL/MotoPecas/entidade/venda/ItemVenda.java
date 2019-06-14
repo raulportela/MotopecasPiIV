@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  *
@@ -25,13 +26,15 @@ import javax.persistence.OneToOne;
 @NamedQueries({
     @NamedQuery(name = "ItemVenda.findAll", query = "SELECT iv FROM ItemVenda iv")
 })
+@Table(name = "ItemVenda")
 public class ItemVenda implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "VENDAID")
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "QUANTIDADE")
     private int quantidade;
 
     @Embedded

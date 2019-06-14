@@ -65,16 +65,6 @@ public class Produto implements Serializable{
     private Set<Categoria> categorias ;
     
     private LocalDateTime dataCadastro;
-    
-    private Byte imagem[];
-
-    public Byte[] getImagem() {
-        return imagem;
-    }
-
-    public void setImagem(Byte[] imagem) {
-        this.imagem = imagem;
-    }
 
     public Long getId() {
         return id;

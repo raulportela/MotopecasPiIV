@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  *
@@ -29,6 +30,7 @@ import javax.persistence.OneToOne;
     @NamedQuery(name = "Carrinho.findByIdProduto", query = "SELECT c FROM Carrinho c WHERE c.Produto = :produto")
     
 })
+@Table(name = "Carrinho")
 public class Carrinho implements Serializable {
 
     @Id

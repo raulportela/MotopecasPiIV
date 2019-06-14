@@ -37,8 +37,7 @@ visual-input{
     border-radius: 5px;
 }
 
-.box2 {
-    border: 2px solid #ffb025;
+.pbox2 {
     margin: 10px;
     background: #fff;
     width: auto;

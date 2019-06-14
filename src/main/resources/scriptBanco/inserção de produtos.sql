@@ -53,70 +53,19 @@ CREATE TABLE [dbo].[Cartao] (
     [CPF]         VARCHAR (11)                                                              NOT NULL,
     [CLIENTEID]   INT                                                                       NOT NULL,
     [SELECIONADO] BIT                                                                       NOT NULL,
-    CONSTRAINT [PK_Cartao] PRIMARY KEY CLUSTERED ([ID] ASC),
-    CONSTRAINT [FK_ClienteCartao] FOREIGN KEY ([CLIENTEID]) REFERENCES [dbo].[Cliente] ([ID])
-);
-
-CREATE TABLE [dbo].[Cliente] (
-    [ID]             INT           IDENTITY (1, 1) NOT NULL,
-    [NOME]           VARCHAR (MAX) NOT NULL,
-    [SOBRENOME]      VARCHAR (MAX) NOT NULL,
-    [TELEFONE]       VARCHAR (11)  NULL,
-    [CPF]            VARCHAR (11)  NOT NULL,
-    [SEXO]           VARCHAR (MAX) NOT NULL,
-    [DATANASCIMENTO] DATE          NOT NULL,
-    [RG]             VARCHAR (9)   NULL,
-    [EMAIL]          VARCHAR (MAX) NOT NULL,
-    [SENHA]          VARCHAR (MAX) NOT NULL,
-    CONSTRAINT [PK_Cliente] PRIMARY KEY CLUSTERED ([ID] ASC)
-);
-
-CREATE TABLE [dbo].[Endereco] (
-    [ID]          INT           IDENTITY (1, 1) NOT NULL,
-    [LOGRADOURO]  VARCHAR (MAX) NOT NULL,
-    [COMPLEMENTO] VARCHAR (MAX) NOT NULL,
-    [BAIRRO]      VARCHAR (MAX) NOT NULL,
-    [CEP]         VARCHAR (8)   NOT NULL,
-    [CIDADE]      VARCHAR (MAX) NOT NULL,
-    [ESTADO]      VARCHAR (MAX) NOT NULL,
-    [CLIENTEID]   INT           NULL,
-    [SELECIONADO] BIT           NOT NULL,
-    CONSTRAINT [PK_Endereco] PRIMARY KEY CLUSTERED ([ID] ASC),
-    CONSTRAINT [FK_CLIENTEED] FOREIGN KEY ([CLIENTEID]) REFERENCES [dbo].[Cliente] ([ID])
-);
-
-CREATE TABLE [dbo].[Produto] (
-    [ID]          INT            IDENTITY (1, 1) NOT NULL,
-    [NOME]        VARCHAR (MAX)  NOT NULL,
-    [DESCRICAO]   NVARCHAR (MAX) NOT NULL,
-    [CATEGORIA]   VARCHAR (MAX)  NOT NULL,
-    [ESTOQUE]     INT            NOT NULL,
-    [PRECO]       FLOAT (53)     NOT NULL,
-    [IMAGEM]      IMAGE          NULL,
-    [TAMANHO]     VARCHAR (MAX)  NULL,
-    [COR]         VARCHAR (MAX)  NULL,
-    [DATAENTRADA] DATETIME       NULL,
-    CONSTRAINT [PK_Produto] PRIMARY KEY CLUSTERED ([ID] ASC)
+    CONSTRAINT [PK_Cartao] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
 
 CREATE TABLE [dbo].[Venda] (
-    [ID]               INT           IDENTITY (1, 1) NOT NULL,
-    [NUMERO]           INT           NOT NULL,
-    [CLIENTEID]        INT           NOT NULL,
-    [DATACOMPRA]       DATE          NOT NULL,
-    [ENTREGA]          INT           NOT NULL,
-    [TOTALCOMPRA]      FLOAT (53)    NOT NULL,
-    [ESTADOATUAL]      VARCHAR (MAX) NOT NULL,
-    CONSTRAINT [PK_Venda] PRIMARY KEY CLUSTERED ([ID] ASC),
-    CONSTRAINT [FK_Cliente] FOREIGN KEY ([CLIENTEID]) REFERENCES [dbo].[Cliente] ([ID]),   
-    CONSTRAINT [FK_EnderecoV] FOREIGN KEY ([ENTREGA]) REFERENCES [dbo].[Endereco] ([ID])
-);
-
-CREATE TABLE [dbo].[ItemVenda] (
-    [VENDAID]    INT NOT NULL,
-    [PRODUTOID]  INT NOT NULL,
-    [QUANTIDADE] INT NOT NULL,
-    CONSTRAINT [PK_ItemVenda] PRIMARY KEY CLUSTERED ([VENDAID] ASC, [PRODUTOID] ASC),
-    CONSTRAINT [FK_Venda] FOREIGN KEY ([VENDAID]) REFERENCES [dbo].[Venda] ([ID]),
-    CONSTRAINT [FK_Produto] FOREIGN KEY ([PRODUTOID]) REFERENCES [dbo].[Produto] ([ID])
+    [ID]           INT           IDENTITY (1, 1) NOT NULL,
+    [NUMERO]       VARCHAR(MAX)           NOT NULL,
+    [CLIENTEID]    INT           NOT NULL,
+    [DATACOMPRA]   DATETIME      NULL,
+    [ENTREGAID]    INT           NOT NULL,
+    [TOTALCOMPRA]  FLOAT (53)    NOT NULL,
+    [ESTADOATUAL]  VARCHAR (MAX) NOT NULL,
+    [VALORENTREGA] FLOAT (53)    NOT NULL,
+    [PARCELA] INT NULL, 
+    [CARTAOID] INT NULL, 
+    CONSTRAINT [PK_Venda] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
