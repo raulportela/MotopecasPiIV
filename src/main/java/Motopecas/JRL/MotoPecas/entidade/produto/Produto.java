@@ -20,7 +20,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.Table;
 
 /**
  *
@@ -32,33 +31,32 @@ import javax.persistence.Table;
     @NamedQuery(name = "Produto.findAll", query = "SELECT p FROM Produto p"),
     @NamedQuery(name = "Produto.findById", query = "SELECT p FROM Produto p WHERE p.id = :idProduto")
 })
-@Table(name = "Produto")
 public class Produto implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(length = 40, nullable = false, name = "NOME")
+    @Column(length = 40, nullable = false)
     private String nome;
     
-    @Column(length = 200, nullable = false, name = "DESCRICAO")
+    @Column(length = 200, nullable = false)
     private String descricao;
     
-    @Column(length = 5, nullable = true, name = "PRECO")
+    @Column(length = 5, nullable = true)
     private double valor;
 
-    @Column(length = 15, nullable = false, name = "COR")
+    @Column(length = 15, nullable = false)
     private String cor;
     
     //falar com a rapa do back, sobre definir ids em uma categoria de moto e puxar na hora de cadastrar peças, é isso kkkkk
-    //private int tipoDaMoto;
+    private int tipoDaMoto;
     
-    @Column(length = 4, nullable = false, name = "ESTOQUE")
+    @Column(length = 4, nullable = false)
     private int quantidade;
     
-    @Column(length = 2, nullable = false, name = "TAMANHO")
-    private String tamanho;
+    @Column(length = 2, nullable = false)
+    private float tamanho;
     
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "produto_categoria",
@@ -66,22 +64,7 @@ public class Produto implements Serializable{
         inverseJoinColumns = @JoinColumn(name = "id_categoria"))
     private Set<Categoria> categorias ;
     
-    @Column(name = "CATEGORIA")
-    private String categoria;
-    
-    @Column(name = "DATAENTRADA")
     private LocalDateTime dataCadastro;
-    
-    @Column(name = "IMAGEM")
-    private Byte imagem[];
-
-    public Byte[] getImagem() {
-        return imagem;
-    }
-
-    public void setImagem(Byte[] imagem) {
-        this.imagem = imagem;
-    }
 
     public Long getId() {
         return id;
@@ -123,13 +106,13 @@ public class Produto implements Serializable{
         this.cor = cor;
     }
 
-    //public int getTipoDaMoto() {
-    //   return tipoDaMoto;
-    //}
+    public int getTipoDaMoto() {
+        return tipoDaMoto;
+    }
 
-    //public void setTipoDaMoto(int tipoDaMoto) {
-    //    this.tipoDaMoto = tipoDaMoto;
-    //}
+    public void setTipoDaMoto(int tipoDaMoto) {
+        this.tipoDaMoto = tipoDaMoto;
+    }
 
     public int getQuantidade() {
         return quantidade;
@@ -139,11 +122,11 @@ public class Produto implements Serializable{
         this.quantidade = quantidade;
     }
 
-    public String getTamanho() {
+    public float getTamanho() {
         return tamanho;
     }
 
-    public void setTamanho(String tamanho) {
+    public void setTamanho(float tamanho) {
         this.tamanho = tamanho;
     }
 
@@ -165,14 +148,6 @@ public class Produto implements Serializable{
 
     public void setIdsCategorias(Set<Integer> idsCategorias) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public String getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
     }
     
     
