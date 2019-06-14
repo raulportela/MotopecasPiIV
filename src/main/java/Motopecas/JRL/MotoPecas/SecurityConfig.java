@@ -34,7 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             }
         };
     }
-    
+
     public static PasswordEncoder bcryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
@@ -48,26 +48,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                    .antMatchers("/css/**", "/img/**", "/js/**","/icon-fonts/**", "/Source.sass/**").permitAll()
-                    .antMatchers("/mv/home").permitAll()
-                    .antMatchers("/mv/produto/**").permitAll() 
-                    .antMatchers("/mv/cartao/**").permitAll()
-                    .antMatchers("/mv/cliente/**").permitAll()
-                    .antMatchers("/**").authenticated()
-            .and()
+                .antMatchers("/css/**", "/img/**", "/js/**", "/icon-fonts/**", "/Source.sass/**").permitAll()
+                .antMatchers("/mv/home").permitAll()
+                .antMatchers("/mv/sobre").permitAll()
+                .antMatchers("/mv/produto/**").permitAll()
+                .antMatchers("/mv/cartao/**").permitAll()
+                .antMatchers("/mv/cliente/**").permitAll()
+                .antMatchers("/**").authenticated()
+                .and()
                 .formLogin()
-                    .loginPage("/login") // DEFINE A TELA DE LOGIN DO SISTEMA E NAO DO SPRING
-                    .usernameParameter("username")
-                    .passwordParameter("senha")
-                    .defaultSuccessUrl("/mv/home", true).permitAll()
-            .and()
+                .loginPage("/login") // DEFINE A TELA DE LOGIN DO SISTEMA E NAO DO SPRING
+                .usernameParameter("username")
+                .passwordParameter("senha")
+                .defaultSuccessUrl("/mv/home", true).permitAll()
+                .and()
                 .logout()
-                    .logoutUrl("/logout")
-                    .logoutSuccessUrl("/login?logout")
-                    .invalidateHttpSession(true).deleteCookies("JSESSIONID")
-            .and()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/login?logout")
+                .invalidateHttpSession(true).deleteCookies("JSESSIONID")
+                .and()
                 .exceptionHandling().accessDeniedPage("/erro/403");
-        
+
     }
 
 }

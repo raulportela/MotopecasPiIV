@@ -1,5 +1,6 @@
-package Motopecas.JRL.MotoPecas.controller.home;
+package Motopecas.JRL.MotoPecas.controller.sobre;
 
+import Motopecas.JRL.MotoPecas.controller.home.*;
 import Motopecas.JRL.MotoPecas.entidade.cliente.Cliente;
 import Motopecas.JRL.MotoPecas.repository.cliente.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,27 +17,11 @@ import org.springframework.web.servlet.ModelAndView;
  */
 /**
  *
- * @author Raul Portela
+ * @author samsung
  */
 @Controller
 @RequestMapping("/mv")
-public class HomeController {
+public class SobreController {
 
-    @GetMapping("/home")
-    public ModelAndView home(Authentication authentication) {
-        Cliente cliente = null;
-        if (authentication != null) {
-            cliente = (Cliente) authentication.getPrincipal();
-        }
-
-        return new ModelAndView("/home/home").addObject("clienteSessao", cliente);
-
-    }
     
-    @GetMapping("/sobre")
-    public ModelAndView sobre() {
-        ModelAndView mv = new ModelAndView("/sobre/sobre");
-        return mv;
-    }
-
 }
