@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 /**
  *
@@ -28,28 +29,29 @@ import javax.persistence.NamedQuery;
     @NamedQuery(name = "Endereco.findBySelecionado", query = "SELECT e FROM Endereco e WHERE e.selecionado = 1")
     
 })
+@Table(name = "Endereco")
 public class Endereco implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(length = 1)
+    @Column(length = 1, name = "SELECIONADO")
     private int selecionado;
     
-    @Column(length = 130, nullable = false)
+    @Column(length = 130, nullable = false, name = "LOGRADOURO")
     private String rua;
 
-    @Column(length = 5, nullable = false)
+    @Column(length = 5, nullable = false, name = "NUMERO")
     private int numero;
 
-    @Column(length = 80, nullable = false)
+    @Column(length = 80, nullable = false, name = "BAIRRO")
     private String bairro;
 
-    @Column(length = 7, nullable = false)
+    @Column(length = 7, nullable = false, name = "CEP")
     private int cep;
 
-    @Column(length = 200, nullable = false)
+    @Column(length = 200, nullable = false, name = "COMPLEMENTO")
     private String complemento;
 
     

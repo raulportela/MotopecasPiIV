@@ -25,6 +25,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  *
@@ -36,29 +37,32 @@ import javax.persistence.OneToOne;
     @NamedQuery(name = "Venda.findByIdCliente", query = "SELECT v FROM Venda v WHERE v.idCliente = :idCliente")
 
 })
+@Table(name = "Venda")
 public class Venda implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(precision = 6, scale = 2, nullable = false)
+    @Column(precision = 6, scale = 2, nullable = false, name = "TOTALCOMPRA")
     private BigDecimal valorTotal;
 
-    @Column(precision = 7, nullable = false)
+    @Column(precision = 7, nullable = false, name = "NUMERO")
     private String notaFiscal;
 
-    @Column(precision = 7, nullable = false)
+    @Column(precision = 7, nullable = false, name = "CLIENTEID")
     private Long idCliente;
 
+    @Column(name = "PARCELAS")
     private int parcelas;
 
+    @Column(name = "DATACOMPRA")
     private LocalDate dataCompra;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(
-            name = "VENDA_ITEMVENDA",
-            joinColumns = @JoinColumn(name = "ID_VENDA"),
+            name = "ItemVenda",
+            joinColumns = @JoinColumn(name = "VENDAID"),
             inverseJoinColumns = @JoinColumn(name = "ID_ITEMVENDA")
     )
     private List<ItemVenda> itensVenda = new ArrayList<>();

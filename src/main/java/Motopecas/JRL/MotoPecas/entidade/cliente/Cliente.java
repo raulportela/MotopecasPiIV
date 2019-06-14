@@ -23,6 +23,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -40,40 +41,40 @@ import org.springframework.security.core.userdetails.UserDetails;
     @NamedQuery(name = "Cliente.findByEmail", query = "SELECT c FROM Cliente c WHERE c.email = :email")
 
 })
-
+@Table(name = "Cliente")
 public class Cliente implements Serializable, UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 100, nullable = false)
+    @Column(length = 100, nullable = false, name = "EMAIL")
     private String email;
 
-    @Column(length = 200, nullable = false)
+    @Column(length = 200, nullable = false, name = "SENHA")
     private String hashsenha;
 
-    @Column(length = 50, nullable = false)
+    @Column(length = 50, nullable = false, name = "NOME")
     private String nome;
 
-    @Column(length = 100, nullable = false)
+    @Column(length = 100, nullable = false, name = "SOBRENOME")
     private String sobrenome;
 
-    @Column(length = 12, nullable = false)
+    @Column(length = 12, nullable = false, name = "TELEFONE")
     private Long telefone;
 
-    @Column(length = 100, nullable = false)
+    @Column(length = 100, nullable = false, name = "CPF")
     private String cpf;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "DISPONIVEL")
     private boolean disponivel;
 
-    @Column(nullable = false, insertable = true, updatable = false)
+    @Column(nullable = false, insertable = true, updatable = false, name = "DATANASCIMENTO")
     private LocalDateTime dataNascimento;
 
     // '1'== Masculino
     // '0'== Feminino
-    @Column(length = 100, nullable = false)
+    @Column(length = 100, nullable = false, name = "SEXO")
     private boolean sexo;
 
     @Fetch(FetchMode.SUBSELECT)
