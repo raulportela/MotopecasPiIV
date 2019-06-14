@@ -51,9 +51,9 @@ public class CartaoRepository {
     }
 
     @Transactional
-    public void desativarSelecionado() {
+    public void desativarSelecionado(Cliente cliente) {
         Cartao cartao = null;
-        Query jpqlQyery = entityManager.createNamedQuery("Cartao.findBySelecionado");
+        Query jpqlQyery = entityManager.createNamedQuery("Cartao.findBySelecionado").setParameter("cliente", cliente);
         try {
             cartao = (Cartao) jpqlQyery.getSingleResult();
         } catch (Exception e) {
@@ -69,11 +69,11 @@ public class CartaoRepository {
     }
 
     @Transactional
-    public void alterById(Long id) {
+    public void alterById(Long id, Cliente cliente) {
         Query jpqlQyery = entityManager.createNamedQuery("Cartao.findById").setParameter("id", id);
 
         //Esse metodo altera a seleção do cartão, caso exista algum selecionado.
-        desativarSelecionado();
+        desativarSelecionado(cliente);
 
         //Esse cartao é o que vou marcar como selecionado
         Cartao cartaoSelecionar = (Cartao) jpqlQyery.getSingleResult();

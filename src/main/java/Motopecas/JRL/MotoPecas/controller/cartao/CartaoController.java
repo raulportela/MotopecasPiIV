@@ -34,7 +34,7 @@ public class CartaoController {
             @ModelAttribute("cartao") Cartao cartao,
             /*BindingResult bindingResult,*/ RedirectAttributes redirectAttributes,Authentication authentication) {
         Cliente cliente = (Cliente) authentication.getPrincipal();
-        cartaoRepository.desativarSelecionado();
+        cartaoRepository.desativarSelecionado(cliente);
         cartao.setSelecionado(1);
         cartao.setCliente(cliente);
         cartaoRepository.save(cartao);

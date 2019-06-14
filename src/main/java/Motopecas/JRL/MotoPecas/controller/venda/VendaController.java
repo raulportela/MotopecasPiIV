@@ -76,7 +76,7 @@ public class VendaController {
 
         Cliente cliente = (Cliente) authentication.getPrincipal();
         List<Cartao> listCartao = (List<Cartao>) cartaoRepository.findByIdCliente(cliente);
-        List<Endereco> listEndereco = (List<Endereco>) enderecoRepository.findByAll(cliente);
+        List<Endereco> listEndereco = (List<Endereco>) enderecoRepository.findByIdCliente(cliente);
 
         List<Carrinho> listaCarrinho;
         listaCarrinho = carrinhoRepository.findCarrinhoByIdCliente(cliente.getId());
@@ -108,13 +108,15 @@ public class VendaController {
         List<ItemVenda> listaVenda = new ArrayList<>();
         List<Carrinho> listaCarrinho;
         listaCarrinho = carrinhoRepository.findCarrinhoByIdCliente(cliente.getId());
+        List<Endereco> listEndereco = (List<Endereco>) enderecoRepository.findByIdCliente(cliente);
+        List<Cartao> listCartao = (List<Cartao>) cartaoRepository.findByIdCliente(cliente);
         double totalCompra = 0;
-        for (Endereco endereco : cliente.getEndereco()) {
+        for (Endereco endereco : listEndereco) {
             if (endereco.getSelecionado() == 1) {
                 venda.setEndereco(endereco);
             }
         }
-        for (Cartao cartao : cliente.getCartao()) {
+        for (Cartao cartao : listCartao) {
             if (cartao.getSelecionado() == 1) {
                 venda.setCartao(cartao);
             }
@@ -130,7 +132,7 @@ public class VendaController {
         venda.setValorTotal(s);
         venda.setItensVenda(listaVenda);
         carrinhoRepository.deleteByIdCliente(cliente);
-        cartaoRepository.desativarSelecionado();
+        cartaoRepository.desativarSelecionado(cliente);
         vendaRepository.saveVenda(venda);
         return new ModelAndView("redirect:/mv/venda/pedido").addObject("numeropedido", numeroPedido);
     }
@@ -177,14 +179,16 @@ public class VendaController {
     }
 
     @GetMapping("/{id}/alteraddress")
-    public ModelAndView alterAddres(@PathVariable("id") Long idEndereco) {
-        enderecoRepository.alterById(idEndereco);
+    public ModelAndView alterAddres(@PathVariable("id") Long idEndereco, Authentication authentication) {
+        Cliente cliente = (Cliente) authentication.getPrincipal();
+        enderecoRepository.alterById(idEndereco, cliente);
         return new ModelAndView("redirect:/mv/venda/confirmacao");
     }
 
     @GetMapping("/{id}/alteracard")
-    public ModelAndView alterCard(@PathVariable("id") Long idCartao) {
-        cartaoRepository.alterById(idCartao);
+    public ModelAndView alterCard(@PathVariable("id") Long idCartao,  Authentication authentication) {
+        Cliente cliente = (Cliente) authentication.getPrincipal();
+        cartaoRepository.alterById(idCartao, cliente);
         return new ModelAndView("redirect:/mv/venda/confirmacao");
     }
 

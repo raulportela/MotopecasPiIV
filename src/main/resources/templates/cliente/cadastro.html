@@ -33,15 +33,15 @@
                                 <label for="inputPessoa">Tipo de pessoa:</label>
                                 <div class="col-sm-10">
                                     <div class="form-check form-check-inline">
-                                       <!-- <input class="form-check-input" type="radio" name="papel" id="optPessoa" value="1" th:field="*{papel}"> -->
+                                        <!-- <input class="form-check-input" type="radio" name="papel" id="optPessoa" value="1" th:field="*{papel}"> -->
                                         <label class="form-check-label" >
-                                           <!-- Física -->
+                                            <!-- Física -->
                                         </label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                     <!--   <input class="form-check-input" type="radio" name="papel" id="optPessoa" value="0" th:field="*{papel}"> -->
+                                        <!--   <input class="form-check-input" type="radio" name="papel" id="optPessoa" value="0" th:field="*{papel}"> -->
                                         <label class="form-check-label" >
-                                          <!--  Juridica -->
+                                            <!--  Juridica -->
                                         </label>
                                     </div>
                                 </div>
@@ -49,8 +49,8 @@
                                     <label>E-mail*:</label> 
                                     <input type="text" name="email" th:classappend="${#fields.hasErrors('email')}? is-invalid" id="txtEmail" placeholder="Email" th:field="*{email}" >
                                     <label>Senha*:</label>  
-                                    <input type="text" name="senha" th:classappend="${#fields.hasErrors('hashsenha')}? is-invalid" id="txtHashSenha" placeholder="Senha" th:field="*{hashsenha}" >
-                                   <!-- <label>Confirmar senha*:</label> <input type="text" > -->
+                                    <input type="password" name="senha" th:classappend="${#fields.hasErrors('hashsenha')}? is-invalid" id="txtHashSenha" placeholder="Senha" th:field="*{hashsenha}" >
+                                    <!-- <label>Confirmar senha*:</label> <input type="text" > -->
                                 </div>
 
                             </div>
@@ -93,39 +93,46 @@
                                             </label>
                                         </div>
                                     </div>
-                                    <label>Data de nascimento*:</label> <input type="text" >
-                                </div>
-                            </div>
-                            <div class="row">
-                            <!--    <div class="col">
-                                    <input class="form-check-input" type="checkbox" id="gridCheck">
-                                    <p>Deseja receber e-mail com novidades?</p>
-                                </div> -->
 
-                            </div>
-                            <div class="container"> 
-                                <div class="row"> 
-                                    <div class="col-md-6">
+                                    <br>
+
+                                    <div>
+                                        <label>Data de nascimento*:</label>
+                                        <input type="date" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" min="1900-01-01" class="form-control" id="nasc" name="nasc">
                                     </div>
-                                    <div class="col-6">
-                                        <div class="col">
-                                            <div class="cf-radio-btns address-rb">
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <button class="site-btn submit-order-btn">Voltar</button>
-                                                    </div>
-                                                    <div class="col">
-                                                        <div class="cf-radio-btns address-rb">
-                                                            <button type="submit" class="site-btn submit-order-btn">Cadastrar-se</button>
+                                    
+                                    <br>
+                                </div>
+                                <div class="row">
+                                    <!--    <div class="col">
+                                            <input class="form-check-input" type="checkbox" id="gridCheck">
+                                            <p>Deseja receber e-mail com novidades?</p>
+                                        </div> -->
+
+                                </div>
+                                <div class="container"> 
+                                    <div class="row"> 
+                                        <div class="col-md-6">
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="col">
+                                                <div class="cf-radio-btns address-rb">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <button class="site-btn submit-order-btn">Voltar</button>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="cf-radio-btns address-rb">
+                                                                <button type="submit" class="site-btn submit-order-btn">Cadastrar-se</button>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
 
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                         </form>
                     </div>
                 </div>

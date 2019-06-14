@@ -36,10 +36,10 @@ public class EnderecoRepository {
     }
 
     @Transactional
-    public Endereco findByIdCliente(Cliente cliente) {
+    public List <Endereco> findByIdCliente(Cliente cliente) {
         Query jpqlQyery = entityManager.createNamedQuery("Endereco.findByIdCliente").setParameter("cliente", cliente);
-        Endereco Endereco = (Endereco) jpqlQyery.getSingleResult();
-        return Endereco;
+       List <Endereco> listEndereco =  jpqlQyery.getResultList();
+        return listEndereco;
     }
 
     @Transactional
@@ -50,10 +50,11 @@ public class EnderecoRepository {
         save(endereco);
         return endereco;
     }
-    
-    public void desativarSelecionado() {
-        Endereco endereco = null;
-        Query jpqlQyery = entityManager.createNamedQuery("Endereco.findBySelecionado");
+
+    @Transactional
+    public void desativarSelecionado(Cliente cliente) {
+       Endereco endereco  = null;
+        Query jpqlQyery = entityManager.createNamedQuery("Endereco.findBySelecionado").setParameter("cliente", cliente);
         try {
             endereco = (Endereco) jpqlQyery.getSingleResult();
         } catch (Exception e) {
@@ -69,21 +70,22 @@ public class EnderecoRepository {
     }
 
     @Transactional
-    public void alterById(Long id) {
+    public void alterById(Long id, Cliente cliente) {
+        
         Query jpqlQyery = entityManager.createNamedQuery("Endereco.findById").setParameter("id", id);
 
         //Esse endereco é o que estava selecionado e eu vou tirar o selecionado dele.
-        desativarSelecionado();
+        desativarSelecionado(cliente);
 
         //Esse endereco é o que vou marcar como selecionado
         Endereco enderecoSelelecionar = (Endereco) jpqlQyery.getSingleResult();
         enderecoSelelecionar.setSelecionado(1);
         save(enderecoSelelecionar);
     }
-    
+
     public List<Endereco> findByAll(Cliente cliente) {
         Query jpqlQuery = entityManager.createNamedQuery("Endereco.findByIdCliente").setParameter("cliente", cliente);
-        List<Endereco> listEndereco= jpqlQuery.getResultList();
+        List<Endereco> listEndereco = jpqlQuery.getResultList();
         return listEndereco;
     }
 
