@@ -92,6 +92,7 @@ public class VendaController {
                 .addObject("listCartao", listCartao)
                 .addObject("listEnd", listEndereco)
                 .addObject("newCard", new Cartao())
+                .addObject("newEndereco", new Endereco())
                 .addObject("newEnd", new Endereco());
         return mv;
     }

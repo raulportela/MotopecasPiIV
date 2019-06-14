@@ -181,8 +181,9 @@ and open the template in the editor.
                             <div class="col-4 col-sm-4 col-md-4" th:each="venda, stat: ${listaPedidos}">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h5 class="card-title" th:text="${venda.notaFiscal}"></h5>
+                                        <h5 class="card-title" th:text="'Pedido n°: ' + ${venda.notaFiscal}"></h5>
                                         <h6 class="card-subtitle mb-2 text-muted" th:text="${venda.dataCompra}"></h6>
+                                        <p th:text="'Valor Total: R$ '+ ${venda.valorTotal}"></p>
                                         <a th:href="@{/mv/venda/pedido?numeropedido={numeropedido}(numeropedido=${venda.notaFiscal})}">Visualizar</a>
                                     </div>
                                 </div>
