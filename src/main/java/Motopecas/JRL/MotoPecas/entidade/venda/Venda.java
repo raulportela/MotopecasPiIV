@@ -48,6 +48,8 @@ public class Venda implements Serializable {
     @Column(precision = 7, nullable = false)
     private String notaFiscal;
 
+    double frete;
+    
     @Column(precision = 7, nullable = false)
     private Long idCliente;
 
@@ -147,6 +149,14 @@ public class Venda implements Serializable {
 
     public void setCartao(Cartao cartao) {
         this.cartao = cartao;
+    }
+
+    public double getFrete() {
+        return frete;
+    }
+
+    public void setFrete(double frete) {
+        this.frete = frete;
     }
 
 }

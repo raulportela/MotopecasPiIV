@@ -107,6 +107,7 @@ public class VendaController {
         String numeroPedido = "" + gerarNumeroPedido(null);
         Venda venda = new Venda();
         venda.setIdCliente(cliente.getId());
+        venda.setFrete(15);
         venda.setData(LocalDate.now());
         venda.setParcelas(3);
         venda.setNotaFiscal(numeroPedido);
@@ -132,6 +133,7 @@ public class VendaController {
             itemVenda.setProduto(carrinho.getProduto());
             itemVenda.setQuantidade(carrinho.getQuantidade());
             listaVenda.add(itemVenda);
+            carrinhoRepository.deleteById(carrinho);
         }
         BigDecimal s = new BigDecimal("" + totalCompra);
         venda.setValorTotal(s);
